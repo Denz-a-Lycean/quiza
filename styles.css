@@ -1,0 +1,266 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+#quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar {
+  background: #e9ecef;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.question-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.question-header {
+  margin-bottom: 15px;
+}
+
+.unit-tag {
+  display: inline-block;
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-bottom: 8px;
+}
+
+.question-text {
+  font-size: 1.2em;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.option-button {
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.option-button:hover {
+  background: #f8f9fa;
+}
+
+.option-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.correct-answer {
+  background: #d4edda !important;
+  border-color: #28a745 !important;
+  color: #155724 !important;
+}
+
+.wrong-answer {
+  background: #f8d7da !important;
+  border-color: #dc3545 !important;
+  color: #721c24 !important;
+}
+
+.answer-feedback {
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.correct {
+  background: #d4edda;
+  color: #155724;
+}
+
+.incorrect {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.result-icon {
+  font-size: 20px;
+}
+
+.feedback-text h3 {
+  margin: 0 0 8px 0;
+}
+
+.explanation {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.next-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.next-button:hover {
+  background: #0056b3;
+}
+
+.results-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.score-circle.a {
+  background: #28a745;
+}
+.score-circle.b {
+  background: #17a2b8;
+}
+.score-circle.c {
+  background: #ffc107;
+}
+.score-circle.d {
+  background: #fd7e14;
+}
+.score-circle.f {
+  background: #dc3545;
+}
+
+.percentage {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+.grade {
+  font-size: 1.1em;
+}
+
+.restart-button {
+  margin-top: 20px;
+}
+
+.restart-button button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.restart-button button:hover {
+  background: #5a6268;
+}
+
+/* Table styles */
+.data-table {
+  width: 100%;
+  margin: 15px 0;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.data-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+}
+
+.data-table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.data-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.data-title {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.data-note {
+  margin-top: 10px;
+  font-style: italic;
+  color: #666;
+  text-align: right;
+  font-size: 0.9em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  .score-circle {
+    width: 120px;
+    height: 120px;
+  }
+  .percentage {
+    font-size: 1.5em;
+  }
+}

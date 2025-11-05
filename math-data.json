@@ -1,0 +1,540 @@
+[
+  {
+    "id": "dataset1_student_scores",
+    "title": "Student Test Scores Analysis",
+    "description": "Analysis of First Year BSIT students' midterm scores using Frequency Distribution Table.",
+    "data": {
+      "type": "FDT",
+      "title": "First Year BSIT Midterm Scores",
+      "headers": ["Class Interval", "f", "X", "fX", "CF"],
+      "rows": [
+        ["50-59", "5", "54.5", "272.5", "5"],
+        ["60-69", "8", "64.5", "516.0", "13"],
+        ["70-79", "15", "74.5", "1117.5", "28"],
+        ["80-89", "12", "84.5", "1014.0", "40"],
+        ["90-99", "10", "94.5", "945.0", "50"]
+      ],
+      "note": "Σf = 50, ΣfX = 3865"
+    },
+    "questions": [
+      {
+        "question": "How many students scored between 70 and 79?",
+        "options": ["5", "8", "15", "12"],
+        "answer": [2],
+        "explanation": "Looking at the frequency (f) column for class interval 70-79, we can see f = 15 students."
+      },
+      {
+        "question": "What is the median class in this distribution?",
+        "options": ["60-69", "70-79", "80-89", "90-99"],
+        "answer": [1],
+        "explanation": "Since N=50, we look for N/2=25 in the CF column. The class where CF first reaches or exceeds 25 is 70-79 (CF=28)."
+      },
+      {
+        "question": "Calculate the mean score (rounded to one decimal).",
+        "options": ["75.5", "77.3", "76.2", "78.4"],
+        "answer": [1],
+        "explanation": "Using the formula Mean = ΣfX / Σf = 3865 / 50 = 77.3"
+      },
+      {
+        "question": "Which interval represents the mode class?",
+        "options": ["60-69", "70-79", "80-89", "90-99"],
+        "answer": [1],
+        "explanation": "The mode class has the highest frequency. Looking at the f column, 70-79 has the highest frequency of 15 students."
+      }
+    ]
+  },
+  {
+    "id": "dataset2_heights",
+    "title": "Height Data Analysis",
+    "description": "Analysis of student heights data and FDT construction.",
+    "data": {
+      "type": "raw",
+      "title": "Heights (cm) of 24 students",
+      "values": [
+        162, 165, 168, 170, 155, 159, 160, 163, 167, 171, 172, 174, 158, 156,
+        161, 169, 166, 164, 173, 175, 157, 154, 170, 168
+      ]
+    },
+    "questions": [
+      {
+        "question": "Using Sturges' rule (K ≈ 1 + 3.322 log n), what is the suggested number of classes?",
+        "options": ["4", "5", "6", "7"],
+        "answer": [2],
+        "explanation": "With n=24: log10(24)≈1.3802, K≈1+3.322(1.3802)≈5.586, rounded up to 6 classes."
+      },
+      {
+        "question": "Given range=21 (175-154) and using 6 classes, what should be the class size (C) rounded up?",
+        "options": ["3", "4", "5", "6"],
+        "answer": [1],
+        "explanation": "Class size C = Range/K = 21/6 = 3.5, rounded up to 4"
+      },
+      {
+        "question": "What is the class mark of the interval 158-161?",
+        "options": ["158.5", "159.5", "159", "160"],
+        "answer": [1],
+        "explanation": "Class mark = (Lower limit + Upper limit)/2 = (158 + 161)/2 = 159.5"
+      }
+    ]
+  },
+  {
+    "id": "dataset3_exam_scores",
+    "title": "Exam Scores Analysis",
+    "description": "Analysis of exam scores using Frequency Distribution Table.",
+    "data": {
+      "type": "FDT",
+      "title": "Exam Scores of 40 Students",
+      "headers": ["Class Interval", "f", "X", "fX", "CF"],
+      "rows": [
+        ["40-49", "2", "44.5", "89.0", "2"],
+        ["50-59", "5", "54.5", "272.5", "7"],
+        ["60-69", "10", "64.5", "645.0", "17"],
+        ["70-79", "15", "74.5", "1117.5", "32"],
+        ["80-89", "8", "84.5", "676.0", "40"]
+      ],
+      "note": "Σf = 40, ΣfX = 2799.0"
+    },
+    "questions": [
+      {
+        "question": "What is the mean score of the students?",
+        "options": ["69.98", "70.00", "71.00", "72.00"],
+        "answer": [0],
+        "explanation": "Mean = ΣfX / Σf = 2799.0 / 40 = 69.98"
+      },
+      {
+        "question": "Which class interval has the highest frequency?",
+        "options": ["40-49", "50-59", "60-69", "70-79"],
+        "answer": [3],
+        "explanation": "The class interval 70-79 has the highest frequency of 15."
+      },
+      {
+        "question": "What is the median class?",
+        "options": ["50-59", "60-69", "70-79", "80-89"],
+        "answer": [1],
+        "explanation": "N/2 = 20. The median class is 60-69, where CF first reaches 17 and exceeds 20 in the next class."
+      }
+    ]
+  },
+  {
+    "id": "dataset4_age_distribution",
+    "title": "Age Distribution Analysis",
+    "description": "Analysis of age distribution using Frequency Distribution Table.",
+    "data": {
+      "type": "FDT",
+      "title": "Ages of 30 Employees",
+      "headers": ["Class Interval", "f", "X", "fX", "CF"],
+      "rows": [
+        ["20-29", "3", "24.5", "73.5", "3"],
+        ["30-39", "8", "34.5", "276.0", "11"],
+        ["40-49", "12", "44.5", "534.0", "23"],
+        ["50-59", "5", "54.5", "272.5", "28"],
+        ["60-69", "2", "64.5", "129.0", "30"]
+      ],
+      "note": "Σf = 30, ΣfX = 1285.0"
+    },
+    "questions": [
+      {
+        "question": "What is the mean age of the employees?",
+        "options": ["42.83", "43.00", "44.00", "45.00"],
+        "answer": [0],
+        "explanation": "Mean = ΣfX / Σf = 1285.0 / 30 = 42.83"
+      },
+      {
+        "question": "Which class interval has the lowest frequency?",
+        "options": ["20-29", "30-39", "50-59", "60-69"],
+        "answer": [3],
+        "explanation": "The class interval 60-69 has the lowest frequency of 2."
+      },
+      {
+        "question": "What is the modal class?",
+        "options": ["20-29", "30-39", "40-49", "50-59"],
+        "answer": [2],
+        "explanation": "The modal class is 40-49, which has the highest frequency of 12."
+      }
+    ]
+  },
+  {
+    "id": "fdt_graphical_representation",
+    "title": "Graphical Representation: Histogram, Polygon, Ogive",
+    "description": "Covers reading and interpreting graphs based on frequency distribution tables.",
+    "questions": [
+      {
+        "question": "Which graph uses rectangles to represent frequencies of classes?",
+        "options": ["Histogram", "Polygon", "Ogive", "Bar Graph"],
+        "answer": [0],
+        "explanation": "Histogram uses bars (rectangles) whose heights show frequency and widths show class intervals."
+      },
+      {
+        "question": "What does a frequency polygon connect?",
+        "options": [
+          "Upper boundaries of each class",
+          "Midpoints (class marks) of each class",
+          "Frequencies of individual data",
+          "Cumulative frequencies"
+        ],
+        "answer": [1],
+        "explanation": "A frequency polygon connects the midpoints (class marks) of each class using straight lines."
+      },
+      {
+        "question": "The Ogive graph is used to represent what type of frequency?",
+        "options": ["Relative", "Cumulative", "Weighted", "Simple"],
+        "answer": [1],
+        "explanation": "Ogive shows cumulative frequencies — used to find medians and percentiles."
+      },
+      {
+        "question": "If the highest bar in a histogram corresponds to 20–29, what does it mean?",
+        "options": [
+          "Most data fall within 20–29",
+          "No data in 20–29",
+          "Few data fall in 20–29",
+          "It’s an outlier class"
+        ],
+        "answer": [0],
+        "explanation": "The tallest bar indicates the class interval with the highest frequency — the mode class."
+      }
+    ]
+  },
+  {
+    "id": "fdt_central_tendency",
+    "title": "Measures of Central Tendency",
+    "description": "Covers computation and interpretation of mean, median, and mode for FDTs.",
+    "questions": [
+      {
+        "question": "What measure of central tendency is found by summing all data values and dividing by the total number?",
+        "options": ["Mean", "Median", "Mode", "Range"],
+        "answer": [0],
+        "explanation": "The mean is the arithmetic average of all data values."
+      },
+      {
+        "question": "In an ungrouped data set, the median is the value that:",
+        "options": [
+          "Occurs most often",
+          "Divides the data into two equal parts",
+          "Is the average of all data",
+          "Is the difference between the highest and lowest"
+        ],
+        "answer": [1],
+        "explanation": "The median divides ordered data into two equal halves."
+      },
+      {
+        "question": "Which formula is used to find the class mark?",
+        "options": [
+          "(Lower limit + Upper limit) / 2",
+          "(Upper limit - Lower limit) / 2",
+          "(Lower limit × Upper limit) / 2",
+          "Upper limit – Lower limit"
+        ],
+        "answer": [0],
+        "explanation": "The class mark is the midpoint — found by averaging the lower and upper limits."
+      },
+      {
+        "question": "What is the mode in an FDT?",
+        "options": [
+          "The smallest class",
+          "The most frequent class",
+          "The middle class",
+          "The last class interval"
+        ],
+        "answer": [1],
+        "explanation": "Mode is the class with the highest frequency — the most common value range."
+      }
+    ]
+  },
+
+  {
+    "id": "unit1_statistics_intro",
+    "title": "UNIT 1: Introduction to Statistics and Data",
+    "description": "Covers the definition, importance, and methods of data collection in Statistics.",
+    "questions": [
+      {
+        "question": "What is the primary purpose of statistics?",
+        "options": [
+          "To create complex equations",
+          "To collect, analyze, and interpret data",
+          "To design experiments",
+          "To predict weather"
+        ],
+        "answer": [1],
+        "explanation": "Statistics is primarily used to collect, analyze, and interpret data."
+      },
+      {
+        "question": "Which of the following is an example of quantitative data?",
+        "options": [
+          "Colors of cars",
+          "Types of fruits",
+          "Heights of students",
+          "Names of cities"
+        ],
+        "answer": [2],
+        "explanation": "Heights of students are numerical and measurable, making them quantitative data."
+      },
+      {
+        "question": "What is the difference between discrete and continuous data?",
+        "options": [
+          "Discrete data is countable, continuous data is measurable",
+          "Discrete data is measurable, continuous data is countable",
+          "Discrete data is qualitative, continuous data is quantitative",
+          "Discrete data is categorical, continuous data is numerical"
+        ],
+        "answer": [0],
+        "explanation": "Discrete data is countable (e.g., number of students), while continuous data is measurable (e.g., height, weight)."
+      },
+      {
+        "question": "Which method of data collection involves observing and recording behavior?",
+        "options": [
+          "Interview Method",
+          "Questionnaire Method",
+          "Observation Method",
+          "Registration Method"
+        ],
+        "answer": [2],
+        "explanation": "The Observation Method involves watching and recording behavior."
+      },
+      {
+        "question": "What is the main advantage of using a questionnaire for data collection?",
+        "options": [
+          "It is time-consuming",
+          "It allows for large-scale data collection",
+          "It requires face-to-face interaction",
+          "It is only useful for qualitative data"
+        ],
+        "answer": [1],
+        "explanation": "Questionnaires allow for large-scale data collection efficiently."
+      }
+    ]
+  },
+  {
+    "id": "unit2_data_presentation",
+    "title": "UNIT 2: Data Presentation",
+    "description": "Discusses tabular and graphical presentation of data including Frequency Distribution Table (FDT).",
+    "questions": [
+      {
+        "question": "Which type of graph is best for comparing proportions of a whole?",
+        "options": ["Line graph", "Bar graph", "Pie chart", "Histogram"],
+        "answer": [2],
+        "explanation": "Pie charts are ideal for comparing proportions of a whole."
+      },
+      {
+        "question": "What is the main purpose of a histogram?",
+        "options": [
+          "To show trends over time",
+          "To display the frequency of continuous data",
+          "To compare categories",
+          "To show proportions"
+        ],
+        "answer": [1],
+        "explanation": "Histograms display the frequency of continuous data."
+      },
+      {
+        "question": "Which of the following is NOT a component of a Frequency Distribution Table (FDT)?",
+        "options": [
+          "Class Interval",
+          "Frequency",
+          "Class Mark",
+          "Standard Deviation"
+        ],
+        "answer": [3],
+        "explanation": "Standard Deviation is not a component of an FDT."
+      },
+      {
+        "question": "What is the purpose of cumulative frequency in an FDT?",
+        "options": [
+          "To calculate the mean",
+          "To determine the mode",
+          "To find the median and quartiles",
+          "To visualize data"
+        ],
+        "answer": [2],
+        "explanation": "Cumulative frequency helps in finding the median and quartiles."
+      }
+    ]
+  },
+  {
+    "id": "unit3_constructing_fdt",
+    "title": "UNIT 3: Constructing a Frequency Distribution Table",
+    "description": "Learn the step-by-step process of constructing an FDT and its components.",
+    "questions": [
+      {
+        "question": "What is the first step in constructing an FDT?",
+        "options": [
+          "Determine the number of classes",
+          "Find the range of the data",
+          "Calculate the class size",
+          "Arrange the data in ascending order"
+        ],
+        "answer": [3],
+        "explanation": "The first step is to arrange the data in ascending order."
+      },
+      {
+        "question": "What is the formula to calculate the range of data?",
+        "options": [
+          "Range = Highest value - Lowest value",
+          "Range = Number of classes / Class size",
+          "Range = (Highest value + Lowest value) / 2",
+          "Range = Total frequency / Number of classes"
+        ],
+        "answer": [0],
+        "explanation": "Range is calculated as the difference between the highest and lowest values."
+      },
+      {
+        "question": "What is the purpose of class boundaries in an FDT?",
+        "options": [
+          "To determine the class size",
+          "To ensure no gaps or overlaps between classes",
+          "To calculate the mean",
+          "To visualize the data"
+        ],
+        "answer": [1],
+        "explanation": "Class boundaries ensure there are no gaps or overlaps between classes."
+      },
+      {
+        "question": "What is the class size if the range is 40 and the number of classes is 5?",
+        "options": ["5", "8", "10", "20"],
+        "answer": [1],
+        "explanation": "Class size = Range / Number of classes = 40 / 5 = 8."
+      }
+    ]
+  },
+  {
+    "id": "unit4_central_tendency_ungrouped",
+    "title": "UNIT 4: Measures of Central Tendency (Ungrouped Data)",
+    "description": "Covers mean, median, and mode for ungrouped or raw data.",
+    "questions": [
+      {
+        "question": "What is the median of the data set: 5, 7, 9, 11, 13, 15?",
+        "options": ["7", "9", "10", "11"],
+        "answer": [2],
+        "explanation": "For an even number of data points, the median is the average of the two middle numbers: (9 + 11) / 2 = 10."
+      },
+      {
+        "question": "What is the mode of the data set: 2, 3, 4, 4, 5, 6, 6, 6, 7?",
+        "options": ["4", "5", "6", "7"],
+        "answer": [2],
+        "explanation": "The mode is the most frequently occurring value, which is 6."
+      },
+      {
+        "question": "What is the mean of the data set: 10, 20, 30, 40, 50?",
+        "options": ["25", "30", "35", "40"],
+        "answer": [1],
+        "explanation": "Mean = (10 + 20 + 30 + 40 + 50) / 5 = 150 / 5 = 30."
+      }
+    ]
+  },
+  {
+    "id": "unit5_central_tendency_grouped",
+    "title": "UNIT 5: Measures of Central Tendency (Grouped Data)",
+    "description": "Learn how to compute the mean, median, and mode using grouped data formulas.",
+    "questions": [
+      {
+        "question": "What is the formula for the mean in grouped data?",
+        "options": ["Σf / ΣX", "ΣfX / Σf", "ΣX / N", "Σf / N"],
+        "answer": [1],
+        "explanation": "The mean in grouped data is calculated using ΣfX / Σf."
+      },
+      {
+        "question": "What is the median class if the total frequency (N) is 50 and the cumulative frequency (CF) reaches 25 in the class 30-39?",
+        "options": ["20-29", "30-39", "40-49", "50-59"],
+        "answer": [1],
+        "explanation": "The median class is where the cumulative frequency first reaches or exceeds N/2 (25)."
+      },
+      {
+        "question": "What is the mode class if the highest frequency is in the class 40-49?",
+        "options": ["30-39", "40-49", "50-59", "60-69"],
+        "answer": [1],
+        "explanation": "The mode class is the class with the highest frequency, which is 40-49."
+      }
+    ]
+  },
+  {
+    "id": "unit6_measures_position",
+    "title": "UNIT 6: Measures of Position",
+    "description": "Explains quartiles, deciles, and percentiles and how to interpret them.",
+    "questions": [
+      {
+        "question": "What is the formula for the first quartile (Q1)?",
+        "options": [
+          "Q1 = L + ((N/4 - CF<) / f) * i",
+          "Q1 = L + ((N/2 - CF<) / f) * i",
+          "Q1 = L + ((3N/4 - CF<) / f) * i",
+          "Q1 = L + ((N - CF<) / f) * i"
+        ],
+        "answer": [0],
+        "explanation": "The formula for the first quartile is Q1 = L + ((N/4 - CF<) / f) * i."
+      },
+      {
+        "question": "What does the third quartile (Q3) represent?",
+        "options": [
+          "The lowest 25% of the data",
+          "The middle 50% of the data",
+          "The highest 25% of the data",
+          "The top 75% of the data"
+        ],
+        "answer": [2],
+        "explanation": "The third quartile (Q3) represents the highest 25% of the data."
+      },
+      {
+        "question": "What is the relationship between quartiles and percentiles?",
+        "options": [
+          "Q1 = P25, Q2 = P50, Q3 = P75",
+          "Q1 = P50, Q2 = P75, Q3 = P100",
+          "Q1 = P10, Q2 = P50, Q3 = P90",
+          "Q1 = P15, Q2 = P60, Q3 = P85"
+        ],
+        "answer": [0],
+        "explanation": "The first quartile (Q1) is the 25th percentile (P25), the second quartile (Q2) is the 50th percentile (P50), and the third quartile (Q3) is the 75th percentile (P75)."
+      }
+    ]
+  },
+  {
+    "id": "unit7_interpretation_mistakes",
+    "title": "UNIT 7: Interpretation and Common Mistakes",
+    "description": "Identifies common errors and key reminders in data analysis.",
+    "questions": [
+      {
+        "question": "What is a common mistake when calculating the median in grouped data?",
+        "options": [
+          "Using the wrong class interval",
+          "Forgetting to use cumulative frequency",
+          "Using the highest frequency class",
+          "Ignoring the class boundaries"
+        ],
+        "answer": [1],
+        "explanation": "Forgetting to use cumulative frequency is a common mistake when calculating the median in grouped data."
+      },
+      {
+        "question": "What does CF< represent in an FDT?",
+        "options": [
+          "Cumulative frequency including the current class",
+          "Cumulative frequency before the current class",
+          "Class frequency",
+          "Total frequency"
+        ],
+        "answer": [1],
+        "explanation": "CF< represents the cumulative frequency before the current class."
+      },
+      {
+        "question": "Why is it important to round the class size correctly?",
+        "options": [
+          "To ensure the data is qualitative",
+          "To avoid gaps or overlaps in class intervals",
+          "To make the data continuous",
+          "To calculate the mean accurately"
+        ],
+        "answer": [1],
+        "explanation": "Rounding the class size correctly avoids gaps or overlaps in class intervals."
+      }
+    ]
+  },
+  {
+    "id": "last",
+    "title": "Ako Parin ba?",
+    "description": "",
+    "questions": [
+      {
+        "question": "Ako Parin ba? or Siya na talaga??",
+        "options": ["Ikaw parin", "Siya na talaga", "aral muna"],
+        "answer": [2],
+        "explanation": "Mag aral muna ahh puro landi eh"
+      }
+    ]
+  }
+]
