@@ -1,0 +1,532 @@
+[
+  {
+    "id": "logic_concepts",
+    "title": "Logic Concepts",
+    "description": "Basic understanding of logical terms and concepts in discrete mathematics.",
+    "questions": [
+      {
+        "question": "A statement that can only be true or false, but not both, is called a _____.",
+        "options": [
+          "Predicate",
+          "Proposition",
+          "Argument",
+          "Variable"
+        ],
+        "answer": [1],
+        "explanation": "A proposition has a definite truth value - it must be either true or false, but cannot be both."
+      },
+      {
+        "question": "What is a predicate?",
+        "options": [
+          "A sentence that is always true",
+          "A sentence with a variable that becomes a statement when the variable is replaced",
+          "A sentence that is always false",
+          "A sentence that combines multiple statements"
+        ],
+        "answer": [1],
+        "explanation": "A predicate is a sentence containing a variable which becomes a statement when that variable is replaced with a specific value."
+      },
+      {
+        "question": "The statement '2 + 2 = 5' is:",
+        "options": [
+          "Not a statement",
+          "A valid statement that is true",
+          "A valid statement that is false",
+          "A predicate"
+        ],
+        "answer": [2],
+        "explanation": "This is a valid statement because it has a definite truth value (it's false), but it's still a proper statement."
+      },
+      {
+        "question": "Which of the following is NOT a statement?",
+        "options": [
+          "2 + 2 = 4",
+          "x + 3 = 7",
+          "Today is Monday",
+          "The sky is blue"
+        ],
+        "answer": [1],
+        "explanation": "x + 3 = 7 is a predicate because it contains a variable x. It becomes a statement only when x is replaced with a specific value."
+      },
+      {
+        "question": "What type of logical statement is always true regardless of the truth values of its components?",
+        "options": [
+          "Contradiction",
+          "Contingency",
+          "Tautology",
+          "Predicate"
+        ],
+        "answer": [2],
+        "explanation": "A tautology is a compound statement that is always true regardless of the truth values of its components."
+      },
+      {
+        "question": "Which of the following is a compound statement?",
+        "options": [
+          "The sun is bright",
+          "It is raining",
+          "If it rains, then the ground is wet",
+          "x > 5"
+        ],
+        "answer": [2],
+        "explanation": "A compound statement combines two or more simple statements using logical connectives. 'If it rains, then the ground is wet' uses the if-then connective."
+      },
+      {
+        "question": "What is a statement that is always false called?",
+        "options": [
+          "Tautology",
+          "Contradiction",
+          "Contingency",
+          "Proposition"
+        ],
+        "answer": [1],
+        "explanation": "A contradiction is a compound statement that is always false regardless of the truth values of its components."
+      },
+      {
+        "question": "Which has the highest precedence in logical operations?",
+        "options": [
+          "∨ (OR)",
+          "∧ (AND)",
+          "¬ (NOT)",
+          "→ (IMPLIES)"
+        ],
+        "answer": [2],
+        "explanation": "The NOT operator (¬) has the highest precedence among all logical operators."
+      },
+      {
+        "question": "¬(P ∧ Q) is equivalent to _____.",
+        "options": [
+          "¬P ∧ ¬Q",
+          "¬P ∨ ¬Q",
+          "P ∨ ¬Q",
+          "P → Q"
+        ],
+        "answer": [1],
+        "explanation": "By De Morgan's Law, the negation of a conjunction (AND) becomes the disjunction (OR) of the negations: ¬(P ∧ Q) ≡ ¬P ∨ ¬Q"
+      },
+      {
+        "question": "Which is a tautology?",
+        "options": [
+          "P ∧ ¬P",
+          "P ∨ ¬P",
+          "¬P",
+          "P → ¬P"
+        ],
+        "answer": [1],
+        "explanation": "P ∨ ¬P (read as 'P or not P') is always true regardless of P's truth value, making it a tautology."
+      }
+    ]
+  },
+  {
+    "id": "symbolic_translation",
+    "title": "Symbolic Translation",
+    "description": "Translation between English sentences and logical symbols.",
+    "questions": [
+      {
+        "question": "If I sleep, then I rest well is false only when _____.",
+        "options": [
+          "Sleep true, rest false",
+          "Sleep false, rest true",
+          "Both true",
+          "Both false"
+        ],
+        "answer": [0],
+        "explanation": "An implication (P → Q) is false only when the antecedent (P) is true and the consequent (Q) is false. In this case, when 'sleep' is true but 'rest well' is false."
+      },
+      {
+        "question": "I will sleep only if I finish my homework translates to _____.",
+        "options": [
+          "S → H",
+          "H → S",
+          "¬H → S",
+          "S ↔ H"
+        ],
+        "answer": [0],
+        "explanation": "When we say 'X only if Y', it translates to X → Y. In this case, Sleep → Homework."
+      },
+      {
+        "question": "Neither rain nor shine translates to _____.",
+        "options": [
+          "¬(P ∨ Q)",
+          "¬P ∨ ¬Q",
+          "P ∧ Q",
+          "P ↔ Q"
+        ],
+        "answer": [0],
+        "explanation": "'Neither...nor' is the negation of OR, thus it translates to ¬(P ∨ Q)."
+      },
+      {
+        "question": "Given P: 'It is raining' and Q: 'The ground is wet', which symbolic form represents 'It is not raining but the ground is wet'?",
+        "options": [
+          "¬P ∧ Q",
+          "P ∧ ¬Q",
+          "¬(P ∧ Q)",
+          "P ∨ Q"
+        ],
+        "answer": [0],
+        "explanation": "The statement combines 'not raining' (¬P) with 'ground is wet' (Q) using 'but' which translates to AND (∧)."
+      },
+      {
+        "question": "Given P: 'You study hard' and Q: 'You pass the exam', translate 'You pass the exam only if you study hard' into symbols.",
+        "options": [
+          "P → Q",
+          "Q → P",
+          "P ↔ Q",
+          "P ∨ Q"
+        ],
+        "answer": [1],
+        "explanation": "'Only if' means the condition is necessary. Q → P means 'if you pass (Q), then you must have studied (P)'."
+      },
+      {
+        "question": "If P: 'It is sunny' and Q: 'I go to the beach', which symbolic form represents 'I go to the beach if and only if it is sunny'?",
+        "options": [
+          "P → Q",
+          "Q → P",
+          "P ↔ Q",
+          "P ∧ Q"
+        ],
+        "answer": [2],
+        "explanation": "The statement 'if and only if' is represented by the biconditional operator ↔."
+      },
+      {
+        "question": "Given P: 'I study' and Q: 'I pass the exam', translate 'I study but I don't pass the exam' into symbols.",
+        "options": [
+          "P ∧ ¬Q",
+          "¬P ∧ Q",
+          "P ∨ ¬Q",
+          "¬(P ∧ Q)"
+        ],
+        "answer": [0],
+        "explanation": "The word 'but' translates to AND (∧), and 'don't pass' is the negation of Q (¬Q)."
+      },
+      {
+        "question": "Which English sentence correctly represents P → Q?",
+        "options": [
+          "P and Q",
+          "P or Q",
+          "If P then Q",
+          "P if and only if Q"
+        ],
+        "answer": [2],
+        "explanation": "The symbol → represents an if-then relationship between P and Q."
+      },
+      {
+        "question": "The contrapositive of 'If it rains, then the road is wet' is _____.",
+        "options": [
+          "If it doesn't rain, then the road isn't wet",
+          "If the road isn't wet, then it didn't rain",
+          "If the road is wet, then it rained",
+          "The road is wet and it rained"
+        ],
+        "answer": [1],
+        "explanation": "The contrapositive (¬Q → ¬P) is logically equivalent to the original statement (P → Q). Here, it's 'If the road isn't wet (¬Q), then it didn't rain (¬P)'."
+      },
+      {
+        "question": "If I am hungry, then I will eat and drink translates to _____.",
+        "options": [
+          "P → (Q ∧ R)",
+          "(P ∧ Q) → R",
+          "P ∧ (Q → R)",
+          "¬P → Q"
+        ],
+        "answer": [0],
+        "explanation": "The consequent contains two actions joined by 'and', so both Q and R follow from P: P → (Q ∧ R)."
+      },
+      {
+        "question": "It is not true that both A and B are happy translates to _____.",
+        "options": [
+          "¬(A ∧ B)",
+          "A ∧ ¬B",
+          "A ∨ ¬B",
+          "¬A ∧ ¬B"
+        ],
+        "answer": [0],
+        "explanation": "This is a negation of a conjunction. The entire 'A and B are happy' (A ∧ B) is negated: ¬(A ∧ B)."
+      }
+    ]
+  },
+  {
+    "id": "proof_invalidity",
+    "title": "Proof by Invalidity",
+    "description": "Understanding and identifying invalid logical arguments.",
+    "questions": [
+      {
+        "question": "Which argument form represents Modus Ponens?",
+        "options": [
+          "P → Q, Q ∴ P",
+          "P → Q, P ∴ Q",
+          "P → Q, ¬Q ∴ ¬P",
+          "P → Q, ¬P ∴ ¬Q"
+        ],
+        "answer": [1],
+        "explanation": "Modus Ponens is the valid argument form: If P implies Q (P → Q), and P is true, then Q must be true (∴ Q)."
+      },
+      {
+        "question": "Which argument form represents the fallacy of affirming the consequent?",
+        "options": [
+          "P → Q, Q ∴ P",
+          "P → Q, P ∴ Q",
+          "P → Q, ¬Q ∴ ¬P",
+          "P → Q, ¬P ∴ ¬Q"
+        ],
+        "answer": [0],
+        "explanation": "The fallacy of affirming the consequent occurs when we conclude P from P → Q and Q. This is invalid because Q could be true for other reasons."
+      },
+      {
+        "question": "Given the premises: 1) If it rains, the ground is wet (P → Q), 2) The ground is not wet (¬Q). What is the valid conclusion?",
+        "options": [
+          "It is raining (P)",
+          "It is not raining (¬P)",
+          "The ground is wet (Q)",
+          "No valid conclusion can be drawn"
+        ],
+        "answer": [1],
+        "explanation": "This is an example of modus tollens: If P → Q and ¬Q, then ¬P must be true."
+      },
+      {
+        "question": "When is an argument considered invalid?",
+        "options": [
+          "When all premises are true and the conclusion is true",
+          "When there exists a case where all premises are true but the conclusion is false",
+          "When all premises are false",
+          "When the conclusion is always true"
+        ],
+        "answer": [1],
+        "explanation": "An argument is invalid if there's any possible case where all premises could be true while the conclusion is false."
+      },
+      {
+        "question": "Which of the following is an example of the fallacy of affirming the consequent?",
+        "options": [
+          "If P then Q, P, therefore Q",
+          "If P then Q, Q, therefore P",
+          "If P then Q, not Q, therefore not P",
+          "If P then Q, not P, therefore not Q"
+        ],
+        "answer": [1],
+        "explanation": "The fallacy of affirming the consequent occurs when we conclude P from 'If P then Q' and Q."
+      },
+      {
+        "question": "In a valid argument, if all premises are true:",
+        "options": [
+          "The conclusion must be true",
+          "The conclusion might be true",
+          "The conclusion must be false",
+          "The truth of the conclusion is independent"
+        ],
+        "answer": [0],
+        "explanation": "A valid argument guarantees that if all premises are true, the conclusion must also be true."
+      },
+      {
+        "question": "Which argument represents a valid disjunctive syllogism?",
+        "options": [
+          "P ∨ Q, P ∴ ¬Q",
+          "P ∨ Q, ¬P ∴ Q",
+          "P ∨ Q, Q ∴ ¬P",
+          "P ∨ Q, ¬Q ∴ P"
+        ],
+        "answer": [1],
+        "explanation": "Disjunctive syllogism states that if we have P OR Q, and we know that P is false, then Q must be true."
+      },
+      {
+        "question": "Which represents a valid hypothetical syllogism?",
+        "options": [
+          "(P → Q), (Q → R) ∴ (P → R)",
+          "(P → Q), (R → ¬Q) ∴ (P → ¬R)",
+          "(P → Q), (Q → R) ∴ (R → P)",
+          "(P → Q), (Q → R) ∴ (Q → P)"
+        ],
+        "answer": [0],
+        "explanation": "Hypothetical syllogism chains implications: if P implies Q and Q implies R, then P implies R."
+      }
+    ]
+  },
+  {
+    "id": "infix_postfix",
+    "title": "Infix to Postfix Conversion",
+    "description": "Converting infix expressions to postfix notation.",
+    "questions": [
+      {
+        "question": "Convert the infix expression (A ∧ B) ∨ (C ∧ D) to postfix notation.",
+        "options": [
+          "A B ∧ C D ∧ ∨",
+          "A B C D ∧ ∨ ∧",
+          "A B C ∧ D ∨ ∧",
+          "A B ∧ C ∧ D ∨"
+        ],
+        "answer": [0],
+        "explanation": "In postfix notation, we process the inner parentheses first: (A ∧ B) becomes 'A B ∧', (C ∧ D) becomes 'C D ∧', then join with ∨: 'A B ∧ C D ∧ ∨'."
+      },
+      {
+        "question": "Convert the infix expression ¬(A ∨ B) to postfix notation.",
+        "options": [
+          "A B ∨ ¬",
+          "A ¬ B ∨",
+          "¬ A B ∨",
+          "A B ¬ ∨"
+        ],
+        "answer": [0],
+        "explanation": "First process within parentheses (A ∨ B), then apply negation to the result, giving us 'A B ∨ ¬'."
+      },
+      {
+        "question": "In operator precedence for logical operators, which of these is correctly ordered from highest to lowest precedence?",
+        "options": [
+          "¬, ∧, ∨, →, ↔",
+          "↔, →, ∨, ∧, ¬",
+          "∧, ∨, ¬, →, ↔",
+          "¬, ↔, →, ∨, ∧"
+        ],
+        "answer": [0],
+        "explanation": "The correct precedence order from highest to lowest is: NOT (¬), AND (∧), OR (∨), IMPLIES (→), IF AND ONLY IF (↔)."
+      },
+      {
+        "question": "What is the first step when converting an infix expression to postfix?",
+        "options": [
+          "Remove all parentheses",
+          "Scan the expression from right to left",
+          "Scan the expression from left to right",
+          "Apply all operators immediately"
+        ],
+        "answer": [2],
+        "explanation": "The first step in converting infix to postfix is to scan the expression from left to right, processing operands and operators according to rules."
+      },
+      {
+        "question": "What is the postfix form of the expression: A ∧ (B ∨ C)?",
+        "options": [
+          "ABC∨∧",
+          "AB∧C∨",
+          "ABC∧∨",
+          "A BC∨∧"
+        ],
+        "answer": [3],
+        "explanation": "Converting step by step: A remains, then B and C are processed with ∨, finally ∧ is applied to A and (B∨C)."
+      },
+      {
+        "question": "Which operator has the highest precedence in logical expressions?",
+        "options": [
+          "∧ (AND)",
+          "∨ (OR)",
+          "¬ (NOT)",
+          "→ (IMPLIES)"
+        ],
+        "answer": [2],
+        "explanation": "The NOT operator (¬) has the highest precedence among logical operators."
+      },
+      {
+        "question": "What is the postfix form of ¬(A ∨ B)?",
+        "options": [
+          "AB∨¬",
+          "A¬B∨",
+          "AB¬∨",
+          "¬AB∨"
+        ],
+        "answer": [0],
+        "explanation": "First A and B are connected by ∨, then the entire expression is negated, resulting in AB∨¬."
+      },
+      {
+        "question": "Convert the infix expression (A ∨ B) → (C ∨ D) to postfix notation.",
+        "options": [
+          "AB∨CD∨→",
+          "A∨B→C∨D",
+          "ABCD∨∨→",
+          "AB∨C∨D→"
+        ],
+        "answer": [0],
+        "explanation": "Process left parentheses first (A ∨ B), then right parentheses (C ∨ D), finally apply →: AB∨CD∨→"
+      },
+      {
+        "question": "Convert the infix expression (A ↔ B) ∧ C to postfix notation.",
+        "options": [
+          "AB↔∧C",
+          "AB↔C∧",
+          "ABC↔∧",
+          "A↔B∧C"
+        ],
+        "answer": [1],
+        "explanation": "First process the biconditional within parentheses (A ↔ B), then apply ∧ with C: AB↔C∧"
+      }
+    ]
+  },
+  {
+    "id": "logical_operators",
+    "title": "Logical Operators and Truth Tables",
+    "description": "Understanding truth tables and logical operators in discrete mathematics.",
+    "questions": [
+      {
+        "question": "If P: '2 + 2 = 4' and Q: '3 > 5', then P ∧ Q is _____.",
+        "options": [
+          "True",
+          "False",
+          "Undefined",
+          "Contradiction"
+        ],
+        "answer": [1],
+        "explanation": "Since P is true (2 + 2 = 4) but Q is false (3 is not greater than 5), and conjunction (∧) requires both operands to be true, P ∧ Q is false."
+      },
+      {
+        "question": "What is a truth table with 3 variables guaranteed to have?",
+        "options": [
+          "6 rows",
+          "8 rows",
+          "9 rows",
+          "12 rows"
+        ],
+        "answer": [1],
+        "explanation": "For n variables, a truth table has 2^n rows. With 3 variables, we have 2^3 = 8 rows."
+      },
+      {
+        "question": "What is the truth value of P ∧ Q when P is true and Q is false?",
+        "options": [
+          "True",
+          "False",
+          "Cannot be determined",
+          "Both true and false"
+        ],
+        "answer": [1],
+        "explanation": "For AND (∧) operation, both operands must be true for the result to be true. If either is false, the result is false."
+      },
+      {
+        "question": "What is the truth value of P ∨ Q when P is false and Q is true?",
+        "options": [
+          "True",
+          "False",
+          "Cannot be determined",
+          "Neither true nor false"
+        ],
+        "answer": [0],
+        "explanation": "For OR (∨) operation, if at least one operand is true, the result is true. Here Q is true, so P ∨ Q is true."
+      },
+      {
+        "question": "What is the truth value of P → Q when P is false and Q is true?",
+        "options": [
+          "True",
+          "False",
+          "Cannot be determined",
+          "Undefined"
+        ],
+        "answer": [0],
+        "explanation": "An implication P → Q is false only when P is true and Q is false. In all other cases, including when P is false, the implication is true."
+      },
+      {
+        "question": "Which of these logical equivalences is NOT correct?",
+        "options": [
+          "P → Q ≡ ¬Q → ¬P",
+          "¬(P ∧ Q) ≡ ¬P ∨ ¬Q",
+          "P → Q ≡ ¬P ∨ Q",
+          "P ∨ Q ≡ ¬P ∧ ¬Q"
+        ],
+        "answer": [3],
+        "explanation": "P ∨ Q is NOT equivalent to ¬P ∧ ¬Q. The correct equivalence by De Morgan's Law would be ¬(P ∨ Q) ≡ ¬P ∧ ¬Q."
+      },
+      {
+        "question": "When evaluating ¬P ∨ (P ∧ Q), which operator should be applied first?",
+        "options": [
+          "∨ (OR)",
+          "∧ (AND)",
+          "¬ (NOT)",
+          "Parentheses first, then ∧"
+        ],
+        "answer": [3],
+        "explanation": "While ¬ has highest precedence, operations in parentheses must be evaluated first. So we evaluate (P ∧ Q), then apply ¬ to P, and finally the ∨."
+      }
+    ]
+  }
+]
