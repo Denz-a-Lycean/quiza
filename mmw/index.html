@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics Quiz</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <h1>Mathematics Quiz</h1>
+  <div id="quiz-container"></div>
+
+  <div id="loading-message" style="display:none;text-align:center;padding:20px;">
+    <h3>Loading Quiz...</h3>
+    <p>Please wait while we prepare your random questions.</p>
+    <div style="margin-top:10px;font-size:0.9em;color:#666;">
+      Questions will include various topics from statistics and data analysis.
+      Tables and raw data will be shown when relevant to the question.
+    </div>
+  </div>
+
+  <script src="quiz.js"></script>
+  <script>
+    const loadingEl = document.getElementById('loading-message');
+    if (loadingEl) loadingEl.style.display = 'block';
+
+    // Load and start quiz with random questions
+    loadQuiz('math-data.json')
+      .catch(err => {
+        console.error('Quiz loading error:', err);
+        const container = document.getElementById('quiz-container');
+        if (container) {
+          container.innerHTML = `
+            <div style="color:#721c24;background:#f8d7da;padding:16px;border-radius:8px;">
+              Unable to load the quiz.
+            </div>
+          `;
+        }
+      })
+      .finally(() => {
+        if (loadingEl) loadingEl.style.display = 'none';
+      });
+  </script>
+</body>
+
+</html>
