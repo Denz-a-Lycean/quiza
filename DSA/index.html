@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Reviewer & Quiz</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div id="quiz-container"></div>
+
+  <div id="loading-message" style="display:none;text-align:center;padding:20px;">
+    <h3>Loading Quiz...</h3>
+    <p>Please wait while we prepare your random questions.</p>
+    <div style="margin-top:10px;font-size:0.9em;color:#ccc;">
+      Questions will cover topics including arrays, linked lists, stacks, queues, sorting, and searching algorithms.
+      Answer questions and review detailed explanations for comprehensive learning!
+    </div>
+  </div>
+
+  <script src="quiz.js"></script>
+  <script>
+    const loadingEl = document.getElementById('loading-message');
+    if (loadingEl) loadingEl.style.display = 'block';
+
+    // Load and start quiz with random questions
+    loadQuiz('dsa-data.json')
+      .catch(err => {
+        console.error('Quiz loading error:', err);
+        const container = document.getElementById('quiz-container');
+        if (container) {
+          container.innerHTML = `
+            <div style="color:#ff6b6b;background:#2d1b1b;padding:16px;border-radius:8px;">
+              Unable to load the quiz.
+            </div>
+          `;
+        }
+      })
+      .finally(() => {
+        if (loadingEl) loadingEl.style.display = 'none';
+      });
+  </script>
+</body>
+</html>
