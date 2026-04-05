@@ -1,0 +1,994 @@
+[
+  {
+    "id": "searching_core",
+    "title": "Searching: Core Concepts",
+    "description": "Fundamentals of searching in data structures.",
+    "questions": [
+      {
+        "question": "What is the definition of 'searching' in data structures?",
+        "options": [
+          "The process of sorting data in ascending order",
+          "The process of locating a specific record with a particular key value",
+          "The process of deleting a record from a dataset",
+          "The process of inserting new data into a structure"
+        ],
+        "answer": [1],
+        "explanation": "Searching is defined as locating a specific record by its key value. If the key is found, the search succeeds and the record is retrieved."
+      },
+      {
+        "question": "In the context of searching, what is a 'key'?",
+        "options": [
+          "A password used to encrypt data",
+          "The first element of an array",
+          "The specific value you are looking for in a collection of data",
+          "The index of the last element"
+        ],
+        "answer": [2],
+        "explanation": "A key is the specific value used to identify the item being searched for. The search aims to find this key within the dataset."
+      },
+      {
+        "question": "Real life example: You look for the name 'Maria' by scanning each contact in your phone in order. What type of search is this?",
+        "options": [
+          "Binary Search",
+          "BST Search",
+          "Linear Search",
+          "Heap Search"
+        ],
+        "answer": [2],
+        "explanation": "Scanning each item in order until you find the target is Linear Search — it checks elements one by one without assuming any order."
+      },
+      {
+        "question": "If a key appears multiple times in the data, what does a basic search usually return?",
+        "options": [
+          "It fails because duplicates are not allowed",
+          "It usually returns one occurrence, often the first found",
+          "It automatically returns all occurrences",
+          "It resorts the data and searches again"
+        ],
+        "answer": [1],
+        "explanation": "Basic search algorithms typically return a single match. Finding all duplicates requires a different approach or repeated searches."
+      },
+      {
+        "question": "Why is efficient searching especially important for large databases?",
+        "options": [
+          "It reduces storage space",
+          "It makes queries fast even when millions of records exist",
+          "It automatically sorts the data",
+          "It prevents data duplication"
+        ],
+        "answer": [1],
+        "explanation": "Efficient searching keeps large systems usable by enabling fast lookups. Slow search performance can make large databases impractical for real-time use."
+      }
+    ]
+  },
+  {
+    "id": "linear_search",
+    "title": "Linear Search",
+    "description": "Sequential searching concepts and use cases.",
+    "questions": [
+      {
+        "question": "Linear search is also called:",
+        "options": [
+          "Divide and Conquer Search",
+          "Sequential Search",
+          "Binary Search",
+          "Recursive Search"
+        ],
+        "answer": [1],
+        "explanation": "Linear search is also called Sequential Search because it examines elements in order, one after another."
+      },
+      {
+        "question": "Which description best matches linear search?",
+        "options": [
+          "It divides the data in half repeatedly",
+          "It finds the minimum element and moves it forward",
+          "It checks each element in order until it finds the target",
+          "It builds a sorted list one item at a time"
+        ],
+        "answer": [2],
+        "explanation": "Linear search checks each element in sequence until the target is found or the list ends. It does not rely on sorting."
+      },
+      {
+        "question": "Which statement is TRUE about linear search?",
+        "options": [
+          "It requires sorted data",
+          "It can skip elements using a pivot",
+          "It makes no assumption about the order of the data",
+          "It eliminates half the data at each step"
+        ],
+        "answer": [2],
+        "explanation": "Linear search works with both sorted and unsorted data because it looks at each item sequentially without assuming any order."
+      },
+      {
+        "question": "When is linear search the best choice?",
+        "options": [
+          "For very large sorted datasets",
+          "For small datasets or unsorted and frequently changing data",
+          "Only when data is stored in a tree",
+          "When you need logarithmic performance"
+        ],
+        "answer": [1],
+        "explanation": "Linear search is ideal for small or unsorted data and when the dataset changes often, avoiding the overhead of sorting."
+      },
+      {
+        "question": "What is the worst-case time complexity of linear search?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n²)"
+        ],
+        "answer": [2],
+        "explanation": "In the worst case, linear search checks every element, giving it O(n) time complexity."
+      }
+    ]
+  },
+  {
+    "id": "binary_search",
+    "title": "Binary Search",
+    "description": "Divide and conquer searching on sorted data.",
+    "questions": [
+      {
+        "question": "What is the main requirement for binary search to work correctly?",
+        "options": [
+          "The data must be sorted",
+          "The data must be in a linked list",
+          "The data must have no duplicates",
+          "The data must be in a tree"
+        ],
+        "answer": [0],
+        "explanation": "Binary search requires sorted data because it decides whether to look left or right based on ordering."
+      },
+      {
+        "question": "Which strategy best describes binary search?",
+        "options": [
+          "Brute force",
+          "Divide and conquer",
+          "Greedy",
+          "Dynamic programming"
+        ],
+        "answer": [1],
+        "explanation": "Binary search divides the search range in half repeatedly, making it a divide and conquer algorithm."
+      },
+      {
+        "question": "If the target is smaller than the middle element in a sorted array, where does binary search continue?",
+        "options": [
+          "Left half",
+          "Right half",
+          "Beginning of the array",
+          "It stops immediately"
+        ],
+        "answer": [0],
+        "explanation": "When the target is smaller than the middle, the algorithm searches the left half of the sorted array."
+      },
+      {
+        "question": "What is the time complexity of binary search?",
+        "options": [
+          "O(n)",
+          "O(n²)",
+          "O(1)",
+          "O(log n)"
+        ],
+        "answer": [3],
+        "explanation": "Binary search runs in O(log n), because each comparison halves the remaining search space."
+      },
+      {
+        "question": "What is the main trade-off of using binary search?",
+        "options": [
+          "It requires more memory than linear search",
+          "It requires the dataset to be sorted before searching",
+          "It cannot find exact values",
+          "It only works on trees"
+        ],
+        "answer": [1],
+        "explanation": "Binary search is fast, but it needs sorted data. Sorting can add extra work before the search begins."
+      }
+    ]
+  },
+  {
+    "id": "linear_vs_binary",
+    "title": "Linear vs Binary Search",
+    "description": "Compare the two core search methods.",
+    "questions": [
+      {
+        "question": "Which search algorithm works on UNSORTED data?",
+        "options": [
+          "Binary Search",
+          "All tree searches",
+          "Linear Search",
+          "Only hash-based searches"
+        ],
+        "answer": [2],
+        "explanation": "Linear search works on unsorted data. Binary search requires sorted data to function correctly."
+      },
+      {
+        "question": "Which algorithm is generally faster for very large sorted datasets?",
+        "options": [
+          "Linear Search",
+          "Binary Search",
+          "Both are equally fast",
+          "It depends only on the language"
+        ],
+        "answer": [1],
+        "explanation": "Binary search is faster for large sorted datasets because it reduces the search range exponentially."
+      },
+      {
+        "question": "Which search method is easier to implement in code?",
+        "options": [
+          "Binary Search",
+          "Linear Search",
+          "BST Search",
+          "Hash Search"
+        ],
+        "answer": [1],
+        "explanation": "Linear search is easier to implement because it only requires a simple loop over the collection."
+      },
+      {
+        "question": "Fill in the blank: 'Use Linear Search for _____, use Binary Search for _____ ONLY when data is sorted.'",
+        "options": [
+          "efficiency / simplicity",
+          "simplicity / efficiency",
+          "small data / large data",
+          "trees / arrays"
+        ],
+        "answer": [1],
+        "explanation": "The golden rule says use linear search for simplicity and binary search for efficiency when the data is already sorted."
+      }
+    ]
+  },
+  {
+    "id": "big_o_notation",
+    "title": "Big-O Notation & Complexity",
+    "description": "How algorithms scale as input grows.",
+    "questions": [
+      {
+        "question": "What does Big-O notation measure?",
+        "options": [
+          "Exact runtime in seconds",
+          "How the algorithm's work grows as input size increases",
+          "The amount of memory used by the CPU",
+          "The number of functions in a program"
+        ],
+        "answer": [1],
+        "explanation": "Big-O measures how the work of an algorithm grows with input size, focusing on scalability rather than exact timing."
+      },
+      {
+        "question": "Big-O notation provides what kind of bound?",
+        "options": [
+          "Lower bound",
+          "Exact bound",
+          "Upper bound",
+          "Average bound"
+        ],
+        "answer": [2],
+        "explanation": "Big-O gives an upper bound on growth, describing the worst-case behavior of an algorithm."
+      },
+      {
+        "question": "Rank these from fastest to slowest growth: O(1), O(log n), O(n), O(n²).",
+        "options": [
+          "O(1), O(log n), O(n), O(n²)",
+          "O(log n), O(1), O(n), O(n²)",
+          "O(n²), O(n), O(log n), O(1)",
+          "O(n), O(1), O(log n), O(n²)"
+        ],
+        "answer": [0],
+        "explanation": "Constant time is fastest, followed by logarithmic, linear, and quadratic growth."
+      },
+      {
+        "question": "Which complexity class means the algorithm takes the same amount of time no matter how much the input grows?",
+        "options": [
+          "O(n²)",
+          "O(n)",
+          "O(log n)",
+          "O(1)"
+        ],
+        "answer": [3],
+        "explanation": "O(1) means constant time — the runtime stays the same regardless of input size."
+      },
+      {
+        "question": "What is the difference between Time Complexity and Space Complexity?",
+        "options": [
+          "Time measures memory; space measures speed",
+          "Time measures speed; space measures memory usage",
+          "They are the same thing",
+          "Time measures the number of variables; space measures number of functions"
+        ],
+        "answer": [1],
+        "explanation": "Time Complexity describes how fast an algorithm runs; Space Complexity describes how much memory it requires."
+      },
+      {
+        "question": "Why is Big-O important when selecting algorithms?",
+        "options": [
+          "It gives the exact runtime for any input",
+          "It helps predict which algorithms will scale better as the dataset grows",
+          "It shows how pretty the code is",
+          "It decides the programming language"
+        ],
+        "answer": [1],
+        "explanation": "Big-O helps choose algorithms that remain efficient as the input size increases, preventing slow behavior for large datasets."
+      }
+    ]
+  },
+  {
+    "id": "bst",
+    "title": "Binary Search Tree (BST)",
+    "description": "Tree-based search with ordered placement.",
+    "questions": [
+      {
+        "question": "What is the fundamental rule of a Binary Search Tree (BST)?",
+        "options": [
+          "Left child > Parent > Right child",
+          "Left child ≤ Parent ≤ Right child",
+          "All nodes must be equal",
+          "Right child is always the root"
+        ],
+        "answer": [1],
+        "explanation": "BST rule: left child values are less than or equal to the parent, and right child values are greater than or equal to the parent."
+      },
+      {
+        "question": "In a BST, what does the performance of most operations depend on?",
+        "options": [
+          "Number of leaf nodes",
+          "Tree height",
+          "Color of the nodes",
+          "Number of children per node"
+        ],
+        "answer": [1],
+        "explanation": "Operations like search, insert, and delete depend on tree height. A shorter tree height means faster operations."
+      },
+      {
+        "question": "Which traversal of a BST gives the nodes in sorted order?",
+        "options": [
+          "Pre-order",
+          "Post-order",
+          "In-order",
+          "Level-order"
+        ],
+        "answer": [2],
+        "explanation": "In-order traversal visits left child, root, then right child, producing sorted output for a BST."
+      },
+      {
+        "question": "How do you find the minimum value in a BST?",
+        "options": [
+          "Go to the rightmost node",
+          "Go to the leftmost node",
+          "Visit the root only",
+          "Check leaf nodes randomly"
+        ],
+        "answer": [1],
+        "explanation": "The minimum value in a BST resides in the leftmost node, because left children hold smaller values."
+      },
+      {
+        "question": "What happens if elements are inserted in sorted order into a basic BST?",
+        "options": [
+          "The tree stays perfectly balanced",
+          "The tree becomes skewed and height grows to O(n)",
+          "The tree becomes a heap",
+          "The insertions are rejected"
+        ],
+        "answer": [1],
+        "explanation": "Inserting sorted data into a simple BST creates a skewed structure, similar to a linked list, which degrades performance to O(n)."
+      }
+    ]
+  },
+  {
+    "id": "tree_traversal",
+    "title": "Tree Traversal",
+    "description": "Visit tree nodes in different orders.",
+    "questions": [
+      {
+        "question": "What is the order of Pre-order traversal?",
+        "options": [
+          "Left → Root → Right",
+          "Left → Right → Root",
+          "Root → Left → Right",
+          "Right → Root → Left"
+        ],
+        "answer": [2],
+        "explanation": "Pre-order traversal visits the current node first, then the left subtree, then the right subtree."
+      },
+      {
+        "question": "What is the order of Post-order traversal?",
+        "options": [
+          "Root → Left → Right",
+          "Left → Root → Right",
+          "Left → Right → Root",
+          "Right → Left → Root"
+        ],
+        "answer": [2],
+        "explanation": "Post-order traversal visits left subtree, then right subtree, then the current node last."
+      },
+      {
+        "question": "Which traversal visits the root node first?",
+        "options": [
+          "In-order",
+          "Post-order",
+          "Pre-order",
+          "Level-order"
+        ],
+        "answer": [2],
+        "explanation": "Pre-order visits the root before its children, making root the first node visited."
+      },
+      {
+        "question": "Which traversal visits the root node last?",
+        "options": [
+          "Pre-order",
+          "In-order",
+          "Post-order",
+          "Level-order"
+        ],
+        "answer": [2],
+        "explanation": "Post-order traversal processes the left and right subtrees before visiting the root last."
+      },
+      {
+        "question": "Which traversal is most useful for evaluating expression trees where operators come after operands?",
+        "options": [
+          "Pre-order",
+          "In-order",
+          "Post-order",
+          "Level-order"
+        ],
+        "answer": [2],
+        "explanation": "Post-order traversal evaluates operands before the operator, which matches how expression trees should be evaluated."
+      }
+    ]
+  },
+  {
+    "id": "simple_sorting",
+    "title": "Simple Sorting Algorithms",
+    "description": "Bubble, Selection, and Insertion Sort basics.",
+    "questions": [
+      {
+        "question": "What does Bubble Sort do during each pass?",
+        "options": [
+          "Finds the minimum element and places it in front",
+          "Divides the array into halves",
+          "Swaps adjacent elements that are in the wrong order",
+          "Inserts one element into the correct position"
+        ],
+        "answer": [2],
+        "explanation": "Bubble Sort compares adjacent elements and swaps them when they are out of order, gradually moving larger items toward the end."
+      },
+      {
+        "question": "What is the time complexity of Bubble Sort?",
+        "options": [
+          "O(n log n)",
+          "O(n)",
+          "O(1)",
+          "O(n²)"
+        ],
+        "answer": [3],
+        "explanation": "Bubble Sort compares many pairs of adjacent elements, giving it O(n²) time complexity in the general case."
+      },
+      {
+        "question": "How does Selection Sort arrange the data?",
+        "options": [
+          "By swapping adjacent values repeatedly",
+          "By finding the smallest element and placing it in the correct position",
+          "By inserting each element into an already sorted portion",
+          "By dividing the array into halves and merging"
+        ],
+        "answer": [1],
+        "explanation": "Selection Sort repeatedly selects the smallest remaining element and swaps it into the next sorted position."
+      },
+      {
+        "question": "Insertion Sort is best described as:",
+        "options": [
+          "Swapping elements until sorted",
+          "Finding the smallest element each time",
+          "Building a sorted portion by inserting each element into its correct position",
+          "Splitting and merging the array"
+        ],
+        "answer": [2],
+        "explanation": "Insertion Sort builds a sorted section of the array by inserting each new element into the correct place among the sorted items."
+      },
+      {
+        "question": "A real-life example of Insertion Sort is:",
+        "options": [
+          "Swapping neighbors until ordered",
+          "Picking the lowest score and placing it first",
+          "Sorting cards by inserting each new card into its position",
+          "Merging groups of papers together"
+        ],
+        "answer": [2],
+        "explanation": "Inserting cards into the correct place among the cards already held mirrors the way Insertion Sort builds a sorted list one item at a time."
+      },
+      {
+        "question": "Which simple sorting algorithms are in-place and do not need extra memory?",
+        "options": [
+          "Only Bubble Sort",
+          "Only Selection Sort",
+          "Bubble, Selection, and Insertion Sort",
+          "None of them"
+        ],
+        "answer": [2],
+        "explanation": "Bubble, Selection, and Insertion Sort all sort within the original array without requiring additional data structures."
+      }
+    ]
+  },
+  {
+    "id": "efficient_sorting",
+    "title": "Efficient Sorting Algorithms",
+    "description": "Merge, Quick, and Heap Sort fundamentals.",
+    "questions": [
+      {
+        "question": "What strategy does Merge Sort use?",
+        "options": [
+          "Swapping adjacent pairs",
+          "Greedy selection of minimums",
+          "Divide and conquer with division and merging",
+          "Pivot-based partitioning only"
+        ],
+        "answer": [2],
+        "explanation": "Merge Sort divides the array into halves, sorts each half, then merges the sorted parts — a divide and conquer method."
+      },
+      {
+        "question": "What is the time complexity of Merge Sort?",
+        "options": [
+          "O(n²)",
+          "O(n)",
+          "O(n log n)",
+          "O(log n)"
+        ],
+        "answer": [2],
+        "explanation": "Merge Sort runs in O(n log n) consistently because it divides the data and merges sorted halves."
+      },
+      {
+        "question": "What is a key characteristic of Merge Sort compared to other O(n log n) algorithms?",
+        "options": [
+          "It uses a pivot element",
+          "It is stable and retains the relative order of equal elements",
+          "It always sorts in place without extra memory",
+          "It uses a heap structure"
+        ],
+        "answer": [1],
+        "explanation": "Merge Sort is stable, which means it preserves the original relative order of equal elements during sorting."
+      },
+      {
+        "question": "How does Quick Sort work?",
+        "options": [
+          "By finding the smallest item and moving it forward",
+          "By merging sorted halves",
+          "By choosing a pivot, partitioning around it, and sorting recursively",
+          "By always selecting the largest remaining item"
+        ],
+        "answer": [2],
+        "explanation": "Quick Sort chooses a pivot and partitions the array into values less than and greater than the pivot, then recursively sorts each partition."
+      },
+      {
+        "question": "What is Quick Sort's average time complexity?",
+        "options": [
+          "O(n²)",
+          "O(n log n)",
+          "O(n)",
+          "O(1)"
+        ],
+        "answer": [1],
+        "explanation": "Quick Sort usually runs in O(n log n) on average, which is why it is very fast in practice."
+      },
+      {
+        "question": "Which sorting algorithm uses a heap data structure?",
+        "options": [
+          "Merge Sort",
+          "Quick Sort",
+          "Bubble Sort",
+          "Heap Sort"
+        ],
+        "answer": [3],
+        "explanation": "Heap Sort uses a heap, a priority-based tree structure, to repeatedly extract the highest or lowest element."
+      }
+    ]
+  },
+  {
+    "id": "sorting_comparison",
+    "title": "Sorting Algorithm Comparison",
+    "description": "Compare speed, use cases, and trade-offs.",
+    "questions": [
+      {
+        "question": "Which sorting algorithm is easiest to understand but slowest for large data?",
+        "options": [
+          "Merge Sort",
+          "Quick Sort",
+          "Bubble Sort",
+          "Heap Sort"
+        ],
+        "answer": [2],
+        "explanation": "Bubble Sort is conceptually simple but has O(n²) performance, making it very slow for large datasets."
+      },
+      {
+        "question": "Which three sorting algorithms have O(n²) time complexity?",
+        "options": [
+          "Merge, Quick, Heap",
+          "Bubble, Merge, Quick",
+          "Bubble, Selection, Insertion",
+          "Selection, Heap, Merge"
+        ],
+        "answer": [2],
+        "explanation": "Bubble, Selection, and Insertion Sort are all simple O(n²) algorithms."
+      },
+      {
+        "question": "Which three sorting algorithms have O(n log n) time complexity?",
+        "options": [
+          "Bubble, Selection, Insertion",
+          "Merge, Quick, Heap",
+          "BST, AVL, Red-Black",
+          "Linear, Binary, BST"
+        ],
+        "answer": [1],
+        "explanation": "Merge Sort, Quick Sort, and Heap Sort all achieve O(n log n) performance in their efficient forms."
+      },
+      {
+        "question": "Which sorting algorithm is known for needing extra memory to merge results?",
+        "options": [
+          "Quick Sort",
+          "Bubble Sort",
+          "Merge Sort",
+          "Selection Sort"
+        ],
+        "answer": [2],
+        "explanation": "Merge Sort requires additional memory to merge sorted subarrays, even though it is stable and efficient."
+      },
+      {
+        "question": "When would Quick Sort be preferred over Merge Sort?",
+        "options": [
+          "When you need a stable sort",
+          "When memory is limited and in-place sorting is desired",
+          "When the data is already sorted",
+          "When the dataset is stored on disk"
+        ],
+        "answer": [1],
+        "explanation": "Quick Sort is in-place and uses less extra memory than Merge Sort, making it a good choice when memory is scarce."
+      },
+      {
+        "question": "Which sorting algorithm is best for data that is already mostly sorted?",
+        "options": [
+          "Merge Sort",
+          "Quick Sort",
+          "Insertion Sort",
+          "Heap Sort"
+        ],
+        "answer": [2],
+        "explanation": "Insertion Sort performs very well on nearly sorted data and can approach O(n) time in the best case."
+      }
+    ]
+  },
+  {
+    "id": "avl_trees",
+    "title": "AVL Trees",
+    "description": "Self-balancing BST rules and trade-offs.",
+    "questions": [
+      {
+        "question": "What is an AVL Tree?",
+        "options": [
+          "A tree where all nodes are red or black",
+          "A self-balancing BST with height difference limited to -1, 0, or +1",
+          "A multi-child tree used in databases",
+          "A tree with no balancing rule"
+        ],
+        "answer": [1],
+        "explanation": "An AVL Tree is a self-balancing BST with a balance factor of -1, 0, or +1 at every node."
+      },
+      {
+        "question": "What is the balance factor in an AVL Tree?",
+        "options": [
+          "The number of nodes in the left subtree",
+          "The color assigned to each node",
+          "The height difference between left and right subtrees",
+          "The number of children per node"
+        ],
+        "answer": [2],
+        "explanation": "The balance factor equals the height of the left subtree minus the height of the right subtree. AVL Trees keep it between -1 and +1."
+      },
+      {
+        "question": "What is the main benefit of AVL Trees?",
+        "options": [
+          "They allow unlimited children",
+          "They keep tree height minimal for consistent speed",
+          "They use color rules instead of height rules",
+          "They store data only in leaves"
+        ],
+        "answer": [1],
+        "explanation": "AVL Trees rebalance themselves to keep height small, which preserves fast and predictable search and update times."
+      },
+      {
+        "question": "What is the best use case for AVL Trees?",
+        "options": [
+          "Very frequent insertions and deletions",
+          "Fast searches where reads are more common than writes",
+          "Disk-based indexing for databases",
+          "Storing data in leaf nodes only"
+        ],
+        "answer": [1],
+        "explanation": "AVL Trees are ideal for fast searching when the tree is not modified constantly, because strict balancing costs extra rebalancing on writes."
+      }
+    ]
+  },
+  {
+    "id": "red_black_trees",
+    "title": "Red-Black Trees",
+    "description": "Balanced BST using color rules.",
+    "questions": [
+      {
+        "question": "What makes a Red-Black Tree different from an AVL Tree?",
+        "options": [
+          "Red-Black Trees are not self-balancing",
+          "Red-Black Trees use color rules instead of strict height balancing",
+          "Red-Black Trees can have more than two children",
+          "Red-Black Trees store data only in leaf nodes"
+        ],
+        "answer": [1],
+        "explanation": "Red-Black Trees balance using color rules rather than enforcing a strict height difference, making them more flexible for frequent updates."
+      },
+      {
+        "question": "Which rule is required in a Red-Black Tree?",
+        "options": [
+          "The root must be red",
+          "No node can have two black children",
+          "No two red nodes can be adjacent",
+          "Each node must have exactly two children"
+        ],
+        "answer": [2],
+        "explanation": "One key rule is that a red node cannot have a red parent or red child, so no two red nodes are adjacent."
+      },
+      {
+        "question": "In a Red-Black Tree, every path from root to leaf must have the same number of: ",
+        "options": [
+          "Red nodes",
+          "Black nodes",
+          "Total nodes",
+          "Child nodes"
+        ],
+        "answer": [1],
+        "explanation": "All root-to-leaf paths must contain the same number of black nodes, which helps maintain balance."
+      },
+      {
+        "question": "Red-Black Trees are especially good when: ",
+        "options": [
+          "Reads are rare and writes are frequent",
+          "Searches must be the fastest possible no matter what",
+          "Insertions and deletions happen often",
+          "Data is stored on disk only"
+        ],
+        "answer": [2],
+        "explanation": "Red-Black Trees handle frequent insertions and deletions efficiently by using flexible balancing rules that require fewer rotations than AVL Trees."
+      }
+    ]
+  },
+  {
+    "id": "btrees",
+    "title": "B-Trees and B+ Trees",
+    "description": "Trees designed for databases and disk storage.",
+    "questions": [
+      {
+        "question": "What is a B-Tree?",
+        "options": [
+          "A binary tree with exactly two children",
+          "A self-balancing tree with multiple keys and children designed to minimize disk reads",
+          "A tree where all data is stored in internal nodes",
+          "A tree that uses colors for balancing"
+        ],
+        "answer": [1],
+        "explanation": "A B-Tree is a self-balancing tree with nodes that can contain multiple keys and children, optimized to reduce disk access."
+      },
+      {
+        "question": "Where are B-Trees and B+ Trees commonly used?",
+        "options": [
+          "In-memory arrays",
+          "Only sorting algorithms",
+          "Databases and file systems",
+          "Visual graphics engines"
+        ],
+        "answer": [2],
+        "explanation": "B-Trees and B+ Trees are widely used in databases and file systems because they handle large data efficiently with multi-level indexing."
+      },
+      {
+        "question": "What makes B+ Trees different from B-Trees?",
+        "options": [
+          "B+ Trees store data in internal nodes only",
+          "B+ Trees use color rules for balance",
+          "B+ Trees store all actual data in leaf nodes and link the leaves",
+          "B+ Trees are not balanced"
+        ],
+        "answer": [2],
+        "explanation": "B+ Trees keep actual records in linked leaf nodes while internal nodes contain only keys for indexing."
+      },
+      {
+        "question": "In a B+ Tree, internal nodes typically store: ",
+        "options": [
+          "All the data records",
+          "Only keys for indexing",
+          "Balance factors",
+          "Node colors"
+        ],
+        "answer": [1],
+        "explanation": "Internal nodes in a B+ Tree store keys used for navigation while the actual data remains in the leaf nodes."
+      },
+      {
+        "question": "Why are B-Trees designed to minimize disk reads?",
+        "options": [
+          "Disk reads are faster than memory reads",
+          "Each node stores many keys, reducing tree height and disk accesses",
+          "They store only one key per node",
+          "They do not use any indexing"
+        ],
+        "answer": [1],
+        "explanation": "Because each node can hold many keys, B-Trees have fewer levels, which reduces the number of expensive disk accesses during search."
+      }
+    ]
+  },
+  {
+    "id": "tree_comparison",
+    "title": "Tree Structures Comparison",
+    "description": "Compare AVL, Red-Black, and B-tree families.",
+    "questions": [
+      {
+        "question": "Which tree is strictly balanced for maximum search speed?",
+        "options": [
+          "Red-Black Tree",
+          "B-Tree",
+          "AVL Tree",
+          "B+ Tree"
+        ],
+        "answer": [2],
+        "explanation": "AVL Trees enforce strict height balance, giving them very fast search performance at the cost of more rebalancing."
+      },
+      {
+        "question": "Which tree is best for frequent insertions and deletions?",
+        "options": [
+          "AVL Tree",
+          "B+ Tree",
+          "Red-Black Tree",
+          "Binary Search Tree"
+        ],
+        "answer": [2],
+        "explanation": "Red-Black Trees use more flexible balancing rules, making them efficient for operations that modify the tree often."
+      },
+      {
+        "question": "Which tree structure is used for large-scale indexing and database systems?",
+        "options": [
+          "AVL Tree",
+          "Red-Black Tree",
+          "B+ Tree",
+          "BST"
+        ],
+        "answer": [2],
+        "explanation": "B+ Trees are commonly used in databases and file systems because they support large indexes and efficient sequential access."
+      },
+      {
+        "question": "Which structure is described by 'multi-children nodes'?",
+        "options": [
+          "AVL Tree",
+          "Red-Black Tree",
+          "Binary Search Tree",
+          "B-Tree"
+        ],
+        "answer": [3],
+        "explanation": "B-Trees can have many children per node, unlike binary trees which can only have up to two children."
+      },
+      {
+        "question": "The quote 'Same data, different structure = different performance' means: ",
+        "options": [
+          "All data structures perform the same",
+          "The right structure improves access and operations",
+          "Data structure choice is irrelevant",
+          "Only arrays should be used"
+        ],
+        "answer": [1],
+        "explanation": "Different structures organize the same information in different ways, which affects speed and efficiency."
+      }
+    ]
+  },
+  {
+    "id": "tree_basics",
+    "title": "Tree Terminology",
+    "description": "Basic tree components and definitions.",
+    "questions": [
+      {
+        "question": "In a tree, what is the ROOT?",
+        "options": [
+          "A node with no children",
+          "The topmost node with no parent",
+          "Any node in the middle",
+          "A node with exactly two children"
+        ],
+        "answer": [1],
+        "explanation": "The root is the topmost node of a tree and has no parent."
+      },
+      {
+        "question": "What is a LEAF node?",
+        "options": [
+          "A node with exactly two children",
+          "The root node",
+          "A node with no children",
+          "A node with multiple parents"
+        ],
+        "answer": [2],
+        "explanation": "A leaf node has no children and appears at the end of a branch."
+      },
+      {
+        "question": "What is the difference between a Binary Tree and a BST?",
+        "options": [
+          "Binary trees allow any order; BSTs enforce left ≤ parent ≤ right",
+          "Binary trees are always sorted; BSTs are not",
+          "BSTs can have more than two children",
+          "There is no difference"
+        ],
+        "answer": [0],
+        "explanation": "A binary tree only limits children to two per node, while a BST also enforces an ordering rule among node values."
+      },
+      {
+        "question": "What does the height of a tree represent?",
+        "options": [
+          "The number of nodes in the root",
+          "The length of the longest path from root to a leaf",
+          "The number of leaf nodes",
+          "The number of children each node has"
+        ],
+        "answer": [1],
+        "explanation": "Tree height is the length of the longest path from the root down to any leaf, and it affects search performance."
+      }
+    ]
+  },
+  {
+    "id": "big_picture",
+    "title": "Big Picture: Data Structures + Algorithms",
+    "description": "How structure and efficiency work together.",
+    "questions": [
+      {
+        "question": "What is the relationship between Data Structures, Algorithms, and Complexity?",
+        "options": [
+          "They are unrelated topics",
+          "Data structures organize data, algorithms process it, and complexity measures efficiency",
+          "Algorithms are more important than structure",
+          "Complexity only matters for sorting"
+        ],
+        "answer": [1],
+        "explanation": "Data structures organize data, algorithms operate on it, and complexity measures how efficiently those algorithms run."
+      },
+      {
+        "question": "What does 'Same data, different structure = different performance' mean?",
+        "options": [
+          "Choose arrays for all tasks",
+          "How data is stored affects how fast it can be used",
+          "Different structures always give the same speed",
+          "Performance only depends on hardware"
+        ],
+        "answer": [1],
+        "explanation": "The way data is structured changes access and operation costs, so choosing the right data structure matters."
+      },
+      {
+        "question": "Why is sorting a foundation in computer science?",
+        "options": [
+          "It is only used for display purposes",
+          "Sorted data enables faster searching and many algorithms rely on it",
+          "Sorting is optional in real systems",
+          "Sorting only works with numbers"
+        ],
+        "answer": [1],
+        "explanation": "Sorted data makes searching faster and is often assumed by many algorithms and system designs."
+      },
+      {
+        "question": "What do balanced trees like AVL and Red-Black Trees provide?",
+        "options": [
+          "Unpredictable performance",
+          "Consistent performance by keeping height low",
+          "Only sequential access",
+          "Faster than O(1) performance"
+        ],
+        "answer": [1],
+        "explanation": "Balanced trees keep their height small, helping operations stay fast and consistent rather than degrading on unbalanced data."
+      },
+      {
+        "question": "Why is Big-O important for scalability?",
+        "options": [
+          "It shows how algorithms behave as data grows larger",
+          "It tells the exact runtime for every input size",
+          "It only applies to small data",
+          "It measures the size of the code"
+        ],
+        "answer": [0],
+        "explanation": "Big-O describes how performance grows with input size, making it essential for choosing algorithms that scale well."
+      }
+    ]
+  }
+]

@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSA Midterm Reviewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3a;
+    --accent: #7c3aed;
+    --accent2: #06b6d4;
+    --accent3: #f59e0b;
+    --accent4: #10b981;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Sora', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(124,58,237,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(6,182,212,0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent2);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+    color: var(--text3);
+    font-family: var(--mono);
+    margin-top: 0.2rem;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,15,0.9);
+    scrollbar-width: none;
+  }
+
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text3);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    position: relative;
+    z-index: 5;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .section-desc {
+    color: var(--text2);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .card:hover::before { opacity: 1; }
+  .card:hover { border-color: rgba(124,58,237,0.4); transform: translateY(-2px); }
+
+  .card-accent { border-top: 2px solid var(--accent); }
+  .card-accent2 { border-top: 2px solid var(--accent2); }
+  .card-accent3 { border-top: 2px solid var(--accent3); }
+  .card-accent4 { border-top: 2px solid var(--accent4); }
+  .card-danger { border-top: 2px solid var(--danger); }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .icon-purple { background: rgba(124,58,237,0.2); }
+  .icon-cyan { background: rgba(6,182,212,0.2); }
+  .icon-amber { background: rgba(245,158,11,0.2); }
+  .icon-green { background: rgba(16,185,129,0.2); }
+  .icon-red { background: rgba(239,68,68,0.2); }
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-body {
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* COMPARISON TABLE */
+  .table-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .table-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text3);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    color: var(--text2);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: rgba(124,58,237,0.05); }
+
+  td:first-child { font-weight: 600; color: var(--text); }
+
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .badge-green { background: rgba(16,185,129,0.2); color: #34d399; }
+  .badge-cyan { background: rgba(6,182,212,0.2); color: #22d3ee; }
+  .badge-amber { background: rgba(245,158,11,0.2); color: #fbbf24; }
+  .badge-red { background: rgba(239,68,68,0.2); color: #f87171; }
+  .badge-purple { background: rgba(124,58,237,0.2); color: #a78bfa; }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: #0d0d14;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: #c9d1d9;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .code-keyword { color: #ff7b72; }
+  .code-func { color: #d2a8ff; }
+  .code-var { color: #79c0ff; }
+  .code-num { color: #79c0ff; }
+  .code-comment { color: #8b949e; }
+  .code-string { color: #a5d6ff; }
+
+  /* ALGO STEPS */
+  .steps-list {
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .steps-list li {
+    counter-increment: step;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    font-size: 0.9rem;
+    color: var(--text2);
+  }
+
+  .steps-list li:last-child { border-bottom: none; }
+
+  .steps-list li::before {
+    content: counter(step);
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--mono);
+  }
+
+  /* COMPLEXITY VISUALIZER */
+  .complexity-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .bar-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    width: 90px;
+    flex-shrink: 0;
+    color: var(--text2);
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 10px;
+    background: var(--surface2);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1s ease;
+  }
+
+  .bar-rating {
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--mono);
+    width: 60px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* QUIZ SECTION */
+  .quiz-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .quiz-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text3);
+  }
+
+  .quiz-dots {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .quiz-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.2s;
+  }
+
+  .quiz-dot.done { background: var(--accent4); }
+  .quiz-dot.active { background: var(--accent); width: 20px; border-radius: 4px; }
+  .quiz-dot.wrong { background: var(--danger); }
+
+  .quiz-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-q-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .quiz-question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .quiz-option {
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 0.9rem;
+    text-align: left;
+    width: 100%;
+    font-family: var(--sans);
+  }
+
+  .quiz-option:hover { border-color: var(--accent); color: var(--text); transform: translateX(4px); }
+  .quiz-option.correct { border-color: var(--accent4); background: rgba(16,185,129,0.1); color: #34d399; }
+  .quiz-option.wrong { border-color: var(--danger); background: rgba(239,68,68,0.1); color: #f87171; }
+  .quiz-option:disabled { cursor: default; pointer-events: none; }
+
+  .quiz-feedback {
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    display: none;
+    margin-top: 1rem;
+  }
+
+  .quiz-feedback.show { display: block; animation: fadeIn 0.2s ease; }
+  .quiz-feedback.correct-fb { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7; }
+  .quiz-feedback.wrong-fb { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+
+  .quiz-meta {
+    display: none;
+    margin-top: 1rem;
+    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .quiz-meta.show { display: grid; }
+
+  .quiz-meta-item {
+    background: rgba(15,15,21,0.95);
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .quiz-meta-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.4rem;
+  }
+
+  .quiz-meta-text {
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  .quiz-nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .btn-primary:hover { background: #6d28d9; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text2);
+    border-color: var(--border);
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--text); }
+
+  /* SCORE DISPLAY */
+  .score-display {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: none;
+  }
+
+  .score-num {
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: var(--mono);
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .score-label { color: var(--text2); font-size: 0.9rem; margin-top: 0.5rem; }
+
+  /* FLASHCARD */
+  .flashcard-container {
+    perspective: 1000px;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    cursor: pointer;
+  }
+
+  .flashcard {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+
+  .flashcard.flipped { transform: rotateY(180deg); }
+
+  .flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .flashcard-front {
+    background: var(--surface);
+    background-image: 
+      radial-gradient(circle at top right, rgba(124,58,237,0.1) 0%, transparent 60%);
+  }
+
+  .flashcard-back {
+    background: var(--surface2);
+    transform: rotateY(180deg);
+    background-image: 
+      radial-gradient(circle at bottom left, rgba(6,182,212,0.1) 0%, transparent 60%);
+  }
+
+  .flashcard-hint {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .flashcard-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .flashcard-subtext {
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .flashcard-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .fc-counter {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text3);
+    min-width: 60px;
+    text-align: center;
+  }
+
+  /* TREE VISUAL */
+  .tree-visual {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  svg.tree-svg { overflow: visible; }
+
+  /* HIGHLIGHT BOXES */
+  .highlight-box {
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  .hb-purple { background: rgba(124,58,237,0.1); border-left: 3px solid var(--accent); }
+  .hb-cyan { background: rgba(6,182,212,0.1); border-left: 3px solid var(--accent2); }
+  .hb-amber { background: rgba(245,158,11,0.1); border-left: 3px solid var(--accent3); }
+  .hb-green { background: rgba(16,185,129,0.1); border-left: 3px solid var(--accent4); }
+  .hb-red { background: rgba(239,68,68,0.1); border-left: 3px solid var(--danger); }
+
+  .hb-title { font-weight: 700; margin-bottom: 0.4rem; font-size: 0.9rem; }
+
+  /* MNEMONIC */
+  .mnemonic {
+    background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1));
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .mnemonic-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+
+  .mnemonic-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .mnemonic-expand {
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  /* SEARCH VISUALIZER */
+  .search-viz {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .viz-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text3);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .array-display {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .array-cell {
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: var(--surface2);
+    color: var(--text2);
+    transition: all 0.3s ease;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .array-cell.checking { background: rgba(245,158,11,0.2); border-color: var(--accent3); color: var(--accent3); }
+  .array-cell.found { background: rgba(16,185,129,0.2); border-color: var(--accent4); color: #34d399; }
+  .array-cell.eliminated { background: rgba(239,68,68,0.05); border-color: rgba(239,68,68,0.2); color: var(--text3); }
+  .array-cell.mid { background: rgba(6,182,212,0.2); border-color: var(--accent2); color: var(--accent2); }
+
+  .viz-status {
+    font-size: 0.8rem;
+    color: var(--text2);
+    min-height: 1.5rem;
+    font-family: var(--mono);
+  }
+
+  .viz-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .viz-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    width: 80px;
+  }
+
+  .viz-input:focus { outline: none; border-color: var(--accent); }
+
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* COLLAPSIBLE */
+  .collapsible {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+
+  .collapsible-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+    transition: background 0.15s;
+  }
+
+  .collapsible-header:hover { background: rgba(124,58,237,0.05); }
+
+  .collapsible-arrow {
+    transition: transform 0.25s;
+    color: var(--text3);
+    font-size: 0.75rem;
+  }
+
+  .collapsible.open .collapsible-arrow { transform: rotate(180deg); }
+
+  .collapsible-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  .collapsible.open .collapsible-body { display: block; animation: fadeIn 0.2s ease; }
+
+  /* CHEAT SHEET */
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cheat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .cheat-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text3);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cheat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    font-size: 0.83rem;
+    border-bottom: 1px solid rgba(42,42,58,0.4);
+  }
+
+  .cheat-item:last-child { border-bottom: none; }
+  .cheat-key { color: var(--text2); }
+  .cheat-val { font-family: var(--mono); font-size: 0.75rem; }
+
+  /* SORT VISUAL */
+  .sort-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 100px;
+    padding: 0 1rem;
+    margin: 1rem 0;
+  }
+
+  .sort-bar {
+    flex: 1;
+    background: var(--accent);
+    border-radius: 3px 3px 0 0;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    min-width: 14px;
+  }
+
+  .sort-bar.comparing { background: var(--accent3); opacity: 1; }
+  .sort-bar.swapping { background: var(--danger); opacity: 1; }
+  .sort-bar.sorted { background: var(--accent4); opacity: 0.9; }
+
+  /* TWO COLUMN */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+
+  @media (max-width: 900px) {
+    .main { padding: 1.5rem 1.25rem; }
+    .quiz-card { padding: 1.5rem; }
+    .flashcard-container { max-width: 100%; }
+    .search-viz, .table-wrapper, .highlight-box, .cheat-card, .tree-visual { padding: 1.25rem; }
+    .cards-grid { gap: 0.85rem; }
+    .card { padding: 1.25rem; }
+    .card-icon { width: 32px; height: 32px; }
+    .card-title { font-size: 0.95rem; }
+  }
+
+  @media (max-width: 760px) {
+    .header-top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .header-top > div { width: 100%; }
+    .header-top > div:last-child { text-align: left; }
+    .title { font-size: 1.7rem; }
+    .subtitle { font-size: 0.8rem; }
+    .progress-bar { margin-top: 0.75rem; }
+  }
+
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .main { padding: 1.2rem 0.85rem; }
+    .nav-tabs { padding: 0.75rem 0.85rem; }
+    header { padding: 1.5rem 0.85rem 0.75rem; }
+    .quiz-nav { flex-direction: column; align-items: stretch; }
+    .quiz-nav .btn { width: 100%; }
+    .flashcard-nav { flex-direction: column; gap: 0.75rem; }
+    .array-cell { width: 38px; height: 38px; font-size: 0.8rem; }
+    .search-viz .two-col { gap: 1rem; }
+    .sort-bars { height: 85px; }
+    .section-header { margin-bottom: 1.5rem; }
+    .quiz-question { font-size: 1rem; }
+    .quiz-option { padding: 0.85rem 1rem; font-size: 0.88rem; }
+    .quiz-card { padding: 1.25rem; }
+    .quiz-progress { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .quiz-dots { justify-content: flex-start; flex-wrap: wrap; }
+    .flashcard-face { padding: 1.5rem; }
+    .flashcard-container { min-height: auto; }
+    .tree-visual, .search-viz, .table-wrapper, .highlight-box, .cheat-card { padding: 1rem; }
+  }
+
+  @media (max-width: 480px) {
+    .main { padding: 1rem 0.75rem; }
+    .nav-tabs { padding: 0.6rem 0.75rem; }
+    .tab-btn { padding: 0.45rem 0.8rem; font-size: 0.75rem; }
+    .title { font-size: 1.6rem; }
+    .subtitle { font-size: 0.75rem; }
+    .quiz-question { font-size: 0.95rem; }
+    .quiz-card { padding: 1rem; }
+    .quiz-option { padding: 0.75rem 0.9rem; }
+    .score-display { padding: 2rem 1rem; }
+    .flashcard-face { padding: 1.2rem; }
+    .flashcard-nav { gap: 0.5rem; }
+    .progress-bar { height: 4px; }
+    .header-top { gap: 0.5rem; }
+    .card { padding: 1rem; }
+    .section-desc { font-size: 0.85rem; }
+  }
+
+  /* TREE NODE */
+  .tree-node {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .node-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 2px solid;
+    transition: all 0.3s;
+  }
+
+  .node-default { background: rgba(124,58,237,0.15); border-color: var(--accent); color: #c4b5fd; }
+  .node-highlight { background: rgba(6,182,212,0.2); border-color: var(--accent2); color: var(--accent2); }
+  .node-leaf { background: rgba(16,185,129,0.15); border-color: var(--accent4); color: #34d399; }
+
+  /* HR DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-family: var(--mono);
+    font-weight: 700;
+  }
+
+  .tag-purple { background: rgba(124,58,237,0.2); color: #c4b5fd; }
+  .tag-cyan { background: rgba(6,182,212,0.2); color: #67e8f9; }
+  .tag-amber { background: rgba(245,158,11,0.2); color: #fcd34d; }
+  .tag-green { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+  .tag-red { background: rgba(239,68,68,0.2); color: #fca5a5; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text3);
+    font-size: 0.75rem;
+    font-family: var(--mono);
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div>
+      <div class="logo">DSA Reviewer</div>  
+    </div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="globalProgress"></div></div>
+</header>
+
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="showTab('search')">🔍 Search</button>
+  <button class="tab-btn" onclick="showTab('sorting')">📊 Sorting</button>
+  <button class="tab-btn" onclick="showTab('trees')">🌳 Trees</button>
+  <button class="tab-btn" onclick="showTab('complexity')">⚡ Big-O</button>
+  <button class="tab-btn" onclick="showTab('flashcards')">🃏 Flashcards</button>
+  <button class="tab-btn" onclick="showTab('quiz')">🎯 Quiz</button>
+  <button class="tab-btn" onclick="showTab('cheatsheet')">📋 Cheat Sheet</button>
+</nav>
+
+<main class="main">
+
+<!-- ===== SEARCH ===== -->
+<section class="section active" id="search">
+  <div class="section-header">
+    <div class="section-tag">Module 01 — Search Algorithms</div>
+    <div class="section-title">Finding Data Efficiently</div>
+    <div class="section-desc">Two fundamental approaches to locating a value in a dataset. Choose based on your data's condition.</div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Golden Rule</div>
+    <div class="mnemonic-text">"Linear for Unsorted, Binary for Sorted"</div>
+    <div class="mnemonic-expand">Binary search is faster but requires sorted data. If your list changes frequently or is small, just use linear. Binary wins only when you search many times on static/sorted data.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="card card-accent2">
+      <div class="card-icon icon-cyan">🔎</div>
+      <div class="card-title">Linear Search</div>
+      <div class="card-body">
+        Also called <strong>Sequential Search</strong>. Brute force — check every element one by one until found or list ends.<br><br>
+        <span class="tag tag-green">✓ No prerequisite</span>&nbsp;
+        <span class="tag tag-amber">O(n) worst</span><br><br>
+        <strong>Use when:</strong> Small list, unsorted data, data changes often.
+      </div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon icon-purple">⚡</div>
+      <div class="card-title">Binary Search</div>
+      <div class="card-body">
+        Divide & Conquer. Checks the middle, discards half. Repeats on the relevant half.<br><br>
+        <span class="tag tag-red">✗ Must be sorted</span>&nbsp;
+        <span class="tag tag-green">O(log n)</span><br><br>
+        <strong>Use when:</strong> Large list, sorted data, searched many times.
+      </div>
+    </div>
+  </div>
+
+  <!-- VISUAL SEARCH DEMO -->
+  <div class="search-viz">
+    <div class="viz-label">Interactive Visualizer — Click buttons to step through</div>
+    <div class="two-col">
+      <div>
+        <div style="font-size:0.8rem;font-weight:700;margin-bottom:0.75rem;color:var(--accent2);">Linear Search</div>
+        <div class="array-display" id="linearArray"></div>
+        <div class="viz-status" id="linearStatus">Ready.</div>
+        <div class="viz-controls">
+          <input class="viz-input" type="number" id="linearTarget" placeholder="Target" value="15">
+          <button class="btn btn-primary btn-sm" onclick="startLinear()">Start</button>
+          <button class="btn btn-outline btn-sm" onclick="resetLinear()">Reset</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;font-weight:700;margin-bottom:0.75rem;color:var(--accent);">Binary Search</div>
+        <div class="array-display" id="binaryArray"></div>
+        <div class="viz-status" id="binaryStatus">Ready.</div>
+        <div class="viz-controls">
+          <input class="viz-input" type="number" id="binaryTarget" placeholder="Target" value="15">
+          <button class="btn btn-primary btn-sm" onclick="startBinary()">Start</button>
+          <button class="btn btn-outline btn-sm" onclick="resetBinary()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <div class="table-header">Head-to-Head Comparison</div>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Linear Search</th><th>Binary Search</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Prerequisite</td><td><span class="badge badge-green">None</span></td><td><span class="badge badge-red">Must be sorted</span></td></tr>
+        <tr><td>Algorithm Type</td><td>Iterative</td><td>Divide & Conquer</td></tr>
+        <tr><td>Best Case</td><td><span class="badge badge-green">O(1)</span></td><td><span class="badge badge-green">O(1)</span></td></tr>
+        <tr><td>Average Case</td><td><span class="badge badge-amber">O(N)</span></td><td><span class="badge badge-green">O(log N)</span></td></tr>
+        <tr><td>Worst Case</td><td><span class="badge badge-red">O(N)</span></td><td><span class="badge badge-cyan">O(log N)</span></td></tr>
+        <tr><td>Space</td><td><span class="badge badge-green">O(1)</span></td><td><span class="badge badge-green">O(1)</span> iterative</td></tr>
+        <tr><td>Code Complexity</td><td>Simple</td><td>More complex</td></tr>
+        <tr><td>Insert Operation</td><td>Easy (append)</td><td>Difficult (maintain sort)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box hb-amber">
+    <div class="hb-title">⚠️ The Hidden Cost of Binary Search</div>
+    If your data is unsorted, you must sort it first. Sorting costs O(n log n). Then binary search adds O(log n). Total: <strong>O(n log n)</strong>. If you search only ONCE on unsorted data, Linear Search (O(n)) is actually FASTER!
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="section-tag">Linear Search — How It Works</div>
+    <div class="code-block">
+<span class="code-comment">// Linear Search in C-style pseudocode</span>
+<span class="code-keyword">for</span>(<span class="code-var">i</span>=<span class="code-num">0</span>; <span class="code-var">i</span>&lt;<span class="code-var">n</span>; <span class="code-var">i</span>++) {
+    <span class="code-keyword">if</span>(<span class="code-var">list</span>[<span class="code-var">i</span>] == <span class="code-var">target</span>) {
+        <span class="code-comment">// Found! Return index i</span>
+        <span class="code-keyword">break</span>;
+    }
+    <span class="code-comment">// else: move to next element</span>
+}
+    </div>
+
+    <div class="section-tag" style="margin-top:1.5rem;">Binary Search — How It Works</div>
+    <div class="code-block">
+<span class="code-comment">// Binary Search — data MUST be sorted</span>
+<span class="code-var">low</span> = <span class="code-num">0</span>;  <span class="code-var">high</span> = <span class="code-var">n</span>-<span class="code-num">1</span>;
+<span class="code-keyword">while</span>(<span class="code-var">low</span> &lt;= <span class="code-var">high</span>) {
+    <span class="code-var">mid</span> = (<span class="code-var">low</span> + <span class="code-var">high</span>) / <span class="code-num">2</span>; <span class="code-comment">// Find middle</span>
+    <span class="code-keyword">if</span>(<span class="code-var">arr</span>[<span class="code-var">mid</span>] == <span class="code-var">target</span>)   <span class="code-comment">// Found!</span>
+        <span class="code-keyword">return</span> <span class="code-var">mid</span>;
+    <span class="code-keyword">else if</span>(<span class="code-var">arr</span>[<span class="code-var">mid</span>] &lt; <span class="code-var">target</span>)
+        <span class="code-var">low</span> = <span class="code-var">mid</span> + <span class="code-num">1</span>;    <span class="code-comment">// Go right</span>
+    <span class="code-keyword">else</span>
+        <span class="code-var">high</span> = <span class="code-var">mid</span> - <span class="code-num">1</span>;   <span class="code-comment">// Go left</span>
+}
+    </div>
+  </div>
+
+  <!-- KEY TYPES -->
+  <hr>
+  <div style="margin-bottom:1rem;font-weight:700;">Types of Search Keys</div>
+  <div class="cards-grid">
+    <div class="card"><div class="card-title">🔑 Primary Key</div><div class="card-body">Unique identifier. Only one record matches. (e.g., Student ID, Roll No.)</div></div>
+    <div class="card"><div class="card-title">🏠 Secondary Key</div><div class="card-body">Non-unique. Multiple records may share it. (e.g., Address, Last Name)</div></div>
+    <div class="card"><div class="card-title">📦 Internal Key</div><div class="card-body">Embedded within the record itself. The key is part of the data structure.</div></div>
+    <div class="card"><div class="card-title">🔗 External Key</div><div class="card-body">An external entity used to refer to records. (like a foreign key in databases)</div></div>
+  </div>
+</section>
+
+<!-- ===== SORTING ===== -->
+<section class="section" id="sorting">
+  <div class="section-header">
+    <div class="section-tag">Module 02 — Sorting Algorithms</div>
+    <div class="section-title">Arranging Data in Order</div>
+    <div class="section-desc">Sorting enables faster searching and better data organization. Know when to use each algorithm.</div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonic — Simple Sorts</div>
+    <div class="mnemonic-text">"BSI" = Bubble, Selection, Insertion → All O(n²)</div>
+    <div class="mnemonic-expand">Simple sorts are all O(n²). They're slow but easy to understand. Good for small data or nearly sorted data (Insertion Sort especially).</div>
+  </div>
+
+  <!-- SORT VISUALIZER -->
+  <div class="search-viz">
+    <div class="viz-label">Sort Visualizer — Watch sorting in action</div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+      <select id="sortSelect" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.5rem 0.75rem;color:var(--text);font-family:var(--sans);font-size:0.8rem;">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
+      </select>
+      <button class="btn btn-primary btn-sm" onclick="startSort()">▶ Sort</button>
+      <button class="btn btn-outline btn-sm" onclick="resetSort()">↺ Reset</button>
+    </div>
+    <div class="sort-bars" id="sortBars"></div>
+    <div class="viz-status" id="sortStatus">Ready. Select an algorithm and click Sort.</div>
+  </div>
+
+  <div class="table-wrapper">
+    <div class="table-header">Algorithm Performance Matrix (from your modules)</div>
+    <table>
+      <thead>
+        <tr><th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th><th>Space</th><th>Stable?</th><th>Key Idea</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bubble Sort</td><td><span class="badge badge-cyan">O(n)</span></td><td><span class="badge badge-red">O(n²)</span></td><td><span class="badge badge-red">O(n²)</span></td><td>O(1)</td><td><span class="badge badge-green">Stable</span></td><td>Swap adjacent pairs</td></tr>
+        <tr><td>Selection Sort</td><td><span class="badge badge-red">O(n²)</span></td><td><span class="badge badge-red">O(n²)</span></td><td><span class="badge badge-red">O(n²)</span></td><td>O(1)</td><td><span class="badge badge-amber">Unstable</span></td><td>Find min, place first</td></tr>
+        <tr><td>Insertion Sort</td><td><span class="badge badge-cyan">O(n)</span></td><td><span class="badge badge-red">O(n²)</span></td><td><span class="badge badge-red">O(n²)</span></td><td>O(1)</td><td><span class="badge badge-green">Stable</span></td><td>Insert into position</td></tr>
+        <tr><td>Merge Sort</td><td><span class="badge badge-green">O(n log n)</span></td><td><span class="badge badge-green">O(n log n)</span></td><td><span class="badge badge-green">O(n log n)</span></td><td>O(n)</td><td><span class="badge badge-amber">Unstable*</span></td><td>Divide & merge</td></tr>
+        <tr><td>Quick Sort</td><td><span class="badge badge-green">O(n log n)</span></td><td><span class="badge badge-green">O(n log n)</span></td><td><span class="badge badge-red">O(n²)</span></td><td>O(log n)</td><td><span class="badge badge-amber">Unstable</span></td><td>Pivot & partition</td></tr>
+        <tr><td>Heap Sort</td><td><span class="badge badge-green">O(n log n)</span></td><td><span class="badge badge-green">O(n log n)</span></td><td><span class="badge badge-green">O(n log n)</span></td><td>O(1)</td><td><span class="badge badge-amber">Unstable</span></td><td>Max-heap + extract</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box hb-cyan">
+    <div class="hb-title">📊 Empirical Results (Iris Dataset — from your modules)</div>
+    Quick Sort: <strong>0.0003s</strong> avg time, 568 swaps — FASTEST in practice<br>
+    Merge Sort: 0.0009s, 689 swaps | Heap Sort: 0.0020s, 992 swaps | Bubble Sort: 0.0107s, 2515 swaps — SLOWEST
+  </div>
+
+  <!-- EACH SORT EXPLAINED -->
+  <div style="margin-top:2rem;margin-bottom:1rem;font-weight:700;font-size:1.1rem;">Each Algorithm Explained</div>
+
+  <div class="collapsible open">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🫧 Bubble Sort — "Students swapping with seatmates"</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Repeatedly compares adjacent elements and swaps if they're in the wrong order. Larger elements "bubble up" to the end.<br><br>
+      <strong>Steps:</strong>
+      <ol class="steps-list" style="margin-top:0.5rem;">
+        <li>Compare arr[0] and arr[1]. If arr[0] > arr[1], swap.</li>
+        <li>Move to arr[1] and arr[2]. Repeat.</li>
+        <li>After one full pass, largest is at the end.</li>
+        <li>Repeat for remaining elements.</li>
+      </ol>
+      <div class="highlight-box hb-green" style="margin-top:1rem;">
+        <strong>Optimization:</strong> If no swaps in a pass, the list is sorted → Best case O(n).
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🎯 Selection Sort — "Picking the lowest paper score first"</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Finds the minimum element in the unsorted portion and places it at the beginning. <strong>Always O(n²)</strong> — no optimization possible.<br><br>
+      <ol class="steps-list" style="margin-top:0.5rem;">
+        <li>Find the minimum element in the entire array.</li>
+        <li>Swap it with the first element.</li>
+        <li>Consider the rest of the array (excluding first).</li>
+        <li>Repeat until sorted.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🃏 Insertion Sort — "Arranging playing cards in hand"</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Builds the sorted array one item at a time. Takes one element and inserts it into its correct position among already-sorted elements.<br><br>
+      <ol class="steps-list" style="margin-top:0.5rem;">
+        <li>Start from the second element (index 1).</li>
+        <li>Compare with elements before it.</li>
+        <li>Shift larger elements one position right.</li>
+        <li>Insert the element in its correct position.</li>
+        <li>Move to the next element.</li>
+      </ol>
+      <div class="highlight-box hb-green" style="margin-top:1rem;">Best for nearly sorted data. Very efficient for small datasets.</div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🔀 Merge Sort — "Easy Divide, Hard Merge" — O(n log n) always</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Divide and Conquer. Split array in half recursively, then merge back in sorted order.<br><br>
+      <ol class="steps-list" style="margin-top:0.5rem;">
+        <li><strong>Divide:</strong> Split the array into two halves.</li>
+        <li><strong>Conquer:</strong> Recursively sort each half.</li>
+        <li><strong>Glue:</strong> Merge the two sorted halves back together.</li>
+      </ol>
+      <div class="highlight-box hb-amber" style="margin-top:1rem;"><strong>Tradeoff:</strong> Guaranteed O(n log n) always, but needs O(n) extra memory (out-of-place sorting).</div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>⚡ Quick Sort — "Hard Partition, Easy Combine" — Fastest in practice</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Choose a pivot. Partition: elements ≤ pivot go left, elements > pivot go right. Recursively sort partitions.<br><br>
+      <ol class="steps-list" style="margin-top:0.5rem;">
+        <li>Choose a pivot element (usually last or middle).</li>
+        <li>Partition: put smaller elements left, larger elements right.</li>
+        <li>The pivot is now in its final position.</li>
+        <li>Recursively apply to left and right partitions.</li>
+      </ol>
+      <div class="highlight-box hb-red" style="margin-top:1rem;"><strong>Worst Case:</strong> If pivot is always the smallest/largest (already sorted list with leftmost pivot) → O(n²). Solution: use random pivot or median-of-three.</div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🏔️ Heap Sort — "Priority Queue sorting" — O(n log n), O(1) space</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Uses a max-heap data structure. The heap is stored as an array (no pointers needed!). Height is always O(log n).<br><br>
+      <ol class="steps-list" style="margin-top:0.5rem;">
+        <li><strong>Build Max Heap:</strong> Rearrange array into a max-heap.</li>
+        <li><strong>Extract Max:</strong> Swap root (max) with last element A[n].</li>
+        <li><strong>Restore:</strong> Run Max_Heapify on the new root. Shrink heap by 1.</li>
+        <li>Repeat steps 2-3 until heap has one element.</li>
+      </ol>
+      <div class="highlight-box hb-green" style="margin-top:1rem;"><strong>Key Advantage:</strong> O(1) extra space (in-place). Worst case is guaranteed O(n log n).</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="mnemonic">
+      <div class="mnemonic-label">🧠 When to choose which sort?</div>
+      <div class="mnemonic-text">Q = Quick (speed), M = Merge (guaranteed), H = Heap (memory-lean)</div>
+      <div class="mnemonic-expand">
+        <strong>Quick Sort</strong> → Default choice. Fastest empirically, cache-friendly. Watch for sorted-input pitfall.<br>
+        <strong>Merge Sort</strong> → When stability or guaranteed O(n log n) is required and extra memory is OK.<br>
+        <strong>Heap Sort</strong> → When O(1) space is critical. Slightly slower than Quick in practice.<br>
+        <strong>Insertion Sort</strong> → When list is small or nearly sorted.<br>
+        <strong>Bubble/Selection</strong> → Educational purposes only. Never in production.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TREES ===== -->
+<section class="section" id="trees">
+  <div class="section-header">
+    <div class="section-tag">Module 03 — Tree Data Structures</div>
+    <div class="section-title">Hierarchical Data Organization</div>
+    <div class="section-desc">Trees organize data for fast searching, insertion, and deletion. Understanding the evolution from Binary Tree → BST → Self-Balancing → B-Trees is key.</div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Tree Evolution — Remember This Chain</div>
+    <div class="mnemonic-text">Binary Tree → BST → AVL/Red-Black → B-Tree → B+ Tree</div>
+    <div class="mnemonic-expand">Each step solves a problem with the previous. BT has no order → BST adds order → BST can degenerate → AVL/RB stay balanced → Binary trees are too tall for disk → B-Trees are wide and short → B-Trees can't do range queries fast → B+ Trees add leaf links.</div>
+  </div>
+
+  <!-- TREE BASICS -->
+  <div class="table-wrapper">
+    <div class="table-header">Core Tree Terminology</div>
+    <table>
+      <thead><tr><th>Term</th><th>Definition</th><th>Memory Hook</th></tr></thead>
+      <tbody>
+        <tr><td>Root</td><td>The topmost node. The origin/entry point.</td><td>Top of the family tree</td></tr>
+        <tr><td>Node</td><td>Each individual element. Contains data + pointers.</td><td>Each person in the family</td></tr>
+        <tr><td>Edge</td><td>Connection between parent and child nodes.</td><td>The lines connecting them</td></tr>
+        <tr><td>Leaf</td><td>Node with no children. Terminal node.</td><td>End of a branch</td></tr>
+        <tr><td>Parent</td><td>A node with at least one child.</td><td>Has kids</td></tr>
+        <tr><td>Child</td><td>A node directly below a parent.</td><td>Below the parent</td></tr>
+        <tr><td>Subtree</td><td>A node and all its descendants.</td><td>A sub-family tree</td></tr>
+        <tr><td>Height</td><td>Longest path from root to a leaf.</td><td>How tall the tree is</td></tr>
+        <tr><td>Balance Factor</td><td>Height(left) − Height(right). For AVL: must be -1, 0, or +1</td><td>How lopsided it is</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TRAVERSALS -->
+  <div style="margin-bottom:1rem;font-weight:700;font-size:1.1rem;">Tree Traversals — The 3 Orders</div>
+  <div class="cards-grid">
+    <div class="card card-accent">
+      <div class="card-icon icon-purple">1</div>
+      <div class="card-title">Pre-order (NLR)</div>
+      <div class="card-body">
+        <strong>Node → Left → Right</strong><br><br>
+        Visit root FIRST, then go left, then go right.<br><br>
+        <span class="tag tag-purple">Use for:</span> Copying/reconstructing the tree
+      </div>
+    </div>
+    <div class="card card-accent2">
+      <div class="card-icon icon-cyan">2</div>
+      <div class="card-title">In-order (LNR)</div>
+      <div class="card-body">
+        <strong>Left → Node → Right</strong><br><br>
+        Visit left subtree, then root, then right.<br><br>
+        <span class="tag tag-cyan">Use for:</span> Getting a sorted sequence from BST
+      </div>
+    </div>
+    <div class="card card-accent3">
+      <div class="card-icon icon-amber">3</div>
+      <div class="card-title">Post-order (LRN)</div>
+      <div class="card-body">
+        <strong>Left → Right → Node</strong><br><br>
+        Visit both children before the root.<br><br>
+        <span class="tag tag-amber">Use for:</span> Deleting tree or evaluating expressions
+      </div>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Traversal Trick</div>
+    <div class="mnemonic-text">Pre = Root FIRST | In = Root MIDDLE | Post = Root LAST</div>
+    <div class="mnemonic-expand">The "pre/in/post" refers to WHEN you visit the root relative to children. Pre-order: root before children. In-order: root between children (gives sorted output for BST). Post-order: root after children.</div>
+  </div>
+
+  <!-- TREE TYPES -->
+  <div style="margin-top:2rem;margin-bottom:1rem;font-weight:700;font-size:1.1rem;">Tree Types — Evolution</div>
+
+  <div class="collapsible open">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🌲 Binary Tree — The Foundation (No Order)</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Each node has at most 2 children (left and right). <strong>NO ordering rule.</strong> Nodes are added wherever there's space.<br><br>
+      <div class="highlight-box hb-red"><strong>The Flaw:</strong> Because there's no order, searching requires scanning potentially ALL nodes → O(n) worst case. It's essentially a linked list with two pointers.</div>
+      <strong>Use for:</strong> Org charts, parsers, arbitrary hierarchical mapping where order doesn't matter.
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🔍 Binary Search Tree (BST) — Adding Order → O(log n) search</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      <strong>The Golden Rule:</strong> Left child &lt; Parent &lt; Right child (for every node!)<br><br>
+      This means at each node, you can discard half the tree — cutting search time to O(log n).<br><br>
+      <div class="highlight-box hb-cyan">
+        <strong>BST Search Steps:</strong>
+        <ol class="steps-list" style="margin-top:0.5rem;">
+          <li>Start at root.</li>
+          <li>If target = current → FOUND.</li>
+          <li>If target &lt; current → go LEFT.</li>
+          <li>If target &gt; current → go RIGHT.</li>
+          <li>Repeat until found or NULL.</li>
+        </ol>
+        Time: O(h) where h = height of tree.
+      </div>
+      <strong>BST Deletion — The 3 Cases:</strong>
+      <div style="margin-top:0.75rem;">
+        <div class="highlight-box hb-purple" style="margin-bottom:0.5rem;"><strong>Case 1 — Leaf node:</strong> Just delete it. Done.</div>
+        <div class="highlight-box hb-amber" style="margin-bottom:0.5rem;"><strong>Case 2 — One child:</strong> Replace the deleted node with its child (subtree shifts up).</div>
+        <div class="highlight-box hb-red"><strong>Case 3 — Two children:</strong> Replace with the in-order successor (leftmost node of right subtree — the smallest in the right side). This is "The Successor Rule."</div>
+      </div>
+      <div class="highlight-box hb-red" style="margin-top:1rem;"><strong>The Degeneration Flaw:</strong> If you insert sorted data (1,2,3,4,5...), BST becomes a linked list! Height = n, search = O(n). This kills the advantage entirely.</div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>⚖️ AVL Tree — Self-Balancing (Strict) → Always O(log n)</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      AVL trees automatically re-balance after every insertion/deletion. Balance Factor = Height(left) − Height(right) must be <strong>-1, 0, or +1</strong> for every node.<br><br>
+      <div class="highlight-box hb-purple">
+        <strong>How it balances:</strong> Rotations — LEFT-ROTATE(T, x) or RIGHT-ROTATE(T, y)<br>
+        Rotations are O(1) — they just change a constant number of pointers.<br>
+        After rotation, BST ordering is perfectly preserved.
+      </div>
+      <strong>Rotation preserves these relationships:</strong>
+      <ul style="margin-top:0.5rem;color:var(--text2);font-size:0.85rem;line-height:1.8;padding-left:1.2rem;">
+        <li>x is less than y</li>
+        <li>alpha &lt; x &lt; y</li>
+        <li>x &lt; beta &lt; y</li>
+        <li>gamma &gt; x and y</li>
+      </ul>
+      <div class="highlight-box hb-green" style="margin-top:1rem;"><strong>Result:</strong> Always O(log n) for search, insert, delete. More frequent rotations than Red-Black.</div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🔴⚫ Red-Black Tree — Self-Balancing (Flexible) → O(log n) guaranteed</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      Uses color rules instead of strict height balancing. Less rotations than AVL = faster for frequent insertions/deletions.<br><br>
+      <strong>The 4 Rules:</strong>
+      <ol class="steps-list" style="margin-top:0.5rem;">
+        <li>Every node is either RED or BLACK.</li>
+        <li>The root is always BLACK.</li>
+        <li>No two consecutive RED nodes (red node's children must be black).</li>
+        <li>Every path from root to a NULL leaf has the same number of BLACK nodes.</li>
+      </ol>
+      <div class="highlight-box hb-cyan" style="margin-top:1rem;"><strong>Guarantee:</strong> No path is more than twice as long as any other. This ensures height ≤ 2 log(n+1) → operations are O(log n).</div>
+      <div class="highlight-box hb-amber"><strong>AVL vs Red-Black:</strong> AVL is more strictly balanced (better for lookup-heavy). Red-Black allows slight imbalance but fewer rotations (better for insert/delete-heavy). Real-world use: Java's TreeMap, Linux kernel use Red-Black.</div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>💾 B-Tree — "Fat Nodes, Flat Trees" — For Databases & File Systems</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      <strong>The Problem B-Trees Solve:</strong> Memory access = nanoseconds. Disk access = milliseconds. A tall binary tree with millions of records needs dozens of disk reads = SLOW.<br><br>
+      <div class="highlight-box hb-purple">
+        <strong>Solution:</strong> Store multiple keys per node (M children per node). The tree becomes <em>very wide and very shallow</em>. A massive database can be searched with only 3-4 disk reads!
+      </div>
+      <strong>B-Tree Rules:</strong>
+      <ul style="margin-top:0.5rem;color:var(--text2);font-size:0.85rem;line-height:1.8;padding-left:1.2rem;">
+        <li>Each node can hold multiple keys (M-way search array).</li>
+        <li>Every inner node (except root) is at least half full: M/2−1 ≤ keys ≤ M−1.</li>
+        <li>Keys &amp; values stored in ALL nodes.</li>
+      </ul>
+      <strong>B-Tree Insertion (The Split):</strong>
+      <ol class="steps-list" style="margin-top:0.75rem;">
+        <li><strong>Overflow:</strong> A leaf node exceeds its max keys.</li>
+        <li><strong>Median Identify:</strong> Find the middle key.</li>
+        <li><strong>Split &amp; Push:</strong> Split node at median; push center key up to parent. Tree grows UPWARD.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span>🌿 B+ Tree — "The Ultimate Index" — Used in Modern Databases (SQL)</span>
+      <span class="collapsible-arrow">▼</span>
+    </button>
+    <div class="collapsible-body">
+      An improved B-Tree. <strong>All actual data lives in leaf nodes only.</strong> Inner nodes store only keys for routing.<br><br>
+      <div class="highlight-box hb-cyan">
+        <strong>The Sibling Pointer Advantage:</strong> Leaf nodes are linked horizontally as a linked list! Once you find the start of a range, you just scan leaves → lightning-fast range queries without going back up the tree.
+      </div>
+      <div class="table-wrapper" style="margin-top:1rem;">
+        <table>
+          <thead><tr><th>Feature</th><th>B-Tree</th><th>B+ Tree</th></tr></thead>
+          <tbody>
+            <tr><td>Data Storage</td><td>Keys &amp; values in ALL nodes</td><td>Values ONLY in leaf nodes</td></tr>
+            <tr><td>Search Time</td><td>Variable (can find at root)</td><td>Predictable (always reaches leaf)</td></tr>
+            <tr><td>Range Query</td><td>Difficult, requires tree traversal</td><td>Trivial — follow leaf pointers</td></tr>
+            <tr><td>Primary Use</td><td>File systems, older databases</td><td>Modern SQL, multilevel indexing</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECISION MATRIX -->
+  <div class="highlight-box hb-purple" style="margin-top:2rem;">
+    <div class="hb-title">🗺️ Architectural Decision Matrix (from your slides)</div>
+    <strong>Do you need ordering?</strong><br>
+    → No: Use Binary Tree (org charts, parsers)<br>
+    → Yes, on disk? → Need range queries? Yes → <strong>B+ Tree</strong> | No → <strong>B-Tree</strong><br>
+    → Yes, in memory, highly dynamic? → <strong>AVL or Red-Black Tree</strong><br>
+    → Yes, in memory, static data? → <strong>Standard BST</strong>
+  </div>
+
+  <div class="table-wrapper" style="margin-top:1.5rem;">
+    <div class="table-header">All Tree Types — Master Summary</div>
+    <table>
+      <thead><tr><th>Tree</th><th>Key Idea</th><th>Ordering</th><th>Search</th><th>Best Use Case</th></tr></thead>
+      <tbody>
+        <tr><td>Binary Tree</td><td>Max 2 children, no order</td><td>None</td><td>O(n)</td><td>Parsers, Org Charts</td></tr>
+        <tr><td>BST</td><td>Left &lt; Parent &lt; Right</td><td>Yes</td><td>O(log n) avg, O(n) worst</td><td>Simple lookup, in-memory maps</td></tr>
+        <tr><td>AVL Tree</td><td>Balance factor -1,0,+1</td><td>Yes</td><td>O(log n) always</td><td>Lookup-heavy apps</td></tr>
+        <tr><td>Red-Black</td><td>Color rules, no 2 red adjacent</td><td>Yes</td><td>O(log n) always</td><td>Insert/delete-heavy apps</td></tr>
+        <tr><td>B-Tree</td><td>Multi-key nodes, wide shallow</td><td>Yes</td><td>O(log n)</td><td>File systems, databases</td></tr>
+        <tr><td>B+ Tree</td><td>Data only in leaves, linked leaves</td><td>Yes</td><td>O(log n) + range scan</td><td>Modern SQL, multilevel indexing</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== COMPLEXITY ===== -->
+<section class="section" id="complexity">
+  <div class="section-header">
+    <div class="section-tag">Module 02 — Algorithm Complexity</div>
+    <div class="section-title">Big-O Notation</div>
+    <div class="section-desc">Big-O measures how an algorithm's time or space grows as input size (n) increases. It's about growth rate, not exact time.</div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Key Insight</div>
+    <div class="mnemonic-text">Big-O = Worst Case Growth. Drop constants. Keep the dominant term.</div>
+    <div class="mnemonic-expand">O(100n²) = O(n²) because constants don't matter at large scale. O(n² + n) = O(n²) because n² dominates. Always focus on the fastest-growing term.</div>
+  </div>
+
+  <!-- COMPLEXITY BARS -->
+  <div class="complexity-bars">
+    <div style="font-size:0.8rem;font-weight:700;margin-bottom:0.5rem;color:var(--text2);">Relative Growth Speed (more bar = slower)</div>
+    <div class="bar-row">
+      <div class="bar-label">O(1)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:3%;background:#10b981;"></div></div>
+      <div class="bar-rating" style="color:#34d399;">EXCELLENT</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">O(log n)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:10%;background:#06b6d4;"></div></div>
+      <div class="bar-rating" style="color:#22d3ee;">EXCELLENT</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">O(n)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:35%;background:#22c55e;"></div></div>
+      <div class="bar-rating" style="color:#86efac;">FAIR</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">O(n log n)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:55%;background:#f59e0b;"></div></div>
+      <div class="bar-rating" style="color:#fbbf24;">BAD</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">O(n²)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:80%;background:#ef4444;"></div></div>
+      <div class="bar-rating" style="color:#f87171;">HORRIBLE</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">O(2ⁿ)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:98%;background:#7c3aed;"></div></div>
+      <div class="bar-rating" style="color:#c4b5fd;">AVOID!</div>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card card-accent4">
+      <div class="card-icon icon-green">⚡</div>
+      <div class="card-title">O(1) — Constant</div>
+      <div class="card-body">Same time regardless of input size. Example: accessing array[5], checking if a number is even. The holy grail.</div>
+    </div>
+    <div class="card card-accent2">
+      <div class="card-icon icon-cyan">📉</div>
+      <div class="card-title">O(log n) — Logarithmic</div>
+      <div class="card-body">Halves the problem each step. n=1,000,000 only takes ~20 steps! Binary search, BST operations on balanced trees.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">O(n) — Linear</div>
+      <div class="card-body">One operation per element. n=1000 → 1000 ops. Linear search, scanning an array. Acceptable.</div>
+    </div>
+    <div class="card card-accent3">
+      <div class="card-icon icon-amber">⚠️</div>
+      <div class="card-title">O(n log n) — Linearithmic</div>
+      <div class="card-body">The best possible for comparison-based sorting. Merge, Quick, Heap sort. Not ideal but unavoidable for sorting.</div>
+    </div>
+    <div class="card card-danger">
+      <div class="card-icon icon-red">🐢</div>
+      <div class="card-title">O(n²) — Quadratic</div>
+      <div class="card-body">Nested loops. n=1000 → 1,000,000 ops. Bubble, Selection, Insertion sort worst case. Avoid for large data.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💀</div>
+      <div class="card-title">O(2ⁿ) — Exponential</div>
+      <div class="card-body">Doubles with each input. n=30 → 1 billion ops. Brute force password cracking. Almost always impractical.</div>
+    </div>
+  </div>
+
+  <!-- THREE TYPES OF COMPLEXITY MEASUREMENT -->
+  <div style="margin-top:2rem;margin-bottom:1rem;font-weight:700;font-size:1.1rem;">Three Ways to Measure Complexity</div>
+  <div class="table-wrapper">
+    <table>
+      <thead><tr><th>Type</th><th>Full Name</th><th>What It Measures</th><th>Limitation</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-purple">TTC</span></td><td>Theoretical Time Complexity</td><td>Algorithm analysis, rigorous bounds</td><td>Ignores compilers and hardware</td></tr>
+        <tr><td><span class="badge badge-cyan">MBTC</span></td><td>Model-Based Time Complexity</td><td>Simulation-based, requires fitting algorithm</td><td>Prone to learning wrong orders due to time fluctuations</td></tr>
+        <tr><td><span class="badge badge-green">ETC</span></td><td>Empirical Time Complexity</td><td>Data-driven, accounts for real hardware</td><td>Needs actual data. Formula: ETC = t_i / t_0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box hb-cyan">
+    <div class="hb-title">ETC Formula</div>
+    ETC_i = t_i / t_0 &nbsp;&nbsp;&nbsp;(Running time of input size i ÷ running time of the smallest base point)<br><br>
+    This accounts for real-world crossover between algorithm theory, compilation, and hardware. Your module used the <strong>UCI Iris Dataset</strong> to empirically test sorting algorithms.
+  </div>
+
+  <!-- THETA vs O -->
+  <div class="two-col" style="margin-top:1.5rem;">
+    <div class="highlight-box hb-purple">
+      <div class="hb-title">Big-O (O)</div>
+      Upper bound. Worst case. The algorithm takes AT MOST this long. "It won't be slower than this."
+    </div>
+    <div class="highlight-box hb-green">
+      <div class="hb-title">Theta (Θ)</div>
+      Tight bound. Both upper and lower. The algorithm takes EXACTLY this growth rate. "It's precisely this."
+    </div>
+  </div>
+
+  <div class="highlight-box hb-amber">
+    <div class="hb-title">💡 Key Insight from your slides</div>
+    The worst-case running time for BST operations is directly proportional to the tree height (h).<br>
+    Complete binary tree → height = log n → Θ(log n)<br>
+    Linear chain (degenerated) → height = n → Θ(n)
+  </div>
+</section>
+
+<!-- ===== FLASHCARDS ===== -->
+<section class="section" id="flashcards">
+  <div class="section-header">
+    <div class="section-tag">Study Tool</div>
+    <div class="section-title">Flashcards</div>
+    <div class="section-desc">Click the card to reveal the answer. Use arrow buttons to navigate.</div>
+  </div>
+
+  <div class="flashcard-container" onclick="flipCard()">
+    <div class="flashcard" id="flashcard">
+      <div class="flashcard-face flashcard-front">
+        <div class="flashcard-hint">Click to reveal answer</div>
+        <div class="flashcard-text" id="fc-front"></div>
+      </div>
+      <div class="flashcard-face flashcard-back">
+        <div class="flashcard-hint">Answer</div>
+        <div class="flashcard-text" id="fc-back"></div>
+        <div class="flashcard-subtext" id="fc-sub"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard-nav">
+    <button class="btn btn-outline" onclick="prevCard()">← Prev</button>
+    <div class="fc-counter" id="fc-counter">1 / 20</div>
+    <button class="btn btn-primary" onclick="nextCard()">Next →</button>
+  </div>
+
+  <div style="text-align:center;margin-top:1rem;">
+    <button class="btn btn-outline btn-sm" onclick="shuffleCards()">🔀 Shuffle</button>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section class="section" id="quiz">
+  <div class="section-header">
+    <div class="section-tag">Self-Test</div>
+    <div class="section-title">Practice Quiz</div>
+    <div class="section-desc">Test your understanding. 30 questions covering all modules.</div>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-progress">
+      <span id="quiz-progress-text">Question 1 of 30</span>
+      <div class="quiz-dots" id="quizDots"></div>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-q-num" id="qNum">Question 01</div>
+      <div class="quiz-question" id="qText"></div>
+      <div class="quiz-options" id="qOptions"></div>
+      <div class="quiz-feedback" id="qFeedback"></div>
+      <div class="quiz-meta" id="qMeta"></div>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn btn-outline" id="skipBtn" onclick="nextQuestion()">Skip</button>
+      <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display:none;">Next Question →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div class="score-num" id="scoreNum">0/30</div>
+      <div class="score-label" id="scoreLabel"></div>
+      <div style="margin-top:2rem;">
+        <button class="btn btn-primary" onclick="restartQuiz()">🔄 Try Again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHEAT SHEET ===== -->
+<section class="section" id="cheatsheet">
+  <div class="section-header">
+    <div class="section-tag">Quick Reference</div>
+    <div class="section-title">Master Cheat Sheet</div>
+    <div class="section-desc">Everything you need to know at a glance. Study this before your exam!</div>
+  </div>
+
+  <div class="cheat-grid">
+    <div class="cheat-card">
+      <div class="cheat-title">🔍 Search Algorithms</div>
+      <div class="cheat-item"><span class="cheat-key">Linear — Best</span><span class="cheat-val badge badge-green">O(1)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Linear — Avg/Worst</span><span class="cheat-val badge badge-red">O(N)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Binary — Best</span><span class="cheat-val badge badge-green">O(1)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Binary — Avg/Worst</span><span class="cheat-val badge badge-cyan">O(log N)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Linear prereq</span><span class="cheat-val" style="color:var(--accent4);">None</span></div>
+      <div class="cheat-item"><span class="cheat-key">Binary prereq</span><span class="cheat-val" style="color:var(--danger);">Must be sorted</span></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-title">📊 Sorting — Simple O(n²)</div>
+      <div class="cheat-item"><span class="cheat-key">Bubble Sort</span><span class="cheat-val">Swap adjacent</span></div>
+      <div class="cheat-item"><span class="cheat-key">Selection Sort</span><span class="cheat-val">Find min, place</span></div>
+      <div class="cheat-item"><span class="cheat-key">Insertion Sort</span><span class="cheat-val">Insert in position</span></div>
+      <div class="cheat-item"><span class="cheat-key">All space</span><span class="cheat-val badge badge-green">O(1)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Bubble/Insertion</span><span class="cheat-val badge badge-green">Stable</span></div>
+      <div class="cheat-item"><span class="cheat-key">Selection</span><span class="cheat-val badge badge-amber">Unstable</span></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-title">⚡ Sorting — Efficient O(n log n)</div>
+      <div class="cheat-item"><span class="cheat-key">Merge Sort</span><span class="cheat-val">Divide & merge</span></div>
+      <div class="cheat-item"><span class="cheat-key">Merge Space</span><span class="cheat-val badge badge-amber">O(n)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Quick Sort</span><span class="cheat-val">Pivot partition</span></div>
+      <div class="cheat-item"><span class="cheat-key">Quick worst</span><span class="cheat-val badge badge-red">O(n²)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Heap Sort</span><span class="cheat-val">Max-heap extract</span></div>
+      <div class="cheat-item"><span class="cheat-key">Heap Space</span><span class="cheat-val badge badge-green">O(1)</span></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-title">🌳 Tree Types</div>
+      <div class="cheat-item"><span class="cheat-key">Binary Tree</span><span class="cheat-val">No order, O(n)</span></div>
+      <div class="cheat-item"><span class="cheat-key">BST rule</span><span class="cheat-val">L &lt; Parent &lt; R</span></div>
+      <div class="cheat-item"><span class="cheat-key">BST degenerate</span><span class="cheat-val badge badge-red">O(n) → linked list</span></div>
+      <div class="cheat-item"><span class="cheat-key">AVL balance</span><span class="cheat-val">-1, 0, +1</span></div>
+      <div class="cheat-item"><span class="cheat-key">Red-Black</span><span class="cheat-val">Color rules</span></div>
+      <div class="cheat-item"><span class="cheat-key">B+ Tree use</span><span class="cheat-val">Modern SQL</span></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-title">🌳 Tree Traversals</div>
+      <div class="cheat-item"><span class="cheat-key">Pre-order</span><span class="cheat-val">Root→Left→Right</span></div>
+      <div class="cheat-item"><span class="cheat-key">Pre-order use</span><span class="cheat-val">Copy/reconstruct</span></div>
+      <div class="cheat-item"><span class="cheat-key">In-order</span><span class="cheat-val">Left→Root→Right</span></div>
+      <div class="cheat-item"><span class="cheat-key">In-order use</span><span class="cheat-val">Sorted output</span></div>
+      <div class="cheat-item"><span class="cheat-key">Post-order</span><span class="cheat-val">Left→Right→Root</span></div>
+      <div class="cheat-item"><span class="cheat-key">Post-order use</span><span class="cheat-val">Delete/evaluate</span></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-title">⚡ Big-O Quick Scale</div>
+      <div class="cheat-item"><span class="cheat-key">O(1)</span><span class="cheat-val badge badge-green">EXCELLENT</span></div>
+      <div class="cheat-item"><span class="cheat-key">O(log n)</span><span class="cheat-val badge badge-green">EXCELLENT</span></div>
+      <div class="cheat-item"><span class="cheat-key">O(n)</span><span class="cheat-val badge badge-cyan">FAIR</span></div>
+      <div class="cheat-item"><span class="cheat-key">O(n log n)</span><span class="cheat-val badge badge-amber">BAD</span></div>
+      <div class="cheat-item"><span class="cheat-key">O(n²)</span><span class="cheat-val badge badge-red">HORRIBLE</span></div>
+      <div class="cheat-item"><span class="cheat-key">O(2ⁿ)</span><span class="cheat-val badge badge-red">AVOID</span></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-title">🗑️ BST Deletion Cases</div>
+      <div class="cheat-item"><span class="cheat-key">Case 1: Leaf</span><span class="cheat-val">Just delete it</span></div>
+      <div class="cheat-item"><span class="cheat-key">Case 2: 1 child</span><span class="cheat-val">Child takes its place</span></div>
+      <div class="cheat-item"><span class="cheat-key">Case 3: 2 children</span><span class="cheat-val">Use successor</span></div>
+      <div class="cheat-item"><span class="cheat-key">Successor =</span><span class="cheat-val">Leftmost of right subtree</span></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-title">🔑 Key Identifiers</div>
+      <div class="cheat-item"><span class="cheat-key">Primary key</span><span class="cheat-val">Unique (ID, Roll No)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Secondary key</span><span class="cheat-val">Non-unique (Address)</span></div>
+      <div class="cheat-item"><span class="cheat-key">Internal key</span><span class="cheat-val">Inside the record</span></div>
+      <div class="cheat-item"><span class="cheat-key">External key</span><span class="cheat-val">External reference</span></div>
+      <div class="cheat-item"><span class="cheat-key">ETC Formula</span><span class="cheat-val">t_i / t_0</span></div>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">📌 Last-Minute Reminders</div>
+    <div class="mnemonic-text">5 things to remember walking into the exam</div>
+    <div class="mnemonic-expand">
+      1. <strong>Binary Search needs sorted data.</strong> If unsorted, sort first → total cost = O(n log n).<br>
+      2. <strong>BST worst case = sorted insertion</strong> → degenerates to linked list → O(n).<br>
+      3. <strong>In-order traversal of BST = sorted output.</strong><br>
+      4. <strong>Quick Sort</strong> is fastest empirically but O(n²) worst. <strong>Merge Sort</strong> guarantees O(n log n) always.<br>
+      5. <strong>B+ Tree</strong> = leaves linked horizontally = fast range queries. Used in modern SQL databases.
+    </div>
+  </div>
+</section>
+
+</main>
+<div class="footer">DSA Midterm Reviewer • LPU Cavite • Data Structures and Algorithms • Good luck on your exam! 🎯</div>
+
+<script>
+// ============================================================
+// TAB NAVIGATION
+// ============================================================
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ============================================================
+// LINEAR SEARCH VISUALIZER
+// ============================================================
+const searchData = [3, 7, 11, 15, 19, 23, 27, 31];
+let linearInterval = null;
+
+function renderArray(containerId, data, classes = {}) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = data.map((v, i) => {
+    const cls = classes[i] || '';
+    return `<div class="array-cell ${cls}" id="${containerId}-cell-${i}">${v}</div>`;
+  }).join('');
+}
+
+function startLinear() {
+  clearInterval(linearInterval);
+  renderArray('linearArray', searchData);
+  const target = parseInt(document.getElementById('linearTarget').value);
+  let i = 0;
+  const status = document.getElementById('linearStatus');
+  linearInterval = setInterval(() => {
+    renderArray('linearArray', searchData);
+    if (i >= searchData.length) {
+      clearInterval(linearInterval);
+      status.textContent = `❌ ${target} not found after ${searchData.length} comparisons.`;
+      return;
+    }
+    const classes = {};
+    for (let j = 0; j < i; j++) classes[j] = 'eliminated';
+    classes[i] = 'checking';
+    renderArray('linearArray', searchData, classes);
+    if (searchData[i] === target) {
+      const c = {};
+      for (let j = 0; j < i; j++) c[j] = 'eliminated';
+      c[i] = 'found';
+      renderArray('linearArray', searchData, c);
+      status.textContent = `✅ Found ${target} at index ${i}! (${i+1} comparisons)`;
+      clearInterval(linearInterval);
+    } else {
+      status.textContent = `Checking index ${i}: ${searchData[i]} ≠ ${target}`;
+      i++;
+    }
+  }, 700);
+}
+
+function resetLinear() {
+  clearInterval(linearInterval);
+  renderArray('linearArray', searchData);
+  document.getElementById('linearStatus').textContent = 'Ready.';
+}
+
+// ============================================================
+// BINARY SEARCH VISUALIZER
+// ============================================================
+let binaryInterval = null;
+
+function startBinary() {
+  clearInterval(binaryInterval);
+  renderArray('binaryArray', searchData);
+  const target = parseInt(document.getElementById('binaryTarget').value);
+  const status = document.getElementById('binaryStatus');
+  let low = 0, high = searchData.length - 1, steps = 0;
+  binaryInterval = setInterval(() => {
+    if (low > high) {
+      clearInterval(binaryInterval);
+      status.textContent = `❌ ${target} not found after ${steps} comparisons.`;
+      return;
+    }
+    const mid = Math.floor((low + high) / 2);
+    steps++;
+    const classes = {};
+    for (let j = 0; j < low; j++) classes[j] = 'eliminated';
+    for (let j = high + 1; j < searchData.length; j++) classes[j] = 'eliminated';
+    classes[mid] = 'mid';
+    renderArray('binaryArray', searchData, classes);
+    if (searchData[mid] === target) {
+      classes[mid] = 'found';
+      renderArray('binaryArray', searchData, classes);
+      status.textContent = `✅ Found ${target} at index ${mid}! (${steps} comparisons)`;
+      clearInterval(binaryInterval);
+    } else if (searchData[mid] < target) {
+      status.textContent = `Step ${steps}: mid=${mid}(${searchData[mid]}) < ${target} → go RIGHT`;
+      low = mid + 1;
+    } else {
+      status.textContent = `Step ${steps}: mid=${mid}(${searchData[mid]}) > ${target} → go LEFT`;
+      high = mid - 1;
+    }
+  }, 900);
+}
+
+function resetBinary() {
+  clearInterval(binaryInterval);
+  renderArray('binaryArray', searchData);
+  document.getElementById('binaryStatus').textContent = 'Ready.';
+}
+
+// Init arrays
+renderArray('linearArray', searchData);
+renderArray('binaryArray', searchData);
+
+// ============================================================
+// SORT VISUALIZER
+// ============================================================
+let sortData = [];
+let sortRunning = false;
+
+function genSortData() {
+  sortData = Array.from({length: 12}, () => Math.floor(Math.random()*90)+10);
+  renderSortBars(sortData, []);
+}
+
+function renderSortBars(data, special = {}) {
+  const container = document.getElementById('sortBars');
+  const max = Math.max(...data);
+  container.innerHTML = data.map((v, i) => {
+    const h = (v / max * 90) + 10;
+    const cls = special[i] || '';
+    return `<div class="sort-bar ${cls}" style="height:${h}px;" title="${v}"></div>`;
+  }).join('');
+}
+
+async function startSort() {
+  if (sortRunning) return;
+  sortRunning = true;
+  const algo = document.getElementById('sortSelect').value;
+  const status = document.getElementById('sortStatus');
+  const arr = [...sortData];
+  
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+  const draw = (special = {}) => { renderSortBars(arr, special); };
+  
+  if (algo === 'bubble') {
+    status.textContent = 'Bubble Sort: Comparing adjacent pairs...';
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = 0; j < arr.length - i - 1; j++) {
+        draw({[j]: 'comparing', [j+1]: 'comparing'});
+        await sleep(120);
+        if (arr[j] > arr[j+1]) {
+          [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+          draw({[j]: 'swapping', [j+1]: 'swapping'});
+          await sleep(120);
+        }
+      }
+      draw({[arr.length-1-i]: 'sorted'});
+    }
+  } else if (algo === 'selection') {
+    status.textContent = 'Selection Sort: Finding minimum each pass...';
+    for (let i = 0; i < arr.length - 1; i++) {
+      let minIdx = i;
+      for (let j = i+1; j < arr.length; j++) {
+        draw({[minIdx]: 'comparing', [j]: 'comparing'});
+        await sleep(100);
+        if (arr[j] < arr[minIdx]) minIdx = j;
+      }
+      if (minIdx !== i) {
+        draw({[i]: 'swapping', [minIdx]: 'swapping'});
+        await sleep(200);
+        [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+      }
+      draw({[i]: 'sorted'});
+    }
+  } else if (algo === 'insertion') {
+    status.textContent = 'Insertion Sort: Inserting into correct position...';
+    for (let i = 1; i < arr.length; i++) {
+      let key = arr[i], j = i - 1;
+      draw({[i]: 'comparing'});
+      await sleep(150);
+      while (j >= 0 && arr[j] > key) {
+        arr[j+1] = arr[j];
+        draw({[j]: 'swapping', [j+1]: 'swapping'});
+        await sleep(100);
+        j--;
+      }
+      arr[j+1] = key;
+    }
+  }
+  
+  // All sorted
+  const allSorted = {};
+  arr.forEach((_, i) => allSorted[i] = 'sorted');
+  renderSortBars(arr, allSorted);
+  sortData = arr;
+  status.textContent = '✅ Sorting complete!';
+  sortRunning = false;
+}
+
+function resetSort() {
+  sortRunning = false;
+  genSortData();
+  document.getElementById('sortStatus').textContent = 'Ready. Select an algorithm and click Sort.';
+}
+
+genSortData();
+
+// ============================================================
+// COLLAPSIBLE
+// ============================================================
+function toggleCollapsible(btn) {
+  btn.parentElement.classList.toggle('open');
+}
+
+// ============================================================
+// FLASHCARDS
+// ============================================================
+const flashcards = [
+  { q: "What is the time complexity of Binary Search?", a: "O(log n)", sub: "It discards half the search space each step. Doubling n only adds ONE more comparison." },
+  { q: "What is the time complexity of Linear Search?", a: "O(n) worst/avg, O(1) best", sub: "Best case: target is the first element. Worst: it's last or not found." },
+  { q: "What prerequisite does Binary Search require?", a: "The data must be SORTED", sub: "Ascending or descending. Without sorting, Binary Search doesn't work correctly." },
+  { q: "What is the BST ordering rule?", a: "Left child < Parent < Right child", sub: "This rule applies to EVERY node in the tree, making in-order traversal produce sorted output." },
+  { q: "What traversal gives sorted output from a BST?", a: "In-order traversal (LNR)", sub: "Left → Node → Right. Always produces a perfectly sorted, ascending sequence." },
+  { q: "What is the AVL tree balance factor rule?", a: "Balance factor must be -1, 0, or +1", sub: "BF = Height(left) - Height(right). If outside this range, rotations are triggered." },
+  { q: "What happens when you insert sorted data into a BST?", a: "BST degenerates into a linked list", sub: "Height becomes n, not log n. Search drops back to O(n). This is called the degeneration flaw." },
+  { q: "What is the 'Successor Rule' for BST deletion?", a: "Replace deleted node with leftmost node of its right subtree", sub: "This is the smallest value in the right subtree — called the in-order successor." },
+  { q: "What is Quick Sort's worst case and when does it happen?", a: "O(n²) — when pivot is always the min or max element", sub: "Occurs on already-sorted data with leftmost pivot. Solution: random pivot or median-of-three." },
+  { q: "Which sorting algorithm guarantees O(n log n) in ALL cases?", a: "Merge Sort and Heap Sort", sub: "Quick Sort's worst case is O(n²). Merge Sort always divides evenly. Heap Sort always uses the heap structure." },
+  { q: "What is the space complexity of Merge Sort?", a: "O(n) — extra space needed", sub: "It is out-of-place sorting. Quick Sort and Heap Sort are in-place (O(log n) and O(1) respectively)." },
+  { q: "What is a B+ Tree's key advantage over a B-Tree?", a: "Leaves are linked horizontally for fast range queries", sub: "All data is in leaf nodes. Inner nodes only store keys for routing. Leaf linked list enables sequential scans." },
+  { q: "What does Pre-order traversal (NLR) do?", a: "Visits Root FIRST, then Left, then Right", sub: "Used to copy or reconstruct a tree. The structure is captured by visiting root before children." },
+  { q: "What does Post-order traversal (LRN) do?", a: "Visits Left, then Right, then Root LAST", sub: "Used to safely delete a tree (children freed before parent) or evaluate expression trees." },
+  { q: "What is Empirical Time Complexity (ETC)?", a: "ETC_i = t_i / t_0", sub: "Running time of input i divided by running time of the base point. Accounts for real hardware effects." },
+  { q: "What are the 4 Red-Black Tree rules?", a: "1) Nodes red or black. 2) Root is black. 3) No two consecutive reds. 4) Same black-height on all paths.", sub: "These rules guarantee no path is more than 2x longer than any other → O(log n) operations." },
+  { q: "What is the primary use of B-Trees?", a: "Databases and file systems — minimizing slow disk reads", sub: "Multi-key 'fat' nodes make the tree very wide and shallow. Millions of records can be found in 3-4 disk accesses." },
+  { q: "What is the difference between Stable and Unstable sorting?", a: "Stable: preserves relative order of equal elements. Unstable: may reorder them.", sub: "Bubble Sort and Merge Sort are stable. Quick Sort, Heap Sort, Selection Sort are unstable." },
+  { q: "For a single search on UNSORTED data, which is faster — Linear or Binary?", a: "Linear Search is faster!", sub: "Binary needs sorting first: O(n log n) + O(log n) = O(n log n). Linear is just O(n). Binary wins only for repeated searches." },
+  { q: "What are the 3 cases when deleting from a BST?", a: "Case 1: Leaf → delete. Case 2: One child → child replaces it. Case 3: Two children → replace with successor.", sub: "The successor for Case 3 is the leftmost (smallest) node in the right subtree." },
+];
+
+let currentCard = 0;
+let cardFlipped = false;
+let cardOrder = [...Array(flashcards.length).keys()];
+
+function renderCard() {
+  const card = flashcards[cardOrder[currentCard]];
+  document.getElementById('fc-front').textContent = card.q;
+  document.getElementById('fc-back').textContent = card.a;
+  document.getElementById('fc-sub').textContent = card.sub;
+  document.getElementById('fc-counter').textContent = `${currentCard + 1} / ${flashcards.length}`;
+  const el = document.getElementById('flashcard');
+  el.classList.remove('flipped');
+  cardFlipped = false;
+}
+
+function flipCard() {
+  cardFlipped = !cardFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', cardFlipped);
+}
+
+function nextCard() {
+  currentCard = (currentCard + 1) % flashcards.length;
+  renderCard();
+}
+
+function prevCard() {
+  currentCard = (currentCard - 1 + flashcards.length) % flashcards.length;
+  renderCard();
+}
+
+function shuffleCards() {
+  for (let i = cardOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cardOrder[i], cardOrder[j]] = [cardOrder[j], cardOrder[i]];
+  }
+  currentCard = 0;
+  renderCard();
+}
+
+renderCard();
+
+// ============================================================
+// QUIZ
+// ============================================================
+const quizQuestions = [
+  { q: "What is the worst-case time complexity of Linear Search?", opts: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 2, explain: "Linear Search must check every element in the worst case (target not present), giving O(n).", trigger: "Unsorted data → Linear Search", warning: "Linear Search is better than Binary Search only when the data is unsorted or the search is only one-time.", use_case: "Use Linear Search when the dataset is unsorted and a single lookup is needed.", memory_hook: "Linear = inspect one by one." },
+  { q: "Binary Search works on which type of data?", opts: ["Any data", "Only integers", "Sorted data only", "Unique data only"], ans: 2, explain: "Binary Search requires sorted data. It compares middle elements and discards halves — impossible without ordering.", trigger: "Sorted data → Binary Search", warning: "Do NOT use Binary Search on unsorted arrays.", use_case: "Use Binary Search when the array is sorted and you need fast lookups.", memory_hook: "Binary search halves the search space." },
+  { q: "What is the average-case time complexity of Binary Search?", opts: ["O(1)", "O(log n)", "O(n)", "O(n log n)"], ans: 1, explain: "Binary Search discards half the data each step → O(log n) average case.", trigger: "Large sorted dataset → O(log n)", warning: "Average-case and worst-case are both logarithmic for Binary Search.", use_case: "Choose Binary Search for repeated searches over sorted data.", memory_hook: "Half each step = log time." },
+  { q: "In a BST, where is the minimum element found?", opts: ["At the root", "In the rightmost node", "In the leftmost node", "At a leaf"], ans: 2, explain: "The minimum in a BST is always the leftmost (deepest left) node. Maximum is the rightmost.", trigger: "Leftmost node → minimum value", warning: "Do not confuse the minimum with the root or any leaf.", use_case: "Follow left children until the end to find the smallest BST value.", memory_hook: "Left child means smaller." },
+  { q: "Which traversal of a BST gives values in sorted (ascending) order?", opts: ["Pre-order", "In-order", "Post-order", "Level-order"], ans: 1, explain: "In-order traversal (Left → Node → Right) on a BST always produces a perfectly sorted, ascending sequence.", trigger: "BST + In-order → sorted output", warning: "In-order on a tree that is not a BST does not guarantee sorted results.", use_case: "Use In-order to list BST values in ascending order.", memory_hook: "Left, root, right = sorted." },
+  { q: "Which sorting algorithm is usually fastest on real-world average data?", opts: ["Merge Sort", "Heap Sort", "Bubble Sort", "Quick Sort"], ans: 3, explain: "Quick Sort is typically fastest on average due to good cache behavior and low overhead.", trigger: "Real data speed → Quick Sort", warning: "Quick Sort is not always best when worst-case bounds are needed.", use_case: "Use Quick Sort for large arrays when average-case performance matters.", memory_hook: "Quick on average, not worst-case." },
+  { q: "What is the space complexity of Merge Sort?", opts: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 2, explain: "Merge Sort requires O(n) extra memory for the auxiliary array used during merging (out-of-place).", trigger: "Merge Sort uses extra memory", warning: "Merge Sort gives good time but uses more space than in-place sorts.", use_case: "Use Merge Sort when stable, predictable sorting is required and extra memory is available.", memory_hook: "Merge needs extra memory." },
+  { q: "When a BST has data inserted in sorted order (e.g., 1,2,3,4,5), it becomes:", opts: ["An AVL tree", "A linked list / linear chain", "A complete binary tree", "A balanced heap"], ans: 1, explain: "Inserting sorted data into a plain BST causes degeneration — each node only has a right child, forming a linked list with O(n) search.", trigger: "Sorted inserts → degenerate BST", warning: "A regular BST is not self-balancing and can become a chain.", use_case: "Prefer self-balancing trees like AVL or Red-Black when insert order is unpredictable.", memory_hook: "Sorted BST turns into a chain." },
+  { q: "What must be true for an AVL tree's balance factor at every node?", opts: ["It must be 0", "It must be between -2 and +2", "It must be -1, 0, or +1", "It must be positive"], ans: 2, explain: "AVL trees enforce: Balance Factor = Height(left) - Height(right) ∈ {-1, 0, +1}. Violation triggers rotations.", trigger: "AVL rule → balance factor -1 to +1", warning: "A balance factor of ±2 means the tree needs a rotation.", use_case: "Use AVL trees when strict height balance is needed for fast lookups.", memory_hook: "One step difference keeps it balanced." },
+  { q: "B+ Trees differ from B-Trees in that:", opts: ["B+ Trees are faster for point queries", "B+ Tree leaves are linked as a list enabling fast range scans", "B+ Trees store data in all nodes", "B+ Trees have fewer levels"], ans: 1, explain: "B+ Trees store all data only in leaf nodes, and leaf nodes are linked horizontally — enabling fast sequential range scans without traversing back up.", trigger: "B+ Tree leaves linked → range scans", warning: "Do NOT confuse B+ Trees with B-Trees that store data in internal nodes.", use_case: "Use B+ Trees for database indexes and efficient range queries.", memory_hook: "All data in leaves, leaves linked." },
+  { q: "What is the time complexity of Heap Sort?", opts: ["O(n)", "O(n log n) average, O(n²) worst", "O(n log n) always", "O(log n)"], ans: 2, explain: "Heap Sort is always O(n log n) for all cases (best, average, worst) with O(1) extra space — a guaranteed bound.", trigger: "Heap Sort → always O(n log n)", warning: "Heap Sort is not stable and may be slower than Quick Sort in practice.", use_case: "Use Heap Sort when a guaranteed bound is more important than average-case speed.", memory_hook: "Heap sort keeps the worst case steady." },
+  { q: "Pre-order traversal visits nodes in which order?", opts: ["Left → Root → Right", "Root → Left → Right", "Left → Right → Root", "Right → Root → Left"], ans: 1, explain: "Pre-order = NLR (Node/Root FIRST, then Left, then Right). Used to copy or reconstruct a tree.", trigger: "Pre-order = root before children", warning: "Do not confuse Pre-order with In-order or Post-order.", use_case: "Use Pre-order to serialize tree structure from the root down.", memory_hook: "Root first, then left and right." },
+  { q: "Which is a 'stable' sorting algorithm?", opts: ["Quick Sort", "Heap Sort", "Selection Sort", "Bubble Sort"], ans: 3, explain: "Bubble Sort and Insertion Sort are stable (preserve relative order of equal elements). Quick, Heap, and Selection Sort are unstable.", trigger: "Stable sort preserves equal-item order", warning: "Stability is about relative order, not speed.", use_case: "Use stable sorts when equal-key items must stay in input order.", memory_hook: "Stable means original order stays." },
+  { q: "What is the BST Successor Rule for deleting a node with two children?", opts: ["Replace with the leftmost node of left subtree", "Replace with the rightmost node of right subtree", "Replace with the leftmost node of right subtree", "Just remove the node"], ans: 2, explain: "The in-order successor is the leftmost (smallest) node in the RIGHT subtree. It's the next value in sorted order.", trigger: "Delete two-child node → right-subtree leftmost successor", warning: "Do not replace with the wrong child subtree node.", use_case: "Use the in-order successor for correct BST deletion.", memory_hook: "Right subtree's leftmost is next." },
+  { q: "For a SINGLE search on UNSORTED data, which is more efficient?", opts: ["Binary Search — always faster", "Linear Search — no sorting cost", "They are always the same", "Depends on array size only"], ans: 1, explain: "Binary Search needs sorting first: O(n log n). Linear Search is O(n). For ONE search on unsorted data, Linear wins!", trigger: "One search on unsorted data → Linear Search", warning: "Binary Search only helps after sorting the data.", use_case: "Use Linear Search when the cost of sorting is higher than the search itself.", memory_hook: "One unsorted search = linear." },
+  { q: "Which tree uses color rules to maintain balance instead of strict height constraints?", opts: ["AVL Tree", "Red-Black Tree", "B-Tree", "Binary Search Tree"], ans: 1, explain: "Red-Black Trees use color rules and looser balance requirements, making inserts and deletes faster in practice.", trigger: "Looser balance rules → Red-Black Tree", warning: "Red-Black Trees are less strictly balanced than AVL trees.", use_case: "Use Red-Black Trees when many inserts and deletes happen.", memory_hook: "Colors keep the tree roughly balanced." },
+  { q: "Which sorting algorithm is best when the input is already nearly sorted?", opts: ["Merge Sort", "Insertion Sort", "Heap Sort", "Selection Sort"], ans: 1, explain: "Insertion Sort performs very well on nearly sorted data, often approaching O(n) time.", trigger: "Nearly sorted data → Insertion Sort", warning: "Insertion Sort is inefficient on random or reversed data.", use_case: "Use Insertion Sort for small or almost sorted arrays.", memory_hook: "Almost sorted = insertion easy." },
+  { q: "What does a stable sorting algorithm preserve?", opts: ["Memory usage", "Order of equal items", "Number of swaps", "Sortedness direction"], ans: 1, explain: "Stable sorting preserves the original relative order of items that compare equal.", trigger: "Stability → equal item order", warning: "Stable is a property separate from time complexity.", use_case: "Choose a stable sort when equal-key order matters.", memory_hook: "Stable = equal items stay in order." },
+  { q: "Which sort is guaranteed O(n log n) even in the worst case?", opts: ["Quick Sort", "Merge Sort", "Heap Sort", "Bubble Sort"], ans: 2, explain: "Heap Sort guarantees O(n log n) for best, average, and worst cases.", trigger: "Worst-case bound → Heap Sort", warning: "Quick Sort is not guaranteed worst-case O(n log n).", use_case: "Use Heap Sort when worst-case performance must be bounded.", memory_hook: "Heap gives consistent log n depth." },
+  { q: "What is the main purpose of using many keys per node in a B-Tree?", opts: ["Make the code simpler", "Reduce disk reads by shortening the tree", "Enforce color rules", "Improve recursion depth"], ans: 1, explain: "B-Trees shorten tree height by storing multiple keys per node, which reduces expensive disk accesses.", trigger: "More keys per node → shorter tree", warning: "B-Trees are optimized for disk and block access, not just in-memory speed.", use_case: "Use B-Trees for large indexes that need few disk reads.", memory_hook: "More keys = shorter tree." },
+  { q: "Binary Search is most useful when you need to perform:", opts: ["One search on unsorted data", "Many searches on static sorted data", "Only random insertions", "Searches on linked lists"], ans: 1, explain: "Binary Search shines when data is sorted and searched repeatedly, offsetting any initial sort cost.", trigger: "Many searches on sorted data → Binary Search", warning: "If the data constantly changes, sorting overhead can eliminate the benefit.", use_case: "Use Binary Search for repeated lookups on static sorted arrays.", memory_hook: "Sorted static data = binary power." },
+  { q: "Which traversal is ideal for copying a tree structure from the root down?", opts: ["In-order", "Pre-order", "Post-order", "Level-order"], ans: 1, explain: "Pre-order visits the root before its children, preserving the structure needed for reconstruction.", trigger: "Copy tree → Pre-order", warning: "In-order will not preserve parent-child relationships for reconstruction.", use_case: "Use Pre-order when serializing or cloning a tree.", memory_hook: "Root then children = copy order." },
+  { q: "Why is binary search inefficient on a linked list?", opts: ["Linked lists cannot be sorted", "It requires random access to the middle element", "Linked lists are always unsorted", "It needs extra memory"], ans: 1, explain: "Binary Search needs quick access to the middle element, but linked lists traverse sequentially, so it loses its advantage.", trigger: "No random access → binary search fails", warning: "A sorted linked list still cannot support fast middle access.", use_case: "Use Linear Search for linked lists or convert to an array first.", memory_hook: "Linked lists are sequential only." },
+  { q: "Which of these is NOT an O(n²) sorting algorithm?", opts: ["Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort"], ans: 3, explain: "Merge Sort is an efficient O(n log n) algorithm, unlike the simple O(n²) sorts.", trigger: "Efficient sort → Merge Sort", warning: "Do not confuse Merge Sort with quadratic simple sorts.", use_case: "Use Merge Sort when you need reliable O(n log n) performance.", memory_hook: "Merge means log n, not squared." },
+  { q: "What is the name of the value you are searching for in a dataset?", opts: ["Index", "Key", "Pointer", "Node"], ans: 1, explain: "The value being searched for is called the key or target.", trigger: "Search target = key", warning: "A key is the value, not the position or node itself.", use_case: "Use the term key when describing search queries.", memory_hook: "Key is what you're looking for." },
+  { q: "If an algorithm's runtime doubles when input size doubles, it is likely which complexity?", opts: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 2, explain: "O(n) scales linearly, so doubling the input roughly doubles the runtime.", trigger: "Doubling input → linear time", warning: "Do not mistake O(n log n) for linear growth.", use_case: "Recognize linear growth when runtime scales evenly with input size.", memory_hook: "Double n, double time = linear." },
+  { q: "What is the biggest advantage of a B+ Tree in databases?", opts: ["Uses less memory", "All data is in leaf nodes for fast range scans", "No balancing needed", "Only works with small files"], ans: 1, explain: "B+ Trees keep all actual records in leaf nodes and link them, making range queries and sequential access very efficient.", trigger: "B+ Tree for range scans", warning: "B+ Trees optimize range queries, not just memory use.", use_case: "Use B+ Trees for database indexes when range queries matter.", memory_hook: "Leaves link for fast ranges." },
+  { q: "Which structure does Heap Sort use internally?", opts: ["Stack", "Binary Heap", "Binary Search Tree", "B-Tree"], ans: 1, explain: "Heap Sort builds a binary heap, which is a priority-based tree structure used to extract the next max or min quickly.", trigger: "Heap Sort uses a binary heap", warning: "Heap Sort is built on a heap, not a BST.", use_case: "Use Heap Sort when you want in-place O(n log n) sorting.", memory_hook: "Heap Sort = heap structure." },
+  { q: "Which tree is best suited for frequent insertions and deletions when balance cost must stay low?", opts: ["AVL Tree", "Red-Black Tree", "Binary Search Tree", "B+ Tree"], ans: 1, explain: "Red-Black Trees use flexible color rules to rebalance with fewer rotations than AVL trees during many updates.", trigger: "Frequent updates → Red-Black Tree", warning: "AVL trees are stricter and can require more rotations.", use_case: "Use Red-Black Trees when many inserts and deletes happen.", memory_hook: "Red-Black trades strict balance for speed." },
+  { q: "Which sort is easiest to understand but slowest for large datasets?", opts: ["Quick Sort", "Heap Sort", "Bubble Sort", "Merge Sort"], ans: 2, explain: "Bubble Sort is conceptually simple but O(n²), making it very slow on large data.", trigger: "Large data → avoid Bubble Sort", warning: "Bubble Sort is only acceptable for very small lists.", use_case: "Use Bubble Sort only for tiny datasets or teaching.", memory_hook: "Bubble is easy, not efficient." },
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = [];
+let questionOrder = [...Array(quizQuestions.length).keys()];
+
+function initQuiz() {
+  currentQ = 0;
+  score = 0;
+  answered = new Array(quizQuestions.length).fill(null);
+  renderDots();
+  renderQuestion();
+  document.getElementById('scoreDisplay').style.display = 'none';
+  document.getElementById('quizCard').style.display = 'block';
+  document.querySelector('.quiz-nav').style.display = 'flex';
+  document.getElementById('quiz-progress-text').textContent = `Question 1 of ${quizQuestions.length}`;
+}
+
+function renderDots() {
+  const container = document.getElementById('quizDots');
+  container.innerHTML = answered.map((a, i) => {
+    let cls = i === currentQ ? 'active' : '';
+    if (a !== null) cls = a ? 'done' : 'wrong';
+    return `<div class="quiz-dot ${cls}"></div>`;
+  }).join('');
+}
+
+function renderQuestion() {
+  const q = quizQuestions[questionOrder[currentQ]];
+  document.getElementById('qNum').textContent = `Question ${String(currentQ+1).padStart(2,'0')}`;
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('quiz-progress-text').textContent = `Question ${currentQ+1} of ${quizQuestions.length}`;
+  const optsEl = document.getElementById('qOptions');
+  optsEl.innerHTML = q.opts.map((opt, i) => 
+    `<button class="quiz-option" onclick="answerQ(${i})">${opt}</button>`
+  ).join('');
+  document.getElementById('qFeedback').className = 'quiz-feedback';
+  document.getElementById('qFeedback').textContent = '';
+  const metaEl = document.getElementById('qMeta');
+  metaEl.className = 'quiz-meta';
+  metaEl.innerHTML = '';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('skipBtn').style.display = 'inline-flex';
+  renderDots();
+}
+
+function answerQ(idx) {
+  const q = quizQuestions[questionOrder[currentQ]];
+  const opts = document.querySelectorAll('.quiz-option');
+  opts.forEach(o => { o.disabled = true; });
+  const feedback = document.getElementById('qFeedback');
+  const metaEl = document.getElementById('qMeta');
+  const details = [];
+
+  if (idx === q.ans) {
+    opts[idx].classList.add('correct');
+    score++;
+    answered[currentQ] = true;
+    feedback.className = 'quiz-feedback correct-fb show';
+    feedback.textContent = `✅ Correct! ${q.explain}`;
+  } else {
+    opts[idx].classList.add('wrong');
+    opts[q.ans].classList.add('correct');
+    answered[currentQ] = false;
+    feedback.className = 'quiz-feedback wrong-fb show';
+    feedback.textContent = `❌ Incorrect. ${q.explain}`;
+  }
+
+  if (q.trigger) {
+    details.push(`<div class="quiz-meta-item"><div class="quiz-meta-title">Trigger</div><div class="quiz-meta-text">${q.trigger}</div></div>`);
+  }
+  if (q.use_case) {
+    details.push(`<div class="quiz-meta-item"><div class="quiz-meta-title">When to use</div><div class="quiz-meta-text">${q.use_case}</div></div>`);
+  }
+  if (q.warning) {
+    details.push(`<div class="quiz-meta-item"><div class="quiz-meta-title">Common confusion</div><div class="quiz-meta-text">${q.warning}</div></div>`);
+  }
+  if (q.memory_hook) {
+    details.push(`<div class="quiz-meta-item"><div class="quiz-meta-title">Memory hook</div><div class="quiz-meta-text">${q.memory_hook}</div></div>`);
+  }
+
+  metaEl.innerHTML = details.join('');
+  if (details.length) metaEl.classList.add('show');
+  document.getElementById('nextBtn').style.display = 'inline-flex';
+  document.getElementById('skipBtn').style.display = 'none';
+  renderDots();
+}
+
+function nextQuestion() {
+  if (answered[currentQ] === null) answered[currentQ] = false;
+  currentQ++;
+  if (currentQ >= quizQuestions.length) {
+    showScore();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showScore() {
+  document.getElementById('quizCard').style.display = 'none';
+  document.querySelector('.quiz-nav').style.display = 'none';
+  const pct = Math.round((score / quizQuestions.length) * 100);
+  document.getElementById('scoreNum').textContent = `${score}/${quizQuestions.length}`;
+  let label = pct >= 90 ? '🏆 Excellent! You are exam-ready!' 
+    : pct >= 75 ? '👍 Good job! Review weak areas.'
+    : pct >= 60 ? '📚 Passing — study the topics you missed!'
+    : '💪 Keep studying — you can do it!';
+  document.getElementById('scoreLabel').textContent = `${pct}% — ${label}`;
+  document.getElementById('scoreDisplay').style.display = 'block';
+  document.getElementById('scoreDisplay').style.animation = 'fadeIn 0.5s ease';
+}
+
+function restartQuiz() {
+  for (let i = questionOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [questionOrder[i], questionOrder[j]] = [questionOrder[j], questionOrder[i]];
+  }
+  initQuiz();
+}
+
+initQuiz();
+
+// ============================================================
+// PROGRESS BAR
+// ============================================================
+window.addEventListener('scroll', () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolled = window.scrollY;
+  const pct = scrollable > 0 ? (scrolled / scrollable) * 100 : 0;
+  document.getElementById('globalProgress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

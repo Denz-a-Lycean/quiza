@@ -9,6 +9,10 @@
 <body>
   <div id="quiz-container"></div>
 
+  <div style="text-align:center;margin:20px 0;">
+    <a href="DSA_Midterm_Reviewer.html" style="display:inline-block;padding:12px 22px;background:#7c3aed;color:#fff;border-radius:14px;text-decoration:none;font-weight:700;box-shadow:0 12px 30px rgba(124,58,237,0.2);">Open Interactive Reviewer</a>
+  </div>
+
   <div id="loading-message" style="display:none;text-align:center;padding:20px;">
     <h3>Loading Quiz...</h3>
     <p>Please wait while we prepare your random questions.</p>
@@ -24,7 +28,7 @@
     if (loadingEl) loadingEl.style.display = 'block';
 
     // Load and start quiz with random questions
-    loadQuiz('dsa-data.json')
+    loadQuiz('dsa-data-trimmed.json')
       .catch(err => {
         console.error('Quiz loading error:', err);
         const container = document.getElementById('quiz-container');
