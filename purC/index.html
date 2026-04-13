@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENGL01G Final Exam Reviewer &ndash; 50 Items</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0e0f1a;
+            --surface: #16172a;
+            --card: #1e2038;
+            --border: #2e3156;
+            --accent: #7c6af7;
+            --accent3: #4ecdc4;
+            --text: #e8e9f5;
+            --muted: #8889aa;
+            --correct: #2ecc71;
+            --incorrect: #e74c3c;
+            --correct-bg: rgba(46, 204, 113, .12);
+            --incorrect-bg: rgba(231, 76, 60, .12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 20%, rgba(124, 106, 247, .08), transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(78, 205, 196, .06), transparent 55%);
+            pointer-events: none;
+            z-index: 0
+        }
+
+        .wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1
+        }
+
+        .hdr {
+            text-align: center;
+            padding: 48px 30px 36px;
+            background: var(--surface);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 22px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hdr::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124, 106, 247, .12), transparent 60%)
+        }
+
+        .kicker {
+            font-size: .75em;
+            font-weight: 600;
+            letter-spacing: .18em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative
+        }
+
+        .hdr h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8em, 5vw, 2.8em);
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 30%, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative
+        }
+
+        .sub {
+            margin-top: 10px;
+            font-size: .95em;
+            color: var(--muted);
+            position: relative
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 18px;
+            position: relative
+        }
+
+        .pill {
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: .78em;
+            font-weight: 500;
+            border: 1px solid
+        }
+
+        .pa {
+            background: rgba(124, 106, 247, .15);
+            border-color: rgba(124, 106, 247, .4);
+            color: #a59cf5
+        }
+
+        .pb {
+            background: rgba(233, 109, 109, .15);
+            border-color: rgba(233, 109, 109, .4);
+            color: #f5a0a0
+        }
+
+        .pc {
+            background: rgba(78, 205, 196, .15);
+            border-color: rgba(78, 205, 196, .4);
+            color: #7de8e2
+        }
+
+        .pd {
+            background: rgba(249, 199, 79, .15);
+            border-color: rgba(249, 199, 79, .4);
+            color: #fce08a
+        }
+
+        .prog-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px
+        }
+
+        .prog-track {
+            flex: 1;
+            background: rgba(255, 255, 255, .06);
+            height: 8px;
+            border-radius: 99px;
+            overflow: hidden
+        }
+
+        .prog-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent3));
+            width: 0%;
+            transition: width .4s;
+            border-radius: 99px
+        }
+
+        .prog-lbl {
+            font-size: .88em;
+            color: var(--muted);
+            white-space: nowrap;
+            font-weight: 500
+        }
+
+        .score-badge {
+            background: rgba(124, 106, 247, .15);
+            border: 1px solid rgba(124, 106, 247, .3);
+            border-radius: 10px;
+            padding: 6px 14px;
+            font-size: .9em;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap
+        }
+
+        .lesson-summary {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 18px;
+            padding: 22px 24px;
+            margin-bottom: 20px
+        }
+
+        .lesson-summary h2 {
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            color: #fff
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 16px;
+            padding: 16px;
+            line-height: 1.65;
+            font-size: .92rem;
+            color: #dfe0f3
+        }
+
+        .summary-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff
+        }
+
+        @media(max-width:720px) {
+            .summary-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .qcard {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 26px;
+            margin-bottom: 14px;
+            display: none
+        }
+
+        .qcard.active {
+            display: block;
+            animation: slideIn .35s ease
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .qcard.ok {
+            border-color: var(--correct)
+        }
+
+        .qcard.ng {
+            border-color: var(--incorrect)
+        }
+
+        .qmeta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap
+        }
+
+        .qnum {
+            font-size: .78em;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: .05em
+        }
+
+        .badge {
+            font-size: .7em;
+            font-weight: 600;
+            letter-spacing: .06em;
+            padding: 3px 10px;
+            border-radius: 99px;
+            text-transform: uppercase
+        }
+
+        .ba {
+            background: rgba(124, 106, 247, .2);
+            color: #a59cf5
+        }
+
+        .bb {
+            background: rgba(233, 109, 109, .2);
+            color: #f5a0a0
+        }
+
+        .bc {
+            background: rgba(78, 205, 196, .2);
+            color: #7de8e2
+        }
+
+        .bd {
+            background: rgba(249, 199, 79, .2);
+            color: #fce08a
+        }
+
+        .qtext {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 18px
+        }
+
+        .opts {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, .04);
+            border: 1.5px solid var(--border);
+            border-radius: 11px;
+            padding: 13px 16px;
+            cursor: pointer;
+            transition: all .22s;
+            font-size: .97em;
+            user-select: none
+        }
+
+        .opt:hover:not(.disabled) {
+            border-color: var(--accent);
+            background: rgba(124, 106, 247, .1);
+            transform: translateX(4px)
+        }
+
+        .opt input[type=radio] {
+            display: none
+        }
+
+        .circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .78em;
+            font-weight: 700;
+            flex-shrink: 0;
+            transition: all .22s;
+            color: var(--muted)
+        }
+
+        .opt:hover:not(.disabled) .circle {
+            border-color: var(--accent);
+            color: var(--accent)
+        }
+
+        .opt.correct {
+            background: var(--correct-bg);
+            border-color: var(--correct)
+        }
+
+        .opt.correct .circle {
+            background: var(--correct);
+            border-color: var(--correct);
+            color: #fff
+        }
+
+        .opt.incorrect {
+            background: var(--incorrect-bg);
+            border-color: var(--incorrect)
+        }
+
+        .opt.incorrect .circle {
+            background: var(--incorrect);
+            border-color: var(--incorrect);
+            color: #fff
+        }
+
+        .opt.disabled {
+            cursor: not-allowed;
+            transform: none !important
+        }
+
+        .fb {
+            margin-top: 14px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: .9em;
+            line-height: 1.65;
+            display: none;
+            white-space: pre-line
+        }
+
+        .fb.correct {
+            background: var(--correct-bg);
+            color: #7ddeaa;
+            border: 1px solid rgba(46, 204, 113, .3)
+        }
+
+        .fb.incorrect {
+            background: var(--incorrect-bg);
+            color: #f5a0a0;
+            border: 1px solid rgba(231, 76, 60, .3)
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px
+        }
+
+        .btn {
+            padding: 11px 26px;
+            border-radius: 10px;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .btn-pri {
+            background: linear-gradient(135deg, var(--accent), #5e52d4);
+            color: #fff
+        }
+
+        .btn-pri:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 106, 247, .35)
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, .07);
+            color: var(--text);
+            border: 1px solid var(--border)
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, .12)
+        }
+
+        .btn-sub {
+            background: linear-gradient(135deg, #e96d6d, #c0392b);
+            color: #fff;
+            display: none
+        }
+
+        .btn-sub:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 109, 109, .4)
+        }
+
+        .btn:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important
+        }
+
+        #rScreen {
+            display: none;
+            text-align: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px 32px;
+            position: relative;
+            z-index: 100;
+            margin: 0 auto;
+            animation-fill-mode: both
+        }
+
+        #rScreen.show {
+            display: block;
+            animation: slideIn .4s both
+        }
+
+        .ring {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 6px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            background: rgba(124, 106, 247, .08)
+        }
+
+        .ring .big {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4em;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1
+        }
+
+        .ring .lbl {
+            font-size: .78em;
+            color: var(--muted);
+            margin-top: 4px
+        }
+
+        .rmsg {
+            font-size: 1.2em;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 500
+        }
+
+        .rpct {
+            font-size: .9em;
+            color: var(--muted);
+            margin-bottom: 28px
+        }
+
+        .rpanel {
+            background: rgba(0, 0, 0, .2);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin: 24px 0;
+            text-align: left;
+            max-height: 500px;
+            overflow-y: auto;
+            scroll-behavior: smooth
+        }
+
+        .rpanel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+            margin-bottom: 16px;
+            color: var(--text);
+            position: sticky;
+            top: 0;
+            background: rgba(22, 23, 42, .95);
+            padding: 8px 0;
+            z-index: 2
+        }
+
+        .ritem {
+            padding: 14px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            font-size: .88em;
+            line-height: 1.7;
+            border-left: 4px solid var(--border)
+        }
+
+        .ritem.correct {
+            background: var(--correct-bg);
+            border-left-color: var(--correct)
+        }
+
+        .ritem.incorrect {
+            background: var(--incorrect-bg);
+            border-left-color: var(--incorrect)
+        }
+
+        .ritem strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: .95em
+        }
+
+        .ritem .answer-info {
+            margin: 8px 0;
+            padding: 8px;
+            background: rgba(0, 0, 0, .15);
+            border-radius: 6px;
+            font-size: .85em
+        }
+
+        .ritem .exp-label {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #dfe0f3;
+            margin-bottom: 6px
+        }
+
+        .ritem em {
+            display: block;
+            font-style: normal;
+            color: #c8cce8;
+            font-size: .9em;
+            line-height: 1.6
+        }
+
+        .btn-restart {
+            background: linear-gradient(135deg, var(--accent), #5e52d4);
+            color: #fff;
+            padding: 14px 36px;
+            font-size: 1em;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            transition: all .2s
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 106, 247, .4)
+        }
+
+        .btn-review {
+            background: linear-gradient(135deg, #4ecdc4, #26a69a);
+            color: #fff;
+            padding: 14px 36px;
+            font-size: 1em;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            transition: all .2s;
+            margin-right: 12px
+        }
+
+        .btn-review:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(78, 205, 196, .4)
+        }
+
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border)
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,.1);
+            border-radius: 4px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+            transition: background .2s
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent3)
+        }
+
+        @media(max-width:600px) {
+            body {
+                padding: 12px
+            }
+
+            .hdr {
+                padding: 32px 18px 24px
+            }
+
+            .qcard {
+                padding: 18px
+            }
+
+            .nav {
+                flex-wrap: wrap
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="hdr">
+            <div class="kicker">ENGL01G &middot; Exam Reviewer</div>
+            <h1>Local &amp; Global Communication<br>in Multicultural Setting</h1>
+            <div class="sub">50 Items &nbsp;&middot;&nbsp; Multiple Choice &nbsp;&middot;&nbsp; OMR Format</div>
+            <div class="pills">
+                <span class="pill pa">&#127757; Multicultural Communication</span>
+                <span class="pill pb">&#129504; Logical Fallacies</span>
+                <span class="pill pc">&#128241; Multimodal Texts</span>
+                <span class="pill pd">&#128483; Cultural Terms &amp; Expressions</span>
+            </div>
+        </div>
+
+        <div class="lesson-summary">
+            <h2>Lesson Coverage</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <strong>Local &amp; Global Communication</strong>
+                    Globalization is the increasing economic, political, and cultural integration and interdependence of
+                    diverse cultures. Diversity means valuing differences like age, gender, race, ethnicity, ability,
+                    religion, education, marital status, sexual orientation, and income.
+                </div>
+                <div class="summary-card">
+                    <strong>Culture &amp; Co-cultures</strong>
+                    Culture is a shared system of knowledge, beliefs, values, customs, behaviors, and artifacts.
+                    Co-cultures exist within a culture when members differ ethnically or sociologically from the parent
+                    culture.
+                </div>
+                <div class="summary-card">
+                    <strong>Co-culture Strategies</strong>
+                    Assimilation fits in with the dominant culture. Accommodation maintains identity while building
+                    relationships. Separation resists interaction with the dominant culture.
+                </div>
+                <div class="summary-card">
+                    <strong>Multimodal &amp; Cultural Terms</strong>
+                    Multimodal texts use two or more modes like language, image, gesture, and sound. Cultural Grid and
+                    Cultural Ignorance explain how people interpret gestures, expressions, and images across cultures.
+                </div>
+            </div>
+        </div>
+
+        <div class="prog-wrap">
+            <div class="prog-track">
+                <div class="prog-fill" id="pBar"></div>
+            </div>
+            <div class="prog-lbl" id="pLbl">1 / 50</div>
+            <div class="score-badge" id="sBadge">Score: 0</div>
+        </div>
+
+        <div id="quizArea"></div>
+
+        <div id="rScreen">
+            <div class="ring">
+                <span class="big" id="rScore">0</span>
+                <span class="lbl">out of 50</span>
+            </div>
+            <div class="rmsg" id="rMsg"></div>
+            <div class="rpct" id="rPct"></div>
+            <div class="rpanel">
+              
+                <div id="rDet"></div>
+            </div>
+            <div class="result-actions">
+                <button class="btn-review" onclick="reviewAll()">&#128214; Review All Questions</button>
+                <button class="btn-restart" onclick="restart()">&#128260; Retake Quiz</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function () {
+
+            var Q = [
+
+                // ── TOPIC A: Local & Global Communication in Multicultural Setting (1-14) ──
+                {
+                    tp: "a",
+                    q: "What is globalization?",
+                    opts: [
+                        "The process of a country isolating itself from others",
+                        "The increasing economic, political, and cultural integration and interdependence of diverse cultures",
+                        "The legal process of establishing national borders",
+                        "A form of government based on cultural unity"
+                    ],
+                    ans: 1,
+                    exp: "Globalization is the increasing economic, political, and cultural integration and interdependence of diverse cultures - the worldwide integration of humanity."
+                },
+                {
+                    tp: "a",
+                    q: "Which of the following BEST defines diversity?",
+                    opts: [
+                        "The policy of enforcing a single language in a country",
+                        "Sameness in values among people",
+                        "The recognition and valuing of differences such as age, gender, race, ethnicity, and religion",
+                        "The assimilation of minority groups into the majority culture"
+                    ],
+                    ans: 2,
+                    exp: "Diversity is the recognition and valuing of differences, encompassing factors such as age, gender, race, ethnicity, ability, religion, education, marital status, sexual orientation, and income."
+                },
+                {
+                    tp: "a",
+                    q: "Culture is BEST described as:",
+                    opts: [
+                        "A political system of a nation",
+                        "A system of knowledge, beliefs, values, customs, behaviors, and artifacts acquired, shared, and used by its members",
+                        "A language shared by a group of people",
+                        "A set of laws governing a society"
+                    ],
+                    ans: 1,
+                    exp: "A Culture is a system of knowledge, beliefs, values, customs, behaviors, and artifacts that are acquired, shared, and used by its members during daily living."
+                },
+                {
+                    tp: "a",
+                    q: "Co-cultures are BEST described as:",
+                    opts: [
+                        "Entirely separate civilizations with no connection to each other",
+                        "Foreign cultures that have no connection to a parent culture",
+                        "Members of the same general culture who differ in some ethnic or sociological way from the parent culture",
+                        "Cultures formed only through immigration"
+                    ],
+                    ans: 2,
+                    exp: "Within a culture are co-cultures - composed of members of the same general culture who differ in some ethnic or sociological way from the parent culture."
+                },
+                {
+                    tp: "a",
+                    q: "A Filipino-American who fully adopts American customs while abandoning Filipino traditions is demonstrating which co-culture strategy?",
+                    opts: ["Separation", "Accommodation", "Assimilation", "Integration"],
+                    ans: 2,
+                    exp: "Assimilation is how co-culture members attempt to fit in with members of the dominant culture."
+                },
+                {
+                    tp: "a",
+                    q: "A minority group member who maintains their cultural identity while building relationships with the dominant culture is practicing:",
+                    opts: ["Assimilation", "Separation", "Marginalization", "Accommodation"],
+                    ans: 3,
+                    exp: "Accommodation is by which co-culture members maintain their cultural identity while striving to establish relationships with members of the dominant culture."
+                },
+                {
+                    tp: "a",
+                    q: "Which co-culture strategy involves actively resisting interaction with the dominant culture?",
+                    opts: ["Assimilation", "Accommodation", "Separation", "Marginalization"],
+                    ans: 2,
+                    exp: "Separation is how co-culture members resist interacting with members of the dominant culture."
+                },
+                {
+                    tp: "a",
+                    q: "Great Britain, the United States, Canada, France, and Germany are cited examples of which cultural dimension?",
+                    opts: ["Collectivism", "Individualism", "High-power Distance", "Feminine cultures"],
+                    ans: 1,
+                    exp: "Individualism stresses individual goals and individual initiative and achievement. Great Britain, United States, Canada, France, and Germany are the cited examples."
+                },
+                {
+                    tp: "a",
+                    q: "Arab, African, Asian, and Latin American cultures are typically characterized as:",
+                    opts: ["Individualist", "Collectivist", "Low-power Distance", "Masculine"],
+                    ans: 1,
+                    exp: "Collectivism gives precedence to group goals and nurtures group influences. Arab, African, Asian, and Latin American cultures are the cited examples."
+                },
+                {
+                    tp: "a",
+                    q: "High-context communication is characterized by which of the following?",
+                    opts: [
+                        "Direct communication and reliance on logic",
+                        "The ability to say no directly when needed",
+                        "Indirect communication and being tradition-bound",
+                        "Subordinates openly contradicting superiors"
+                    ],
+                    ans: 2,
+                    exp: "High-context communication involves indirect communication, is tradition-bound, and communicators appear to be overly polite and indirect to others."
+                },
+                {
+                    tp: "a",
+                    q: "Low-context communication is best characterized by:",
+                    opts: [
+                        "Indirect, tradition-bound communication style",
+                        "Direct communication and reliance on logic",
+                        "Avoiding confrontation at all costs",
+                        "Preferring group decision-making over individual choices"
+                    ],
+                    ans: 1,
+                    exp: "Low-context communication is direct, relies more on logic, and communicators can say no directly."
+                },
+                {
+                    tp: "a",
+                    q: "Saudi Arabia, India, and Malaysia are examples of which cultural dimension?",
+                    opts: ["Low-power Distance", "Feminine cultures", "High-power Distance", "Low-context communication"],
+                    ans: 2,
+                    exp: "High-power Distance cultures have subordinates who defer to superiors, are coercive in nature, and view power as a fact of life. Saudi Arabia, India, and Malaysia are the cited examples."
+                },
+                {
+                    tp: "a",
+                    q: "Sweden, Norway, Thailand, and Chile are examples of which cultural dimension?",
+                    opts: ["Masculine", "High-power Distance", "Collectivist", "Feminine"],
+                    ans: 3,
+                    exp: "Feminine cultures value tenderness and relationships, seek win-win solutions, and are more apt to compromise and negotiate to resolve conflicts. Sweden, Norway, Thailand, and Chile are the cited examples."
+                },
+                {
+                    tp: "a",
+                    q: "Which cultural dimension involves confronting conflicts head-on in a win-or-lose strategy and valuing aggressiveness and material symbols of success?",
+                    opts: ["Feminine", "Low-context communication", "Collectivist", "Masculine"],
+                    ans: 3,
+                    exp: "Masculine cultures value aggressiveness, strength, and material symbols of success. They socialize members to be dominant and competitive, confronting conflicts head-on in a win-or-lose strategy. Japan, Italy, Germany, Mexico, and Great Britain are examples."
+                },
+
+                // ── TOPIC B: Logical Fallacies (15-30) ────────────────────────
+                {
+                    tp: "b",
+                    q: "Instead of addressing a claim, the arguer attacks the character, appearance, or personal beliefs of the opponent. This is called:",
+                    opts: ["Red Herring", "Ad Hominem", "Bandwagon Fallacy", "Non-Sequitur"],
+                    ans: 1,
+                    exp: "Argumentum Ad Hominem (Argument Against the Person) - instead of finding fault in the claim or argument, the arguer directs attacks on the character, appearance, personality, or belief of the opponent."
+                },
+                {
+                    tp: "b",
+                    q: "A student says: 'I know I missed the deadline but if I fail this subject, I might lose my scholarship.' This is an example of:",
+                    opts: ["Ad Hominem", "Ad Baculum", "Ad Misericordiam", "Circular Argument"],
+                    ans: 2,
+                    exp: "Argumentum Ad Misericordiam (Appeal to Pity or Misery) - instead of presenting relevant claims, the arguer evokes pity or sympathy by pointing to an unfortunate circumstance."
+                },
+                {
+                    tp: "b",
+                    q: "'A brilliant and sophisticated collector like yourself surely understands that my output is the most creative.' This is an example of:",
+                    opts: ["Bandwagon Fallacy", "Ad Verecundiam", "Appeal to Flattery", "Ad Hominem"],
+                    ans: 2,
+                    exp: "Appeal to Flattery - instead of presenting evidence, praises are used to make others agree or to seek approval of the argument."
+                },
+                {
+                    tp: "b",
+                    q: "'If you do not join our demonstration, we will evict you from your apartment.' This is an example of:",
+                    opts: ["Red Herring", "Ad Misericordiam", "Hasty Generalization", "Ad Baculum"],
+                    ans: 3,
+                    exp: "Argumentum Ad Baculum (Appeal to Fear) - the arguer uses force or threats instead of reasons. It may be physical or psychological in nature."
+                },
+                {
+                    tp: "b",
+                    q: "'We cannot accept his research on climate change; he was once arrested for a DUI ten years ago.' This is:",
+                    opts: ["Non-Sequitur", "Ad Hominem", "Red Herring", "Appeal to Ignorance"],
+                    ans: 1,
+                    exp: "Ad Hominem - the arguer attacks the character or personal history of the person making the argument rather than addressing the argument itself."
+                },
+                {
+                    tp: "b",
+                    q: "'Everyone in the team is using this new AI tool to complete their project, so you should start using it too if you want to keep up.' This is:",
+                    opts: ["Appeal to Flattery", "Ad Baculum", "Bandwagon Fallacy", "Ad Verecundiam"],
+                    ans: 2,
+                    exp: "Bandwagon Fallacy - it appeals to the belief of the crowd and justifies that many people cannot be wrong. It claims an action is right simply because it is popular."
+                },
+                {
+                    tp: "b",
+                    q: "'Why are you focusing on my late arrival when there are millions of people living in poverty?' This is:",
+                    opts: ["Straw Man", "Red Herring", "Circular Argument", "Fallacy of Division"],
+                    ans: 1,
+                    exp: "Red Herring - instead of addressing the argument, the arguer introduces an irrelevant or unrelated matter to draw attention away from the real issue."
+                },
+                {
+                    tp: "b",
+                    q: "'I met two students from that university who were very rude. It is clear that everyone who studies there has no manners.' This is:",
+                    opts: ["Fallacy of Division", "Non-Sequitur", "Hasty Generalization", "Ad Hominem"],
+                    ans: 2,
+                    exp: "Hasty Generalization - the arguer makes a conclusion based on a few instances only. From one or a few samples, the arguer makes a claim about the whole population."
+                },
+                {
+                    tp: "b",
+                    q: "'Reading classic literature is essential because it is important for students to read the classics.' This is:",
+                    opts: ["Appeal to Tradition", "Non-Sequitur", "Circular Argument", "Appeal to Authority"],
+                    ans: 2,
+                    exp: "Circular Argument (Begging the Question) - the arguer evades the real conclusion by restating the same conclusion in new words, making the reasoning go in a circle."
+                },
+                {
+                    tp: "b",
+                    q: "'The Philippines is world-renowned for beautiful beaches; every single square inch of land in the country must be a sandy beach.' This is:",
+                    opts: ["Hasty Generalization", "Fallacy of Division", "Non-Sequitur", "Red Herring"],
+                    ans: 1,
+                    exp: "Fallacy of Division - it argues under the premise that what is true of the whole or class is true to every individual member of that class."
+                },
+                {
+                    tp: "b",
+                    q: "'She is a fantastic public speaker, so she would definitely make a great surgeon.' This is:",
+                    opts: ["Ad Verecundiam", "Hasty Generalization", "Non-Sequitur", "Circular Argument"],
+                    ans: 2,
+                    exp: "Non-Sequitur (It does not follow) - the arguer draws a conclusion not supported by the premises, failing to establish logical connections between ideas."
+                },
+                {
+                    tp: "b",
+                    q: "'This phone app is the newest version, so it is definitely the most bug-free.' This is:",
+                    opts: ["Appeal to Tradition", "Ad Novitatem", "Bandwagon Fallacy", "Ad Verecundiam"],
+                    ans: 1,
+                    exp: "Argumentum Ad Novitatem (Appeal to Novelty) - it assumes that something is better or good simply because it is newer or more novel."
+                },
+                {
+                    tp: "b",
+                    q: "'This diet must be healthy because a popular celebrity mentioned it in her vlog.' This is:",
+                    opts: ["Bandwagon Fallacy", "Red Herring", "Ad Novitatem", "Ad Verecundiam"],
+                    ans: 3,
+                    exp: "Argumentum Ad Verecundiam (Appeal to Unqualified Authority) - citing an opinion or judgment of someone who commands respect but is not a recognized authority on the subject."
+                },
+                {
+                    tp: "b",
+                    q: "'No one has ever been able to prove that there is no secret city at the bottom of the ocean, so it is highly likely that one exists.' This is:",
+                    opts: ["Non-Sequitur", "Circular Argument", "Appeal to Ignorance", "Hasty Generalization"],
+                    ans: 2,
+                    exp: "Appeal to Ignorance - the arguer claims that something must be true because it has not been proven false."
+                },
+                {
+                    tp: "b",
+                    q: "'I just read a report about teachers not being happy with their pay. My Aunt Sarah is a teacher, so she must be unhappy with her salary.' This is:",
+                    opts: ["Hasty Generalization", "Fallacy of Division", "Non-Sequitur", "Ad Hominem"],
+                    ans: 1,
+                    exp: "Fallacy of Division - arguing that what is true of the whole group or class must be true of every individual member of that group."
+                },
+                {
+                    tp: "b",
+                    q: "A superior says to an employee: 'Just sign it already, after all, I am the one who decides who gets a promotion this year.' This is:",
+                    opts: ["Ad Hominem", "Ad Misericordiam", "Bandwagon Fallacy", "Ad Baculum"],
+                    ans: 3,
+                    exp: "Argumentum Ad Baculum (Appeal to Fear) - the arguer uses force or threats, physical or psychological, instead of valid reasons to win an argument."
+                },
+
+                // ── TOPIC C: Evaluating Multimodal Text (31-41) ───────────────
+                {
+                    tp: "c",
+                    q: "Multimodal text is defined as:",
+                    opts: [
+                        "Text written in multiple languages simultaneously",
+                        "The strategic use of two or more communication modes to make meaning",
+                        "Digital-only texts that combine images and video",
+                        "Print materials that include photographs"
+                    ],
+                    ans: 1,
+                    exp: "Multimodal text is the strategic use of two or more communication modes to make meaning, such as spoken and written language (linguistic), image (visual), gesture (gestural), and music (audio)."
+                },
+                {
+                    tp: "c",
+                    q: "Which statement is TRUE about multimodal communication?",
+                    opts: [
+                        "Multimodal is synonymous with digital",
+                        "Multimodal communication only involves written and spoken language",
+                        "While strongly associated with digital technology growth, multimodal is NOT synonymous with digital",
+                        "Only digital texts can be considered multimodal"
+                    ],
+                    ans: 2,
+                    exp: "While the development of multimodal literacy is strongly associated with the growth of digital communication technologies, multimodal is NOT synonymous with digital."
+                },
+                {
+                    tp: "c",
+                    q: "A comic book is an example of which type of multimodal text?",
+                    opts: ["Digital-based", "Live", "Transmedia", "Paper-based"],
+                    ans: 3,
+                    exp: "Paper-based multimodal texts include books, comics, and posters."
+                },
+                {
+                    tp: "c",
+                    q: "Slide presentations, e-books, blogs, e-posters, web pages, social media, animation, film, and video games are examples of:",
+                    opts: ["Paper-based multimodal texts", "Live multimodal texts", "Transmedia multimodal texts", "Digital-based multimodal texts"],
+                    ans: 3,
+                    exp: "Digital-based multimodal texts include slide presentations, e-books, blogs, e-posters, web pages, social media, animation, film, and video games."
+                },
+                {
+                    tp: "c",
+                    q: "A live theater performance or a school program is categorized as what type of multimodal text?",
+                    opts: ["Paper-based multimodal text", "Transmedia multimodal text", "Live multimodal text", "Digital-based multimodal text"],
+                    ans: 2,
+                    exp: "Live multimodal texts include performances and events that combine multiple communication modes in real time."
+                },
+                {
+                    tp: "c",
+                    q: "A story that begins as a book, then becomes a film, a video game, and a web series - each medium contributing a unique part of the story - is an example of:",
+                    opts: ["Live multimodal text", "Transmedia multimodal text", "Digital-based multimodal text", "Paper-based multimodal text"],
+                    ans: 1,
+                    exp: "Transmedia multimodal text tells the story using multiple delivery channels through a combination of media platforms such as book, comic, magazine, film, web series, and video game."
+                },
+                {
+                    tp: "c",
+                    q: "Advocacy refers to:",
+                    opts: [
+                        "The process of creating entertainment content for a wide audience",
+                        "The process of bringing about change in policies, laws, or people's behavior and attitude",
+                        "The distribution of commercial advertisements to boost brand awareness",
+                        "The academic study of persuasion and rhetoric"
+                    ],
+                    ans: 1,
+                    exp: "Advocacy refers to the process of bringing about change in policies, law, or people's behavior and attitude."
+                },
+                {
+                    tp: "c",
+                    q: "A Video Advocacy Campaign (VAC) is primarily about:",
+                    opts: [
+                        "Entertaining audiences through celebrity-driven content",
+                        "Selling products or services using visual storytelling",
+                        "Using visual media as a strategic tool to engage people to create change",
+                        "Producing government-funded documentary films"
+                    ],
+                    ans: 2,
+                    exp: "Video Advocacy is about using visual media as a strategic tool to engage people to create change."
+                },
+                {
+                    tp: "c",
+                    q: "A television commercial about road safety that promotes responsible driving is an example of:",
+                    opts: ["Media Campaign", "Video Advocacy Campaign", "Public Service Announcement (PSA)", "Transmedia multimodal text"],
+                    ans: 2,
+                    exp: "A Public Service Announcement (PSA) is any message that promotes programs, services, or activities. It is often in the form of commercials and print ads. It can create awareness, show importance of a problem, and promote behavioral change."
+                },
+                {
+                    tp: "c",
+                    q: "What is a defining feature of a Media Campaign (MC)?",
+                    opts: [
+                        "It is always digital and never uses print media",
+                        "It is a planned series of messages with a call to action delivered through a medium during timely opportunities",
+                        "It is only used by government agencies",
+                        "It always requires a celebrity as the primary messenger"
+                    ],
+                    ans: 1,
+                    exp: "A Media Campaign is a planned series of newspaper articles, television interviews, etc. intended to achieve a particular aim. There should be a call to action to be delivered by the messenger through a medium during timely opportunities."
+                },
+                {
+                    tp: "c",
+                    q: "Which of the following BEST differentiates a PSA from a Media Campaign?",
+                    opts: [
+                        "A PSA targets policy change only while a Media Campaign only raises awareness",
+                        "A PSA is a single message promoting programs or services; a Media Campaign is a planned series of messages with a specific goal and call to action",
+                        "A PSA is always digital while a Media Campaign uses only traditional print media",
+                        "A PSA requires a call to action while a Media Campaign does not"
+                    ],
+                    ans: 1,
+                    exp: "A PSA is any message that promotes programs, services, or activities. A Media Campaign is a planned series of messages with a call to action intended to achieve a particular aim."
+                },
+
+                // ── TOPIC D: Terms, Expressions, and Images Reflecting Different Cultures (42-50) ──
+                {
+                    tp: "d",
+                    q: "A Cultural Grid is:",
+                    opts: [
+                        "A geographic map showing the distribution of world cultures",
+                        "A framework of understanding for processing verbal and nonverbal cues specific to a particular culture",
+                        "A rating system for measuring a country's cultural sensitivity",
+                        "A government tool for tracking cultural diversity statistics"
+                    ],
+                    ans: 1,
+                    exp: "A Cultural Grid is a framework of understanding for processing verbal and nonverbal cues specific to a particular culture. It is based on assumptions from our home culture and any other cultures we have come into contact with."
+                },
+                {
+                    tp: "d",
+                    q: "Cultural ignorance occurs when:",
+                    opts: [
+                        "People actively study and learn about other cultures",
+                        "Communicators fail to realize that persons from different cultures may not look, think, or act as they themselves do",
+                        "Leaders create policies to protect and promote cultural diversity",
+                        "Translators make errors in cross-cultural communication"
+                    ],
+                    ans: 1,
+                    exp: "Cultural ignorance is when communicators fail to realize that persons from different cultures may not look, think, or act as they themselves. They may be judged as insensitive, ignorant, or culturally confused."
+                },
+                {
+                    tp: "d",
+                    q: "Pointing the sole of your shoe toward a speaker is considered deeply insulting in which culture?",
+                    opts: ["American culture", "Japanese culture", "Muslim and Arab culture", "Korean culture"],
+                    ans: 2,
+                    exp: "In Muslim cultures, pointing the sole of a shoe toward someone is perceived as insulting. In the United States or Europe, this gesture means nothing to observers."
+                },
+                {
+                    tp: "d",
+                    q: "McDonald's unintentionally offended thousands of Muslims when it:",
+                    opts: [
+                        "Served non-halal food without proper labeling",
+                        "Used Arabic script incorrectly in its logo design",
+                        "Printed an excerpt from the Koran on its throwaway hamburger bags",
+                        "Named a menu item after a religious figure"
+                    ],
+                    ans: 2,
+                    exp: "McDonald's fast-food chain unintentionally offended thousands of Muslims when it printed an excerpt from the Koran on its throwaway hamburger bags. Muslims saw this as sacrilegious."
+                },
+                {
+                    tp: "d",
+                    q: "In Japanese culture, the business card is viewed as:",
+                    opts: [
+                        "A simple convenience that can be quickly stored away",
+                        "An unimportant formality used only in formal government meetings",
+                        "An extension of a person that must be handled with great care",
+                        "A basic promotional tool used only in marketing"
+                    ],
+                    ans: 2,
+                    exp: "The Japanese view the business card as an extension of a person and handle cards with great care, making certain to put them in safe places. Americans view it as a formality and are quick to put cards away, often insulting the Japanese."
+                },
+                {
+                    tp: "d",
+                    q: "When greeting, most Latinos expect:",
+                    opts: [
+                        "A formal bow to show respect",
+                        "No physical contact whatsoever",
+                        "Body contact such as hugging and kissing on the cheek",
+                        "A firm two-handed handshake only"
+                    ],
+                    ans: 2,
+                    exp: "When greeting, most Latinos expect body contact. Hugging and kissing on the cheek are acceptable for both the same sex and the opposite sex."
+                },
+                {
+                    tp: "d",
+                    q: "To avoid emotional upset for Korean students and parents, a teacher should NOT:",
+                    opts: [
+                        "Call on students by their first names in class",
+                        "Write student names in red ink, as it has death connotations in Korean culture",
+                        "Assign group seating arrangements",
+                        "Use informal language in the classroom"
+                    ],
+                    ans: 1,
+                    exp: "To avoid emotional upset for Korean children and parents, do not write students' names in red - this has death connotations in Korean culture."
+                },
+                {
+                    tp: "d",
+                    q: "After receiving praise, many Asians may feel uncomfortable because:",
+                    opts: [
+                        "Asians are generally very shy and avoid public recognition",
+                        "They may even consider praise as a form of subtle criticism",
+                        "Praise in Asian cultures is reserved only for elders and superiors",
+                        "They prefer written recognition over verbal praise"
+                    ],
+                    ans: 1,
+                    exp: "After receiving praise, many Asians feel uncomfortable and embarrassed. They may even consider praise as a form of subtle criticism."
+                },
+                {
+                    tp: "d",
+                    q: "Students from educational systems outside the United States are often surprised by American classroom behavior because:",
+                    opts: [
+                        "American schools lack modern educational facilities",
+                        "American teachers frequently cancel or skip class sessions",
+                        "Teachers sit on desks, dress casually, allow students to use first names, and engage in humorous banter - seen as too informal",
+                        "American students are perceived as less disciplined"
+                    ],
+                    ans: 2,
+                    exp: "Students from outside the United States are often shocked by teachers' behaviors such as sitting on desks, wearing casual clothing, encouraging students to call them by their first names, and engaging in humorous banter. Those from other educational systems often consider informal, noisy classrooms as places of play, not learning."
+                }
+
+            ];
+
+            var TOTAL = Q.length;
+
+            var TNAME = {
+                a: "Multicultural Comm.",
+                b: "Logical Fallacies",
+                c: "Multimodal Texts",
+                d: "Cultural Terms & Expressions"
+            };
+
+            var TBADGE = { a: "ba", b: "bb", c: "bc", d: "bd" };
+
+            var cur = 0;
+            var score = 0;
+            var answers = [];
+            for (var x = 0; x < TOTAL; x++) { answers.push(undefined); }
+
+            function buildAll() {
+                var area = document.getElementById("quizArea");
+                var html = "";
+                for (var i = 0; i < TOTAL; i++) {
+                    html += buildCard(i);
+                }
+                html += '<div class="nav">' +
+                    '<button class="btn btn-ghost" id="bPrev" onclick="go(-1)">&#8592; Previous</button>' +
+                    '<button class="btn btn-pri" id="bNext" onclick="go(1)">Next &#8594;</button>' +
+                    '<button class="btn btn-sub" id="bSub" onclick="submitQuiz()">Submit Quiz &#10003;</button>' +
+                    '<button class="btn btn-ghost" id="bReview" onclick="submitQuiz()">Review All Questions</button>' +
+                    '</div>';
+                area.innerHTML = html;
+                document.getElementById("qcard0").classList.add("active");
+                refresh();
+            }
+
+            function buildCard(i) {
+                var q = Q[i];
+                var optHtml = "";
+                for (var j = 0; j < q.opts.length; j++) {
+                    optHtml += '<label class="opt" id="opt' + i + '-' + j + '">' +
+                        '<input type="radio" name="q' + i + '" value="' + j + '" onchange="pick(' + i + ',' + j + ')">' +
+                        '<span class="circle">' + String.fromCharCode(65 + j) + '</span>' +
+                        '<span>' + q.opts[j] + '</span>' +
+                        '</label>';
+                }
+                return '<div class="qcard" id="qcard' + i + '">' +
+                    '<div class="qmeta">' +
+                    '<span class="qnum">Q' + (i + 1) + ' of ' + TOTAL + '</span>' +
+                    '<span class="badge ' + TBADGE[q.tp] + '">' + TNAME[q.tp] + '</span>' +
+                    '</div>' +
+                    '<div class="qtext">' + q.q + '</div>' +
+                    '<div class="opts">' + optHtml + '</div>' +
+                    '<div class="fb" id="fb' + i + '"></div>' +
+                    '</div>';
+            }
+
+            function pick(qi, ai) {
+                if (answers[qi] !== undefined) { return; }
+                answers[qi] = ai;
+                var q = Q[qi];
+                var isC = (ai === q.ans);
+                if (isC) { score++; }
+                for (var j = 0; j < q.opts.length; j++) {
+                    var el = document.getElementById("opt" + qi + "-" + j);
+                    el.classList.add("disabled");
+                    el.querySelector("input").disabled = true;
+                    if (j === q.ans) { el.classList.add("correct"); }
+                    if (j === ai && !isC) { el.classList.add("incorrect"); }
+                }
+                var fb = document.getElementById("fb" + qi);
+                fb.className = "fb " + (isC ? "correct" : "incorrect");
+                fb.textContent = isC
+                    ? "Correct! " + q.exp
+                    : "Incorrect. Correct answer: " + q.opts[q.ans] + "\n\n" + q.exp;
+                fb.style.display = "block";
+                document.getElementById("qcard" + qi).classList.add(isC ? "ok" : "ng");
+                refresh();
+            }
+
+            function go(dir) {
+                document.getElementById("qcard" + cur).classList.remove("active");
+                cur = Math.max(0, Math.min(TOTAL - 1, cur + dir));
+                document.getElementById("qcard" + cur).classList.add("active");
+                refresh();
+            }
+
+            function refresh() {
+                document.getElementById("pBar").style.width = ((cur + 1) / TOTAL * 100) + "%";
+                document.getElementById("pLbl").textContent = (cur + 1) + " / " + TOTAL;
+                document.getElementById("sBadge").textContent = "Score: " + score;
+                document.getElementById("bPrev").disabled = (cur === 0);
+                var isLast = (cur === TOTAL - 1);
+                document.getElementById("bNext").style.display = isLast ? "none" : "";
+                document.getElementById("bSub").style.display = isLast ? "" : "none";
+                document.getElementById("bReview").style.display = isLast ? "" : "none";
+            }
+
+            function submitQuiz() {
+                document.getElementById("quizArea").style.display = "none";
+                var rs = document.getElementById("rScreen");
+                rs.classList.add("show");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                var pct = (score / TOTAL * 100).toFixed(1);
+                document.getElementById("rScore").textContent = score;
+                document.getElementById("rPct").textContent = pct + "% - " + getRemark(pct);
+                var msgs = [
+                    "Keep studying! Go through each topic carefully.",
+                    "Good effort! Review the items you missed.",
+                    "Great work! Solid grasp of the material!",
+                    "Outstanding! You are fully exam-ready!"
+                ];
+                var mi = pct >= 90 ? 3 : pct >= 75 ? 2 : pct >= 60 ? 1 : 0;
+                document.getElementById("rMsg").textContent = msgs[mi];
+                var html = "";
+                for (var i = 0; i < TOTAL; i++) {
+                    var q = Q[i];
+                    var ua = answers[i];
+                    var isC = (ua === q.ans);
+                    var disp = (ua !== undefined)
+                        ? "(" + String.fromCharCode(65 + ua) + ") " + q.opts[ua]
+                        : "Not answered";
+                    html += '<div class="ritem ' + (isC ? "correct" : "incorrect") + '">' +
+                        "<strong>Q" + (i + 1) + " [" + TNAME[q.tp] + "]: " + q.q + "</strong>" +
+                        '<div class="answer-info">Your answer: ' + disp + '</div>' +
+                        '<div class="answer-info">Correct answer: (' + String.fromCharCode(65 + q.ans) + ") " + q.opts[q.ans] + '</div>' +
+                        '<div class="exp-label">Why:</div>' +
+                        '<em>' + q.exp + '</em>' +
+                        "</div>";
+                }
+                document.getElementById("rDet").innerHTML = html;
+            }
+
+            function getRemark(pct) {
+                if (pct >= 90) { return "Excellent"; }
+                if (pct >= 75) { return "Very Satisfactory"; }
+                if (pct >= 60) { return "Satisfactory"; }
+                return "Needs Improvement";
+            }
+
+            function restart() {
+                cur = 0; score = 0;
+                answers = [];
+                for (var i = 0; i < TOTAL; i++) { answers.push(undefined); }
+                document.getElementById("rScreen").classList.remove("show");
+                document.getElementById("quizArea").style.display = "";
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                buildAll();
+            }
+
+            function reviewAll() {
+                var html = "";
+                for (var i = 0; i < TOTAL; i++) {
+                    var q = Q[i];
+                    var ua = answers[i];
+                    var isC = (ua === q.ans);
+                    var disp = (ua !== undefined)
+                        ? "(" + String.fromCharCode(65 + ua) + ") " + q.opts[ua]
+                        : "Not answered";
+                    html += '<div class="ritem ' + (isC ? "correct" : "incorrect") + '">' +
+                        "<strong>Q" + (i + 1) + " [" + TNAME[q.tp] + "]: " + q.q + "</strong>" +
+                        '<div class="answer-info">Your answer: ' + disp + '</div>' +
+                        '<div class="answer-info">Correct answer: (' + String.fromCharCode(65 + q.ans) + ") " + q.opts[q.ans] + '</div>' +
+                        '<div class="exp-label">Explanation:</div>' +
+                        '<em>' + q.exp + '</em>' +
+                        "</div>";
+                }
+                var rPanel = document.getElementById("rDet");
+                rPanel.innerHTML = html;
+                rPanel.parentElement.scrollTop = 0;
+            }
+
+            window.go = go;
+            window.pick = pick;
+            window.submitQuiz = submitQuiz;
+            window.restart = restart;
+            window.reviewAll = reviewAll;
+            window.onload = buildAll;
+
+        })();
+    </script>
+</body>
+
+</html>

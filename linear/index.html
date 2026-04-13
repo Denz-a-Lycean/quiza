@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Algebra Quiz</title>
+  <style>
+    :root {
+      --primary: #1a237e;
+      --primary-light: #3949ab;
+      --accent: #00bcd4;
+      --bg: #f0f4ff;
+      --card-bg: #ffffff;
+      --text: #1a1a2e;
+      --muted: #546e7a;
+      --green: #2e7d32;
+      --green-bg: #e8f5e9;
+      --red: #c62828;
+      --red-bg: #ffebee;
+      --border: #e0e0e0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 24px 16px;
+      color: var(--text);
+    }
+
+    /* Header */
+    .quiz-header {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      text-align: center;
+    }
+
+    .quiz-header .badge {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-size: 0.72em;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-header h1 {
+      font-size: 1.9em;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .quiz-header p {
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 0.95em;
+    }
+
+    /* Container */
+    #quiz-container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Progress */
+    .progress-wrap {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(26,35,126,0.07);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .progress-label {
+      font-size: 0.88em;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .progress-bar-track {
+      flex: 1;
+      height: 8px;
+      background: #e3e8ff;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-score {
+      font-size: 0.85em;
+      font-weight: 700;
+      color: var(--primary-light);
+      white-space: nowrap;
+    }
+
+    /* Topic Tag */
+    .topic-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e8eaf6;
+      color: var(--primary);
+      font-size: 0.78em;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Question card */
+    .question-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(26,35,126,0.09);
+      margin-bottom: 18px;
+    }
+
+    .question-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .difficulty-tag {
+      font-size: 0.72em;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .difficulty-easy   { background: #e8f5e9; color: #2e7d32; }
+    .difficulty-medium { background: #fff3e0; color: #e65100; }
+    .difficulty-hard   { background: #fce4ec; color: #880e4f; }
+
+    .question-text {
+      font-size: 1.12em;
+      font-weight: 700;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .option-btn {
+      background: white;
+      color: var(--text);
+      border: 2px solid var(--border);
+      padding: 13px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.97em;
+      text-align: left;
+      transition: all 0.18s;
+      line-height: 1.45;
+      font-family: inherit;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary-light);
+      background: #f0f4ff;
+      transform: translateX(3px);
+    }
+
+    .option-btn.correct {
+      background: var(--green-bg);
+      border-color: #66bb6a;
+      color: var(--green);
+    }
+
+    .option-btn.wrong {
+      background: var(--red-bg);
+      border-color: #ef5350;
+      color: var(--red);
+    }
+
+    .option-btn:disabled { cursor: default; }
+
+    /* Feedback */
+    .feedback {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .feedback.correct { background: var(--green-bg); border-left: 4px solid #66bb6a; }
+    .feedback.wrong   { background: var(--red-bg);   border-left: 4px solid #ef5350; }
+
+    .feedback-icon { font-size: 1.4em; flex-shrink: 0; margin-top: 2px; }
+
+    .feedback-body h4 {
+      font-size: 1em;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .feedback.correct h4 { color: var(--green); }
+    .feedback.wrong   h4 { color: var(--red); }
+
+    .feedback-body p {
+      font-size: 0.88em;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    /* Next button */
+    .next-wrap {
+      margin-top: 18px;
+      text-align: right;
+    }
+
+    .next-btn {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.97em;
+      font-weight: 700;
+      font-family: inherit;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .next-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* Results */
+    .results-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: 0 6px 30px rgba(26,35,126,0.12);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .results-card h2 {
+      font-size: 1.7em;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .results-card .subtitle {
+      color: var(--muted);
+      font-size: 0.95em;
+      margin-bottom: 30px;
+    }
+
+    .score-circle {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .score-circle.grade-a { background: linear-gradient(135deg, #1b5e20, #388e3c); }
+    .score-circle.grade-b { background: linear-gradient(135deg, #01579b, #0288d1); }
+    .score-circle.grade-c { background: linear-gradient(135deg, #e65100, #f57c00); }
+    .score-circle.grade-d { background: linear-gradient(135deg, #bf360c, #e64a19); }
+    .score-circle.grade-f { background: linear-gradient(135deg, #880e4f, #c62828); }
+
+    .score-pct { font-size: 2.2em; font-weight: 900; }
+    .score-grade { font-size: 1em; font-weight: 600; opacity: 0.9; }
+
+    .score-detail {
+      font-size: 1.1em;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .score-message {
+      color: var(--muted);
+      font-size: 0.9em;
+      margin-bottom: 28px;
+    }
+
+    .topic-breakdown {
+      background: #f5f7ff;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .topic-breakdown h4 {
+      font-size: 0.82em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .breakdown-label {
+      font-size: 0.84em;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .breakdown-bar-track {
+      width: 100px;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .breakdown-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .breakdown-score {
+      font-size: 0.82em;
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 38px;
+      text-align: right;
+    }
+
+    .retry-btn {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 12px 30px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 700;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .retry-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Loading */
+    #loading-screen {
+      max-width: 760px;
+      margin: 60px auto;
+      text-align: center;
+    }
+
+    .spinner {
+      width: 48px; height: 48px;
+      border: 4px solid #e3e8ff;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      .question-card { padding: 20px; }
+      .quiz-header h1 { font-size: 1.5em; }
+      .score-circle { width: 130px; height: 130px; }
+      .score-pct { font-size: 1.8em; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-header">
+    <div class="badge">Linear Algebra 1</div>
+    <h1>📐 Linear Algebra Quiz Reviewer</h1>
+    <p>Determinants · Matrix Inverse · Rank, Nullity & the Rank-Nullity Theorem</p>
+  </div>
+
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <p style="color:var(--muted); font-size:0.95em;">Loading your quiz…</p>
+  </div>
+
+  <div id="quiz-container"></div>
+
+  <script>
+    // ─── Data ────────────────────────────────────────────────────────────────
+    const QUIZ_DATA = [{"id":"rank-nullity","title":"Rank, Nullity, and the Rank-Nullity Theorem","questions":[{"question":"What does the RANK of a matrix represent?","options":["The number of rows in the matrix","The number of linearly independent rows or columns (pivot positions)","The number of free variables in the system","The size of the null space"],"answer":1,"difficulty":"easy","explanation":"Rank(A) = the number of pivot positions after row reduction. It represents how many linearly independent rows or columns the matrix has — the 'useful' information it contains."},{"question":"What does the NULLITY of a matrix represent?","options":["The number of pivots after row reduction","The number of rows minus the number of columns","The number of free variables (non-pivot columns)","The determinant of the matrix"],"answer":2,"difficulty":"easy","explanation":"Nullity = the number of free variables, which corresponds to the number of non-pivot columns after row reduction. It measures how many input directions are 'lost' (mapped to zero)."},{"question":"The Rank-Nullity Theorem states that for an m×n matrix A:","options":["rank(A) × nullity(A) = n","rank(A) + nullity(A) = n (number of columns)","rank(A) + nullity(A) = m (number of rows)","rank(A) − nullity(A) = 0"],"answer":1,"difficulty":"easy","explanation":"The Rank-Nullity Theorem: rank(A) + nullity(A) = n, where n is the number of COLUMNS of A. This is the fundamental relationship between the column space and null space dimensions."},{"question":"A 3×5 matrix A has rank 2. What is its nullity?","options":["1","2","3","5"],"answer":2,"difficulty":"medium","explanation":"Using the Rank-Nullity Theorem: nullity = n − rank = 5 − 2 = 3. The matrix has 5 columns, 2 pivots, and therefore 3 free variables."},{"question":"After row reduction, a matrix has 3 pivot columns and 2 non-pivot columns. What are its rank and nullity?","options":["rank = 2, nullity = 3","rank = 3, nullity = 2","rank = 5, nullity = 0","rank = 1, nullity = 4"],"answer":1,"difficulty":"medium","explanation":"Rank = number of pivot columns = 3. Nullity = number of non-pivot (free variable) columns = 2. Together they sum to 5, which is the total number of columns."},{"question":"What is a PIVOT in a row-reduced matrix?","options":["The largest number in a row","Always the number 1 on the diagonal","The first non-zero entry in a row after row reduction","The entry in the last column of each row"],"answer":2,"difficulty":"easy","explanation":"A pivot is the FIRST non-zero entry in a row after row reduction (REF or RREF). Pivots are NOT necessarily 1, nor necessarily on the diagonal, nor the largest number."},{"question":"A FREE VARIABLE in a linear system is a variable that:","options":["Has a pivot in its column","Always equals zero","Has no pivot in its column and can take any value","Appears only in the last equation"],"answer":2,"difficulty":"easy","explanation":"A free variable has NO pivot in its column, meaning it can be assigned any value. Pivot variables are determined by free variables through back-substitution."},{"question":"If a 4×4 matrix A has nullity = 0, what can you conclude?","options":["The matrix has no solution","The rank is 0","The matrix is invertible (full rank = 4)","The matrix has infinitely many solutions"],"answer":2,"difficulty":"medium","explanation":"If nullity = 0, then by Rank-Nullity: rank = 4 − 0 = 4. A square matrix with full rank (rank = n) is invertible. There are no free variables, so Ax = b has a unique solution."},{"question":"In the machine analogy: rank = 'working parts', nullity = 'broken parts'. What does their sum equal?","options":["The number of rows","The determinant","The total number of columns","The trace of the matrix"],"answer":2,"difficulty":"easy","explanation":"Just like total parts = working + broken, the Rank-Nullity Theorem says rank + nullity = n (total columns). Every column is either a pivot column (rank) or a free-variable column (nullity)."},{"question":"A matrix has rank 4 and 4 columns. How many free variables does the system Ax = b have?","options":["0","1","2","4"],"answer":0,"difficulty":"medium","explanation":"Nullity = n − rank = 4 − 4 = 0. There are no free variables. All columns are pivot columns, meaning the system has at most one solution."},{"question":"Which correctly describes the COLUMN SPACE (image) of a matrix?","options":["The set of all vectors that map TO zero under the matrix","The set of all possible outputs Ax for all vectors x","The number of non-pivot columns","The set of solutions to the homogeneous system Ax = 0"],"answer":1,"difficulty":"medium","explanation":"The column space (image) of A is the span of its columns — all vectors that can be written as Ax. Its dimension is the rank. The null space, not the column space, consists of vectors mapping to zero."},{"question":"A system Ax = b has infinitely many solutions. What does this imply about the nullity of A?","options":["Nullity = 0","Nullity ≥ 1 (at least one free variable)","Nullity = rank","Nullity = number of rows"],"answer":1,"difficulty":"hard","explanation":"Infinitely many solutions means at least one free variable exists. Each free variable contributes to the null space. So nullity ≥ 1. The general solution = particular solution + null space vectors."}]},{"id":"determinants","title":"Matrix Determinants","questions":[{"question":"What is a DETERMINANT of a matrix?","options":["The sum of all entries in the matrix","A single numerical value computed from a square matrix","The largest entry in the matrix","The number of rows in the matrix"],"answer":1,"difficulty":"easy","explanation":"A determinant is a single numerical value computed from a SQUARE matrix. It encodes important information about the matrix, such as invertibility and scaling effects."},{"question":"For a 2×2 matrix [[a, b], [c, d]], the determinant is:","options":["a + d − b − c","ac − bd","ad − bc","ab + cd"],"answer":2,"difficulty":"easy","explanation":"det([[a,b],[c,d]]) = ad − bc. Multiply the main diagonal (top-left to bottom-right) and subtract the product of the anti-diagonal (top-right to bottom-left)."},{"question":"Find the determinant of the matrix [[3, 1], [2, 4]].","options":["10","14","12","8"],"answer":0,"difficulty":"easy","explanation":"det = (3)(4) − (1)(2) = 12 − 2 = 10. Using the formula ad − bc with a=3, b=1, c=2, d=4."},{"question":"If det(A) = 0, what does this mean about matrix A?","options":["A is invertible","A has full rank","A is singular and has NO inverse","A is the identity matrix"],"answer":2,"difficulty":"easy","explanation":"If det(A) = 0, the matrix is SINGULAR — it has no inverse. This also means the columns are linearly dependent, the rank is less than n, and Ax = b may have no unique solution."},{"question":"If det(A) ≠ 0, what can we conclude?","options":["The matrix is singular","The matrix has an inverse (is non-singular)","The nullity is greater than zero","The matrix has more columns than rows"],"answer":1,"difficulty":"easy","explanation":"det(A) ≠ 0 means A is NON-SINGULAR and therefore invertible. The system Ax = b has a unique solution for every b."},{"question":"Find det([[5, 2], [3, 1]]).","options":["−1","1","11","−11"],"answer":0,"difficulty":"medium","explanation":"det = (5)(1) − (2)(3) = 5 − 6 = −1. Negative determinants are valid — they indicate the transformation reverses orientation."},{"question":"If the determinant of a 2×2 matrix equals 2, what does this mean geometrically?","options":["The transformation shrinks area by half","The transformation doubles area","The transformation keeps area unchanged","The transformation collapses space into a line"],"answer":1,"difficulty":"medium","explanation":"The absolute value of the determinant gives the scaling factor for area (2D). |det| = 2 means any region is transformed to twice its original area."},{"question":"If det(A) = 0, what happens to the area of a shape transformed by A?","options":["The area doubles","The area stays the same","The shape collapses to a line or point (area = 0)","The area becomes negative"],"answer":2,"difficulty":"medium","explanation":"det = 0 means the transformation collapses space — a 2D region becomes a line or point with zero area. This is why singular matrices cannot be inverted."},{"question":"Which of the following is NOT an application of determinants?","options":["Checking if a matrix is invertible","Measuring area/volume scaling in transformations","Determining if a system has a unique solution","Counting the number of columns in a matrix"],"answer":3,"difficulty":"easy","explanation":"Counting columns is not an application of determinants. Determinants are used to check invertibility, measure geometric scaling, solve systems (Cramer's rule), and more."},{"question":"Find det([[2, 0], [0, 5]]).","options":["7","10","3","0"],"answer":1,"difficulty":"easy","explanation":"det = (2)(5) − (0)(0) = 10. For a diagonal matrix, the determinant is simply the product of the diagonal entries."},{"question":"For a 3×3 matrix, the cofactor expansion along the first row uses:","options":["The product of all entries","2×2 determinants of sub-matrices formed by deleting a row and column","Only the diagonal entries","The sum of all row entries"],"answer":1,"difficulty":"hard","explanation":"Cofactor expansion uses 2×2 minor determinants. For entry a₁ⱼ, delete row 1 and column j to get a 2×2 sub-matrix, compute its determinant (the minor), apply the sign (±), and sum the products."},{"question":"What is the determinant of the identity matrix I?","options":["0","−1","1","n (the size of the matrix)"],"answer":2,"difficulty":"easy","explanation":"det(I) = 1 for any size identity matrix. The identity transformation preserves all areas/volumes (scaling factor = 1)."}]},{"id":"inverse","title":"Inverse of a Matrix","questions":[{"question":"The inverse of a matrix A (written A⁻¹) satisfies:","options":["A + A⁻¹ = I","A × A⁻¹ = I (identity matrix)","A − A⁻¹ = 0","A / A⁻¹ = I"],"answer":1,"difficulty":"easy","explanation":"By definition, A × A⁻¹ = A⁻¹ × A = I. Multiplying a matrix by its inverse gives the identity matrix — analogous to multiplying a number by its reciprocal to get 1."},{"question":"For a 2×2 matrix A = [[a, b], [c, d]], the inverse formula is:","options":["A⁻¹ = (1/det(A)) × [[d, −b], [−c, a]]","A⁻¹ = (1/det(A)) × [[a, b], [c, d]]","A⁻¹ = det(A) × [[d, −b], [−c, a]]","A⁻¹ = [[d, b], [c, a]] / det(A)"],"answer":0,"difficulty":"medium","explanation":"For a 2×2 matrix: A⁻¹ = (1/det(A)) × [[d, −b], [−c, a]]. Swap the main diagonal entries, negate the anti-diagonal entries, then divide everything by the determinant."},{"question":"When does a matrix NOT have an inverse?","options":["When the matrix is very large","When the determinant equals zero (singular matrix)","When the matrix is square","When all entries are positive"],"answer":1,"difficulty":"easy","explanation":"A matrix has no inverse when det(A) = 0. Such a matrix is called SINGULAR. A non-singular (invertible) matrix requires det(A) ≠ 0."},{"question":"Find the inverse of A = [[2, 1], [5, 3]].","options":["[[3, −1], [−5, 2]]","[[3, 1], [5, 2]]","[[−3, 1], [5, −2]]","[[2, −1], [−5, 3]]"],"answer":0,"difficulty":"medium","explanation":"det(A) = (2)(3) − (1)(5) = 6 − 5 = 1. Since det = 1: A⁻¹ = [[d,−b],[−c,a]] = [[3,−1],[−5,2]]. Verify: A × A⁻¹ = I."},{"question":"What is the MINOR of an entry in a matrix?","options":["The entry's position in the matrix","The determinant of the sub-matrix formed by deleting the entry's row and column","The cofactor sign applied to the entry","The transpose of the entry's row"],"answer":1,"difficulty":"medium","explanation":"The MINOR of entry aᵢⱼ is the determinant of the smaller matrix obtained by deleting row i and column j. It is used to compute cofactors for the adjugate/inverse."},{"question":"What is a COFACTOR?","options":["Another name for the minor","The minor with a sign of (−1)^(i+j) applied","The transpose of the matrix","The determinant of the full matrix"],"answer":1,"difficulty":"medium","explanation":"Cofactor Cᵢⱼ = (−1)^(i+j) × Mᵢⱼ, where Mᵢⱼ is the minor. The sign pattern is a checkerboard of + and − starting with + at position (1,1)."},{"question":"The ADJUGATE (adj) of a matrix is:","options":["The matrix of determinants of sub-matrices","The transpose of the cofactor matrix","The inverse of the transpose","The determinant multiplied by the original matrix"],"answer":1,"difficulty":"hard","explanation":"adj(A) = the TRANSPOSE of the cofactor matrix (also called the classical adjoint). For a 3×3 matrix: A⁻¹ = (1/det(A)) × adj(A)."},{"question":"To find the inverse of a 3×3 matrix using the Adjugate Method, the correct order of steps is:","options":["Transpose → Minors → Cofactors → Divide by det","Determinant → Minors → Cofactors → Adjugate (transpose) → Divide by det","Cofactors → Determinant → Divide by det","Minors → Determinant → Transpose → Multiply by det"],"answer":1,"difficulty":"hard","explanation":"The full Adjugate Method: (1) Compute det(A) — if 0, no inverse exists. (2) Find the matrix of minors. (3) Apply cofactor signs. (4) Transpose to get adj(A). (5) Divide by det: A⁻¹ = adj(A)/det(A)."},{"question":"Why is the inverse of a matrix useful?","options":["It makes the matrix larger","It lets us solve matrix equations like Ax = b by computing x = A⁻¹b","It changes the matrix into a diagonal form","It increases the rank of the matrix"],"answer":1,"difficulty":"easy","explanation":"The primary use of A⁻¹ is solving Ax = b: multiply both sides by A⁻¹ to get x = A⁻¹b. It also 'undoes' transformations — if A rotates a vector, A⁻¹ rotates it back."},{"question":"If A = [[4, 7], [2, 6]], what is det(A)?","options":["10","12","38","24"],"answer":0,"difficulty":"easy","explanation":"det(A) = (4)(6) − (7)(2) = 24 − 14 = 10. Since det ≠ 0, the inverse exists."},{"question":"The TRANSPOSE of a matrix is obtained by:","options":["Multiplying all entries by −1","Flipping rows into columns (rows become columns, columns become rows)","Taking the determinant of each row","Removing the last row and column"],"answer":1,"difficulty":"easy","explanation":"Transposing a matrix means swapping its rows and columns: entry at row i, column j moves to row j, column i. Notation: Aᵀ. The transpose is used in computing the adjugate."},{"question":"Which statement about the inverse of a matrix is FALSE?","options":["Only square matrices can have inverses","If det(A) = 0, A has no inverse","A × A⁻¹ = I","Every square matrix has an inverse"],"answer":3,"difficulty":"medium","explanation":"FALSE: Not every square matrix has an inverse. A square matrix is invertible ONLY if its determinant is non-zero. Singular matrices (det = 0) have no inverse."}]}];
+
+    // ─── Shuffle ─────────────────────────────────────────────────────────────
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    // ─── State ────────────────────────────────────────────────────────────────
+    let allQuestions = [];
+    let currentIdx = 0;
+    let score = 0;
+    const topicScores = {};
+
+    function init() {
+      // Flatten and shuffle per-topic, then shuffle topics
+      const topics = shuffle(QUIZ_DATA);
+      topics.forEach(topic => {
+        topicScores[topic.id] = { correct: 0, total: 0, title: topic.title };
+        shuffle(topic.questions).forEach(q => {
+          allQuestions.push({ ...q, topicId: topic.id, topicTitle: topic.title });
+        });
+      });
+      document.getElementById('loading-screen').style.display = 'none';
+      render();
+    }
+
+    function esc(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ─── Render ───────────────────────────────────────────────────────────────
+    function render() {
+      if (currentIdx >= allQuestions.length) { showResults(); return; }
+      const q = allQuestions[currentIdx];
+      const total = allQuestions.length;
+      const pct = Math.round((currentIdx / total) * 100);
+
+      const container = document.getElementById('quiz-container');
+      container.innerHTML = `
+        <div class="progress-wrap">
+          <span class="progress-label">Q${currentIdx + 1} / ${total}</span>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" style="width:${pct}%"></div>
+          </div>
+          <span class="progress-score">✅ ${score}</span>
+        </div>
+        <div class="question-card" id="qcard">
+          <div class="question-meta">
+            <span class="topic-tag">📘 ${esc(q.topicTitle)}</span>
+            ${q.difficulty ? `<span class="difficulty-tag difficulty-${q.difficulty}">${q.difficulty}</span>` : ''}
+          </div>
+          <div class="question-text">Q${currentIdx + 1}. ${esc(q.question)}</div>
+          <div class="options-list" id="opts">
+            ${(q.options || []).map((opt, i) => `
+              <button class="option-btn" data-idx="${i}" onclick="handleAnswer(${i})">${esc(opt)}</button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function handleAnswer(selected) {
+      const q = allQuestions[currentIdx];
+      const correct = Array.isArray(q.answer) ? q.answer[0] : q.answer;
+      const isCorrect = selected === correct;
+
+      if (isCorrect) {
+        score++;
+        topicScores[q.topicId].correct++;
+      }
+      topicScores[q.topicId].total++;
+
+      // Disable all buttons & highlight
+      document.querySelectorAll('.option-btn').forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === correct) btn.classList.add('correct');
+        if (i === selected && !isCorrect) btn.classList.add('wrong');
+      });
+
+      // Show feedback
+      const card = document.getElementById('qcard');
+      const fb = document.createElement('div');
+      fb.className = `feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      fb.innerHTML = `
+        <div class="feedback-icon">${isCorrect ? '✅' : '❌'}</div>
+        <div class="feedback-body">
+          <h4>${isCorrect ? 'Correct!' : 'Incorrect'}</h4>
+          <p>${esc(q.explanation || '')}</p>
+        </div>
+      `;
+      card.appendChild(fb);
+
+      // Next button
+      const wrap = document.createElement('div');
+      wrap.className = 'next-wrap';
+      const isLast = currentIdx >= allQuestions.length - 1;
+      wrap.innerHTML = `<button class="next-btn" onclick="advance()">${isLast ? 'See Results 🎯' : 'Next ➡️'}</button>`;
+      card.appendChild(wrap);
+    }
+
+    function advance() {
+      currentIdx++;
+      render();
+    }
+
+    function showResults() {
+      const total = allQuestions.length;
+      const pct = total ? (score / total) * 100 : 0;
+      const grade = pct >= 90 ? 'a' : pct >= 80 ? 'b' : pct >= 70 ? 'c' : pct >= 60 ? 'd' : 'f';
+      const message = pct >= 90 ? 'Outstanding work! 🌟' : pct >= 75 ? 'Great job! Keep it up 💪' : pct >= 60 ? 'Good effort! Review the explanations 📖' : 'Keep studying — you\'ll get there! 💡';
+
+      const breakdownHtml = Object.values(topicScores).map(t => {
+        const p = t.total ? Math.round((t.correct / t.total) * 100) : 0;
+        return `
+          <div class="breakdown-row">
+            <span class="breakdown-label">${esc(t.title)}</span>
+            <div class="breakdown-bar-track"><div class="breakdown-bar-fill" style="width:${p}%"></div></div>
+            <span class="breakdown-score">${t.correct}/${t.total}</span>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('quiz-container').innerHTML = `
+        <div class="results-card">
+          <h2>Quiz Complete! 🎉</h2>
+          <p class="subtitle">Linear Algebra 1 — ${total} questions</p>
+          <div class="score-circle grade-${grade}">
+            <span class="score-pct">${pct.toFixed(1)}%</span>
+            <span class="score-grade">Grade ${grade.toUpperCase()}</span>
+          </div>
+          <p class="score-detail">Score: ${score} out of ${total}</p>
+          <p class="score-message">${message}</p>
+          <div class="topic-breakdown">
+            <h4>Performance by Topic</h4>
+            ${breakdownHtml}
+          </div>
+          <button class="retry-btn" onclick="location.reload()">Try Again ↺</button>
+        </div>
+      `;
+    }
+
+    // ─── Start ────────────────────────────────────────────────────────────────
+    window.onload = init;
+  </script>
+</body>
+</html>
