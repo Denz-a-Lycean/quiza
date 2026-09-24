@@ -1,0 +1,511 @@
+  :root {
+      --bg: #f7f8fb;
+      --bg-card: #ffffff;
+      --text: #1a1d29;
+      --text-muted: #5a5f73;
+      --accent: #1e3a8a;
+      --accent2: #b8860b;
+      --border: #e3e5ec;
+      --pill-bg: #eef1fb;
+      --good: #1a7f4b;
+      --bad: #b3261e;
+      --good-bg: #e6f4ec;
+      --bad-bg: #fbeceb;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+          --bg: #14161f;
+          --bg-card: #1d2030;
+          --text: #eceef5;
+          --text-muted: #9aa0b8;
+          --accent: #7f9cf5;
+          --accent2: #e0b455;
+          --border: #2c2f42;
+          --pill-bg: #232640;
+          --good: #4ade80;
+          --bad: #f87171;
+          --good-bg: #16301f;
+          --bad-bg: #331a19;
+          --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+  }
+
+  :root[data-theme="dark"] {
+      --bg: #14161f;
+      --bg-card: #1d2030;
+      --text: #eceef5;
+      --text-muted: #9aa0b8;
+      --accent: #7f9cf5;
+      --accent2: #e0b455;
+      --border: #2c2f42;
+      --pill-bg: #232640;
+      --good: #4ade80;
+      --bad: #f87171;
+      --good-bg: #16301f;
+      --bad-bg: #331a19;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+      scroll-behavior: smooth;
+  }
+
+  body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      padding: 20px 14px 60px;
+      overflow-x: hidden;
+  }
+
+  .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+  }
+
+  header.top {
+      margin-bottom: 18px;
+  }
+
+  header.top .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11.5px;
+      color: var(--accent2);
+      font-weight: 700;
+  }
+
+  header.top h1 {
+      font-size: 22px;
+      margin: 5px 0 4px;
+  }
+
+  header.top p {
+      color: var(--text-muted);
+      margin: 0;
+      font-size: 13.5px;
+  }
+
+  .tabs {
+      display: flex;
+      gap: 6px;
+      margin: 18px 0 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 5px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 8px;
+      z-index: 10;
+  }
+
+  .tab-btn {
+      flex: 1;
+      min-height: 44px;
+      padding: 10px 6px;
+      border: none;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 12.5px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+  }
+
+  .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+  }
+
+  .panel {
+      display: none;
+  }
+
+  .panel.active {
+      display: block;
+  }
+
+  .panel[hidden] {
+      display: none;
+  }
+
+  /* ---------- REVIEWER ---------- */
+  nav.toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+  }
+
+  nav.toc div.title {
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+  }
+
+  nav.toc a {
+      display: inline-block;
+      font-size: 12.5px;
+      color: var(--accent);
+      text-decoration: none;
+      margin: 2px 6px 2px 0;
+      padding: 4px 0;
+  }
+
+  nav.toc a:hover {
+      text-decoration: underline;
+  }
+
+  .lesson-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 30px 0 4px;
+      padding-bottom: 6px;
+      border-bottom: 3px solid var(--accent);
+  }
+
+  section h2 {
+      font-size: 17px;
+      color: var(--accent2);
+      margin: 22px 0 12px;
+  }
+
+  .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 9px;
+      box-shadow: var(--shadow);
+  }
+
+  .card .term {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+  }
+
+  .card .def {
+      font-size: 13.3px;
+      color: var(--text-muted);
+      margin-top: 3px;
+  }
+
+  .grid2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+  }
+
+  @media (min-width: 620px) {
+      .grid2 {
+          grid-template-columns: 1fr 1fr;
+      }
+  }
+
+  .pill {
+      display: inline-block;
+      background: var(--pill-bg);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 999px;
+      margin-bottom: 5px;
+  }
+
+  ul.simple {
+      padding-left: 18px;
+      margin: 6px 0;
+  }
+
+  ul.simple li {
+      font-size: 13.3px;
+      margin-bottom: 4px;
+  }
+
+  /* ---------- FLASHCARDS ---------- */
+  .fc-progress {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 10px;
+  }
+
+  .fc-stage {
+      perspective: 1200px;
+      margin-bottom: 16px;
+  }
+
+  .fc-card {
+      position: relative;
+      height: clamp(220px, 52vw, 300px);
+      border-radius: 16px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.45s ease;
+  }
+
+  .fc-card.flipped {
+      transform: rotateY(180deg);
+  }
+
+  .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 20px;
+      background: var(--bg-card);
+    overflow: auto;
+  }
+
+  .fc-face.back {
+      transform: rotateY(180deg);
+  }
+
+  .fc-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent2);
+      font-weight: 700;
+      margin-bottom: 10px;
+  }
+
+  .fc-lesson {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+  }
+
+  .fc-term {
+      font-size: 18px;
+      font-weight: 700;
+  }
+
+  .fc-def {
+      font-size: 14px;
+  }
+
+  .fc-hint {
+      position: absolute;
+      bottom: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+  }
+
+  .fc-controls {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+
+  .fc-btn {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+  }
+
+  .fc-btn:active {
+      transform: scale(0.97);
+  }
+
+  .fc-btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+  }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-progress {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 10px;
+  }
+
+  .quiz-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 18px;
+  }
+
+  .quiz-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s;
+  }
+
+  .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 18px 14px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+  }
+
+  .q-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+  }
+
+  .q-text {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+  }
+
+  .opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      min-height: 48px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13.8px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+  }
+
+  .opt:active {
+      transform: scale(0.99);
+  }
+
+  .opt.correct {
+      background: var(--good-bg);
+      border-color: var(--good);
+      color: var(--good);
+      font-weight: 700;
+  }
+
+  .opt.incorrect {
+      background: var(--bad-bg);
+      border-color: var(--bad);
+      color: var(--bad);
+      font-weight: 700;
+  }
+
+  .opt[disabled] {
+      cursor: default;
+  }
+
+  .q-feedback {
+      font-size: 13px;
+      color: var(--text-muted);
+      min-height: 18px;
+      margin-top: 4px;
+  }
+
+  .quiz-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 4px;
+  }
+
+  .quiz-done {
+      text-align: center;
+      padding: 30px 10px;
+  }
+
+  .quiz-score {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 6px 0;
+  }
+
+  .quiz-score-sub {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+  }
+
+  footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 36px;
+  }
+
+  @media (max-width: 480px) {
+      body {
+          padding: 14px 10px 42px;
+      }
+
+      .tabs {
+          top: 4px;
+          margin: 14px 0 16px;
+      }
+
+      .tab-btn {
+          font-size: 11px;
+          line-height: 1.2;
+      }
+
+      .fc-controls {
+          display: grid;
+          grid-template-columns: 1fr 1.25fr 1fr;
+          gap: 6px;
+      }
+
+      .fc-btn {
+          min-width: 0;
+          padding: 10px 6px;
+          font-size: 12px;
+      }
+
+      .q-card {
+          padding: 16px 13px 12px;
+      }
+
+      .q-text {
+          overflow-wrap: anywhere;
+      }
+  }

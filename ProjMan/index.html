@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Reviewer: Lessons 1 & 2</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+
+<body>
+    <div class="wrap">
+
+        <header class="top">
+            <div class="kicker">Interactive Reviewer • Lessons 1 & 2</div>
+            <h1>Project Management — Full Reviewer</h1>
+            <p>Read the notes, drill the flashcards, then test yourself with a randomized quiz.</p>
+        </header>
+
+        <nav class="tabs" aria-label="Reviewer sections" role="tablist">
+            <button class="tab-btn active" type="button" id="tab-notes" data-tab="notes" role="tab" aria-controls="panel-notes" aria-selected="true">📖 Reviewer</button>
+            <button class="tab-btn" type="button" id="tab-flash" data-tab="flash" role="tab" aria-controls="panel-flash" aria-selected="false">🗂️ Flashcards</button>
+            <button class="tab-btn" type="button" id="tab-quiz" data-tab="quiz" role="tab" aria-controls="panel-quiz" aria-selected="false">✅ Quiz</button>
+        </nav>
+
+        <!-- ============ REVIEWER PANEL ============ -->
+        <div class="panel active" id="panel-notes" role="tabpanel" aria-labelledby="tab-notes">
+            <nav class="toc">
+                <div class="title">Jump to</div>
+                <a href="#l1-intro">L1 · Intro to PM</a>
+                <a href="#l1-roles">L1 · Roles & Responsibilities</a>
+                <a href="#l1-env">L1 · Project Environment</a>
+                <a href="#l1-blocks">L1 · Building Blocks</a>
+                <a href="#l1-cycle">L1 · Life Cycle & Roles</a>
+                <a href="#l2-systems">L2 · Systems View</a>
+                <a href="#l2-org">L2 · Organizations</a>
+                <a href="#l2-stake">L2 · Stakeholders</a>
+                <a href="#l2-it">L2 · IT Context</a>
+            </nav>
+
+            <div class="lesson-title">📗 Lesson 1 — Introduction to Project Management</div>
+
+            <section id="l1-intro">
+                <h2>Course & Core Definitions</h2>
+                <div class="card">
+                    <div class="term">Course</div>
+                    <div class="def">Project Management (OPMN03C) — provides an in-depth understanding of PM principles,
+                        techniques, and best practices: initiating, planning, executing, monitoring, controlling, and
+                        closing projects.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Project</div>
+                    <div class="def">A temporary undertaking created to produce a unique product, service, system, or
+                        result (e.g. a mobile app, university event, cybersecurity system).</div>
+                </div>
+                <div class="card">
+                    <div class="term">Project Management</div>
+                    <div class="def">The organized process of planning, executing, monitoring, and completing a project
+                        — turns an idea into an achievable, valuable outcome.</div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">The DNA of a project — T.U.G.R.C.
+                </h3>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Temporary</span>
+                        <div class="def">Has a defined beginning and finish line.</div>
+                    </div>
+                    <div class="card"><span class="pill">Unique</span>
+                        <div class="def">Creates a particular product, service, or result.</div>
+                    </div>
+                    <div class="card"><span class="pill">Goal-Oriented</span>
+                        <div class="def">Drives toward accomplishing specific objectives.</div>
+                    </div>
+                    <div class="card"><span class="pill">Resource-Constrained</span>
+                        <div class="def">Operates with limited people, money, tech, and time.</div>
+                    </div>
+                    <div class="card"><span class="pill">Coordinated</span>
+                        <div class="def">Synchronizes activities, schedules, and resources.</div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:10px;">
+                    <div class="term">The Illusion vs. The Reality</div>
+                    <div class="def">Illusion: a good idea alone leads straight to success. Reality: unclear
+                        requirements, unrealistic deadlines, limited resources, poor communication, unmanaged risks, and
+                        uncontrolled changes get in the way — structure prevents chaos.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Old Paradigm (Output-Driven)</div>
+                    <div class="def">Success = scope → schedule → budget → output. Now considered incomplete.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Modern Paradigm (Outcome-Driven)</div>
+                    <div class="def">Vision → Deliverable → Benefit → Value/Outcomes, in a cycle. "Projects do not
+                        simply produce outputs; they enable those outputs to drive outcomes that ultimately deliver
+                        value." — PMBOK® Guide, 7th Ed.</div>
+                </div>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Project vs. Operation</span>
+                        <div class="def"><strong>Project:</strong> temporary and unique. <strong>Operation:</strong> ongoing and repetitive, maintaining an existing process.</div>
+                    </div>
+                    <div class="card"><span class="pill">Output vs. Outcome vs. Value</span>
+                        <div class="def"><strong>Output</strong> is what the project produces; <strong>outcome</strong> is what happens because of it; <strong>value</strong> is the benefit created.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="l1-roles">
+                <h2>Project Team Roles</h2>
+                <div class="card">
+                    <div class="term">Project Manager Responsibilities</div>
+                    <div class="def">Define objectives · Plan the project · Organize the team · Manage time · Manage resources · Manage risks · Communicate.</div>
+                </div>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Project Manager</span><div class="def">Coordinates the project and aligns people, tasks, resources, time, risk, quality, and stakeholders.</div></div>
+                    <div class="card"><span class="pill">Business Analyst</span><div class="def">Gathers, analyzes, and documents stakeholder and system requirements.</div></div>
+                    <div class="card"><span class="pill">UI/UX Designer</span><div class="def">Designs the user interface and user experience.</div></div>
+                    <div class="card"><span class="pill">Programmer</span><div class="def">Develops and maintains the system software.</div></div>
+                    <div class="card"><span class="pill">Database Developer</span><div class="def">Designs and manages the data architecture and database.</div></div>
+                    <div class="card"><span class="pill">QA / Tester</span><div class="def">Tests the system and verifies that quality requirements are met.</div></div>
+                </div>
+            </section>
+
+            <section id="l1-env">
+                <h2>The Anatomy of a Project Environment</h2>
+                <div class="grid2">
+                    <div class="card"><span class="pill">1 · Value System (Macro)</span>
+                        <div class="def">How projects fit into overarching organizational strategy and business
+                            objectives.</div>
+                    </div>
+                    <div class="card"><span class="pill">2 · The 12 Principles (Philosophy)</span>
+                        <div class="def">The behavioral compass and ethical guidelines directing all project work.</div>
+                    </div>
+                    <div class="card"><span class="pill">3 · The 8 Domains (Execution)</span>
+                        <div class="def">The active engine of concurrent, interrelated project performance activities.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">4 · Tailoring & Frameworks (Micro)</span>
+                        <div class="def">Adapting methodologies (Agile, Waterfall) to fit unique organizational
+                            realities.</div>
+                    </div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">12 Principles — 4 Quadrants</h3>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Mindset & Stewardship</span>
+                        <div class="def">Be a diligent, respectful steward · Focus on value · Apply systems thinking.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">People & Culture</span>
+                        <div class="def">Collaborative team environment · Engage stakeholders · Demonstrate leadership
+                            behaviors.</div>
+                    </div>
+                    <div class="card"><span class="pill">Navigation & Resilience</span>
+                        <div class="def">Navigate complexity · Optimize risk responses · Embrace adaptability · Enable
+                            change.</div>
+                    </div>
+                    <div class="card"><span class="pill">Execution & Craft</span>
+                        <div class="def">Build quality into processes · Tailor based on context.</div>
+                    </div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">8 Project Performance Domains</h3>
+                <div class="card">
+                    <div class="def">Stakeholders (engagement & alignment) · Team (culture & leadership) · Development
+                        Approach (cadence & methodology) · Planning (estimation & alignment) · Project Work (processes &
+                        resources) · Delivery (value & quality) · Measurement (tracking & troubleshooting) · Uncertainty
+                        (risk & ambiguity). <strong>Key insight:</strong> they run concurrently, not sequentially.</div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">8 Guiding Questions</h3>
+                <div class="card">
+                    <div class="def">Problem (what must be addressed?) · Goal (what should it accomplish?) · Scope (what
+                        work must be completed?) · Ownership (who performs/approves?) · Timeline (when finished?) ·
+                        Resources (what's required?) · Risk (what may affect it?) · Success (how measured?).</div>
+                </div>
+            </section>
+
+            <section id="l1-blocks">
+                <h2>The Five Building Blocks</h2>
+                <div class="grid2">
+                    <div class="card"><span class="pill">1 · Objectives</span>
+                        <div class="def">SMART: Specific, Measurable, Achievable, Relevant, Time-bound.</div>
+                    </div>
+                    <div class="card"><span class="pill">2 · Scope</span>
+                        <div class="def">The included work bounded against excluded work. Beware scope creep —
+                            uncontrolled addition of requirements beyond agreed boundaries.</div>
+                    </div>
+                    <div class="card"><span class="pill">3 · Deliverables</span>
+                        <div class="def">Measurable, tangible outputs (proposal, requirements doc, system design,
+                            prototype, tested app, user manual, final report).</div>
+                    </div>
+                    <div class="card"><span class="pill">4 · Stakeholders</span>
+                        <div class="def">Client, sponsor, project manager, development team, users, administrators.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">5 · Constraints</span>
+                        <div class="def">Scope, time, cost, quality, resources, risk — all interconnected. Changing one
+                            affects the others.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="l1-cycle">
+                <h2>Mechanics, Life Cycle & Roles</h2>
+                <div class="card">
+                    <div class="term">Mechanics of PM</div>
+                    <div class="def">Start (what needs to be accomplished?) → Plan (how will we accomplish it?) →
+                        Execute (perform planned activities) → Monitor (are we following the plan?) → Complete (did we
+                        deliver what was required?).</div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">The Project Life Cycle — 5 phases
+                </h3>
+                <div class="grid2">
+                    <div class="card"><span class="pill">1 · Initiation</span>
+                        <div class="def">Identify core purpose, initial objectives, key stakeholders; determine
+                            feasibility.</div>
+                    </div>
+                    <div class="card"><span class="pill">2 · Planning</span>
+                        <div class="def">Establish scope, schedule, budget, roles, quality standards, risk responses.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">3 · Execution</span>
+                        <div class="def">Carry out planned activities, coordinate the team, produce deliverables.</div>
+                    </div>
+                    <div class="card"><span class="pill">4 · Monitoring & Control</span>
+                        <div class="def">Measure progress vs. plan, evaluate performance, manage risk, control changes.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">5 · Closing</span>
+                        <div class="def">Obtain formal acceptance, transfer output, document lessons learned, officially
+                            complete.</div>
+                    </div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">7 Major Responsibilities of a PM</h3>
+                <div class="card">
+                    <div class="def">Define objectives · Plan the project · Organize the team · Manage time · Manage
+                        resources · Manage risks · Communicate (the critical link between all stakeholders).</div>
+                </div>
+                <div class="card">
+                    <div class="term">The Project Manager</div>
+                    <div class="def">"The conductor, not the soloist" — doesn't perform every task, but ensures the team
+                        works together toward a shared goal: defining objectives, organizing tasks, assigning
+                        responsibilities, managing time/budget, communicating, monitoring risk, maintaining quality.
+                    </div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">Six Golden Rules of PM</h3>
+                <div class="card">
+                    <div class="def">Embrace the Temporary · Balance the Scale (scope/time/cost/quality/resources/risk
+                        are forever linked) · Involve Stakeholders continuously · Anticipate Risk · Control Change
+                        (avoid scope creep) · Communicate Constantly.</div>
+                </div>
+            </section>
+
+            <div class="lesson-title">📘 Lesson 2 — Project Management & the IT Context</div>
+
+            <section id="l2-systems">
+                <h2>A Systems View of Project Management</h2>
+                <div class="card">
+                    <div class="term">System</div>
+                    <div class="def">A group of interconnected components that work together to achieve a common goal.
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="term">Systems View of PM</div>
+                    <div class="def">Examines a project as part of the larger organizational environment — people,
+                        processes, technology, business objectives.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Systems Philosophy</div>
+                    <div class="def">Views an organization and its projects as interconnected parts rather than separate
+                        activities.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Systems Analysis</div>
+                    <div class="def">Identifying and evaluating a system's components, problems, requirements,
+                        relationships, and solutions.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Systems Management</div>
+                    <div class="def">Managing business, organizational, and technological factors so a system achieves
+                        its purpose.</div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">Three-Sphere Model</h3>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Business</span>
+                        <div class="def">How the project supports org goals & delivers value — vision, strategy, market
+                            needs.</div>
+                    </div>
+                    <div class="card"><span class="pill">Organizational</span>
+                        <div class="def">People, culture, structure, leadership, policies, work processes.</div>
+                    </div>
+                    <div class="card"><span class="pill">Technology</span>
+                        <div class="def">Hardware, software, data, networks, infrastructure required.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="l2-org">
+                <h2>Organizations & Structures</h2>
+                <div class="card">
+                    <div class="term">Organization</div>
+                    <div class="def">A structured group of people who work together using established roles, processes,
+                        and resources.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Organizational Structure</div>
+                    <div class="def">The arrangement of authority, responsibilities, communication, and reporting
+                        relationships.</div>
+                </div>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Functional</span>
+                        <div class="def">Employees grouped by specialization/department.</div>
+                    </div>
+                    <div class="card"><span class="pill">Projectized</span>
+                        <div class="def">Employees assigned to projects; PM has substantial authority.</div>
+                    </div>
+                    <div class="card"><span class="pill">Matrix</span>
+                        <div class="def">Employees report to both a functional manager and a PM.</div>
+                    </div>
+                    <div class="card"><span class="pill">Weak Matrix</span>
+                        <div class="def">Functional manager has more authority than the PM.</div>
+                    </div>
+                    <div class="card"><span class="pill">Balanced Matrix</span>
+                        <div class="def">Authority shared between functional manager and PM.</div>
+                    </div>
+                    <div class="card"><span class="pill">Strong Matrix</span>
+                        <div class="def">PM has greater authority and control over resources.</div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:9px;">
+                    <div class="term">Organizational Culture</div>
+                    <div class="def">Shared values, beliefs, attitudes, expectations, and behaviors that influence how
+                        people work.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Organizational Change</div>
+                    <div class="def">A modification in technology, structure, processes, policies, or employee
+                        responsibilities.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Resistance to Change</div>
+                    <div class="def">Unwillingness/hesitation to accept a new system, procedure, or arrangement.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Project Governance</div>
+                    <div class="def">The framework of policies, responsibilities, authority, and decision-making used to
+                        direct/control a project.</div>
+                </div>
+            </section>
+
+            <section id="l2-stake">
+                <h2>Stakeholder Management</h2>
+                <div class="card">
+                    <div class="term">Stakeholder</div>
+                    <div class="def">Any person, group, or organization that can affect, be affected by, or perceive
+                        itself to be affected by a project.</div>
+                </div>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Internal</span>
+                        <div class="def">Employee, manager, project team member.</div>
+                    </div>
+                    <div class="card"><span class="pill">External</span>
+                        <div class="def">Customer, vendor, consultant, government agency.</div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:9px;">
+                    <div class="term">Stakeholder Register</div>
+                    <div class="def">Document with names, roles, interests, influence, expectations, communication
+                        requirements.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Stakeholder Analysis</div>
+                    <div class="def">Examining stakeholders by power, interest, influence, expectations, potential
+                        impact.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Power–Interest Grid</div>
+                    <div class="def">Classifies stakeholders by level of authority and interest.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Stakeholder Engagement Plan</div>
+                    <div class="def">Explains how stakeholders will be informed, consulted, involved, managed.</div>
+                </div>
+                <div class="card">
+                    <div class="term">Stakeholder Management Process</div>
+                    <div class="def"><strong>Identify</strong> stakeholders → <strong>Analyze</strong> their power, interest, and impact → <strong>Engage</strong> and <strong>Communicate</strong> with them → <strong>Monitor</strong> changes in their needs and influence.</div>
+                </div>
+                <h3 style="font-size:14px;color:var(--accent2);margin:14px 0 6px;">Power–Interest strategies</h3>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Project Sponsor</span>
+                        <div class="def">Provides resources, organizational support, and high-level direction.</div>
+                    </div>
+                    <div class="card"><span class="pill">Project Team</span>
+                        <div class="def">Performs the work needed to achieve project objectives.</div>
+                    </div>
+                    <div class="card"><span class="pill">End User</span>
+                        <div class="def">Directly uses the final product, service, or system.</div>
+                    </div>
+                    <div class="card"><span class="pill">High power / High interest</span>
+                        <div class="def"><strong>Manage Closely</strong></div>
+                    </div>
+                    <div class="card"><span class="pill">High power / Low interest</span>
+                        <div class="def"><strong>Keep Satisfied</strong></div>
+                    </div>
+                    <div class="card"><span class="pill">Low power / High interest</span>
+                        <div class="def"><strong>Keep Informed</strong></div>
+                    </div>
+                    <div class="card"><span class="pill">Low power / Low interest</span>
+                        <div class="def"><strong>Monitor</strong></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="l2-it">
+                <h2>Context of IT Projects</h2>
+                <div class="card">
+                    <div class="term">IT Project</div>
+                    <div class="def">A temporary effort to create, improve, implement, or maintain a technology-based
+                        product, service, or system.</div>
+                </div>
+                <div class="grid2">
+                    <div class="card"><span class="pill">Scope Creep</span>
+                        <div class="def">Uncontrolled addition of requirements without proper approval or adjustment.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">Project Constraint</span>
+                        <div class="def">A limiting factor: scope, time, cost, quality, resources, risk.</div>
+                    </div>
+                    <div class="card"><span class="pill">Project Risk</span>
+                        <div class="def">An uncertain event/condition that may positively or negatively affect
+                            objectives.</div>
+                    </div>
+                    <div class="card"><span class="pill">System Integration</span>
+                        <div class="def">Connecting different apps, databases, devices, platforms so they work together.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">User Acceptance</span>
+                        <div class="def">Willingness of intended users to approve, adopt, and properly use a new system.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">Cybersecurity</span>
+                        <div class="def">Protecting systems/networks/apps/data from unauthorized access or attack.</div>
+                    </div>
+                    <div class="card"><span class="pill">Data Privacy</span>
+                        <div class="def">Proper collection, processing, storage, use, protection of personal/sensitive
+                            info.</div>
+                    </div>
+                    <div class="card"><span class="pill">Technical Feasibility</span>
+                        <div class="def">Whether available tech, skills, infrastructure can support the project.</div>
+                    </div>
+                    <div class="card"><span class="pill">Operational Feasibility</span>
+                        <div class="def">Whether the system can function within existing operations.</div>
+                    </div>
+                    <div class="card"><span class="pill">DevOps</span>
+                        <div class="def">Integrates dev & IT operations to deliver systems faster and more reliably.
+                        </div>
+                    </div>
+                    <div class="card"><span class="pill">DevSecOps</span>
+                        <div class="def">Integrates security practices throughout dev and operations.</div>
+                    </div>
+                    <div class="card"><span class="pill">Cloud Computing</span>
+                        <div class="def">Delivery of computing resources over the internet.</div>
+                    </div>
+                    <div class="card"><span class="pill">Artificial Intelligence</span>
+                        <div class="def">Enables systems to perform tasks needing human intelligence — learning,
+                            reasoning, decisions.</div>
+                    </div>
+                    <div class="card"><span class="pill">Innovation</span>
+                        <div class="def">Creating or implementing new ideas, approaches, technologies, or solutions within an organization or project.</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============ FLASHCARDS PANEL ============ -->
+        <div class="panel" id="panel-flash" role="tabpanel" aria-labelledby="tab-flash" hidden>
+            <div class="fc-progress" id="fcProgress">Card 1</div>
+            <div class="fc-stage">
+                <div class="fc-card" id="fcCard" role="button" tabindex="0" aria-label="Show flashcard definition">
+                    <div class="fc-face front">
+                        <div class="fc-lesson" id="fcLessonF"></div>
+                        <div class="fc-tag">Term</div>
+                        <div class="fc-term" id="fcTerm"></div>
+                        <div class="fc-hint">Tap card to flip</div>
+                    </div>
+                    <div class="fc-face back">
+                        <div class="fc-lesson" id="fcLessonB"></div>
+                        <div class="fc-tag">Definition</div>
+                        <div class="fc-def" id="fcDef"></div>
+                        <div class="fc-hint">Tap card to flip back</div>
+                    </div>
+                </div>
+            </div>
+            <div class="fc-controls">
+                <button class="fc-btn" id="fcPrev">← Prev</button>
+                <button class="fc-btn primary" id="fcShuffle">🔀 Shuffle</button>
+                <button class="fc-btn" id="fcNext">Next →</button>
+            </div>
+        </div>
+
+        <!-- ============ QUIZ PANEL ============ -->
+        <div class="panel" id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+            <div id="quizArea"></div>
+        </div>
+
+        <footer>Reviewer generated from Project Management Lessons 1 & 2</footer>
+    </div>
+
+        <script src="script.js"></script>
+
+   
+</body>
+
+</html>
