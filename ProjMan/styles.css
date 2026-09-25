@@ -312,7 +312,7 @@
   }
 
   .fc-def {
-      font-size: 14px;
+      font-size: 16px;
   }
 
   .fc-hint {
@@ -440,7 +440,8 @@
       font-size: 13px;
       color: var(--text-muted);
       min-height: 18px;
-      margin-top: 4px;
+      margin-top: 8px;
+      line-height: 1.5;
   }
 
   .quiz-nav {
@@ -450,8 +451,16 @@
   }
 
   .quiz-done {
-      text-align: center;
-      padding: 30px 10px;
+      text-align: left;
+      padding: 20px 12px 10px;
+  }
+
+  .quiz-header {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
   }
 
   .quiz-score {
@@ -459,12 +468,54 @@
       font-weight: 800;
       color: var(--accent);
       margin: 6px 0;
+      text-align: center;
   }
 
   .quiz-score-sub {
       color: var(--text-muted);
       font-size: 14px;
       margin-bottom: 20px;
+      text-align: center;
+  }
+
+  .quiz-summary {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 22px;
+  }
+
+  .summary-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow);
+  }
+
+  .summary-item.correct {
+      border-left: 4px solid var(--good);
+  }
+
+  .summary-item.incorrect {
+      border-left: 4px solid var(--bad);
+  }
+
+  .summary-q {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+  }
+
+  .summary-row {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 4px;
+  }
+
+  .summary-row strong {
+      color: var(--text);
   }
 
   footer {

@@ -118,45 +118,46 @@ renderFlashcard();
 // ---------- QUIZ DATA ----------
 const quizBank = [
     // Lesson 1
-    { lesson: "L1", q: "What does the 'T' in the project DNA (T.U.G.R.C.) stand for?", options: ["Temporary", "Technical", "Targeted", "Timed"], answerText: "Temporary" },
-    { lesson: "L1", q: "Which paradigm defines success purely by meeting scope, schedule, and budget?", options: ["Modern / Outcome-Driven", "Old / Output-Driven", "Agile Paradigm", "Systems Paradigm"], answerText: "Old / Output-Driven" },
-    { lesson: "L1", q: "In the Anatomy of a Project Environment, which layer represents the 'active engine' of concurrent activities?", options: ["The Value System", "The 12 Principles", "The 8 Domains", "Tailoring & Frameworks"], answerText: "The 8 Domains" },
-    { lesson: "L1", q: "Which SMART letter stands for 'the objective must have a deadline'?", options: ["Specific", "Measurable", "Achievable", "Time-bound"], answerText: "Time-bound" },
-    { lesson: "L1", q: "What is scope creep?", options: ["A planned scope revision approved by the sponsor", "The uncontrolled addition of requirements beyond agreed boundaries", "A technique for estimating budget", "A stakeholder engagement strategy"], answerText: "The uncontrolled addition of requirements beyond agreed boundaries" },
-    { lesson: "L1", q: "Which project life cycle phase is about obtaining formal acceptance and documenting lessons learned?", options: ["Initiation", "Planning", "Execution", "Closing"], answerText: "Closing" },
-    { lesson: "L1", q: "According to the lesson, the Project Manager is best described as:", options: ["The soloist who performs every task", "The conductor who ensures the team works toward a shared goal", "An external auditor", "A passive observer"], answerText: "The conductor who ensures the team works toward a shared goal" },
-    { lesson: "L1", q: "Which of these is NOT one of the 5 Building Blocks of Project Management?", options: ["Objectives", "Scope", "Deliverables", "Organizational Culture"], answerText: "Organizational Culture" },
-    { lesson: "L1", q: "Which of the Six Golden Rules refers to keeping scope, time, cost, quality, resources, and risk in balance?", options: ["Embrace the Temporary", "Balance the Scale", "Anticipate Risk", "Control Change"], answerText: "Balance the Scale" },
-    { lesson: "L1", q: "Per the PMBOK Guide 7th Edition quote in the lesson, what do projects ultimately enable?", options: ["Faster deadlines", "Outputs that drive outcomes delivering value", "Lower project costs", "Bigger project teams"], answerText: "Outputs that drive outcomes delivering value" },
-    { lesson: "L1", q: "Which statement best distinguishes a project from a routine operation?", options: ["A project is ongoing and repetitive", "A project is temporary and unique", "An operation has a definite end", "An operation creates a unique result"], answerText: "A project is temporary and unique" },
-    { lesson: "L1", q: "A working prototype is best classified as which project concept?", options: ["Objective", "Deliverable", "Constraint", "Stakeholder"], answerText: "Deliverable" },
-    { lesson: "L1", q: "Who is primarily responsible for gathering and documenting system requirements?", options: ["QA / Tester", "Business Analyst", "Database Developer", "Project Sponsor"], answerText: "Business Analyst" },
-    { lesson: "L1", q: "Who verifies that a system meets its quality requirements through testing?", options: ["UI/UX Designer", "Programmer", "QA / Tester", "End User"], answerText: "QA / Tester" },
+    { lesson: "L1", q: "What does the 'T' in the project DNA (T.U.G.R.C.) stand for?", options: ["Temporary", "Technical", "Targeted", "Timed"], answerText: "Temporary", explanation: "The 'T' stands for Temporary because a project has a defined beginning and end, unlike an ongoing operation." },
+    { lesson: "L1", q: "Which paradigm defines success purely by meeting scope, schedule, and budget?", options: ["Modern / Outcome-Driven", "Old / Output-Driven", "Agile Paradigm", "Systems Paradigm"], answerText: "Old / Output-Driven", explanation: "The old output-driven paradigm treated success as finishing scope, schedule, and budget, but modern project thinking also tests whether benefits and value were created." },
+    { lesson: "L1", q: "In the Anatomy of a Project Environment, which layer represents the 'active engine' of concurrent activities?", options: ["The Value System", "The 12 Principles", "The 8 Domains", "Tailoring & Frameworks"], answerText: "The 8 Domains", explanation: "The 8 project performance domains are the active execution layer where planning, stakeholders, delivery, measurement, and uncertainty work together at the same time." },
+    { lesson: "L1", q: "Which SMART letter stands for 'the objective must have a deadline'?", options: ["Specific", "Measurable", "Achievable", "Time-bound"], answerText: "Time-bound", explanation: "Time-bound means the goal has a clear deadline or timeframe, which helps define urgency and accountability." },
+    { lesson: "L1", q: "What is scope creep?", options: ["A planned scope revision approved by the sponsor", "The uncontrolled addition of requirements beyond agreed boundaries", "A technique for estimating budget", "A stakeholder engagement strategy"], answerText: "The uncontrolled addition of requirements beyond agreed boundaries", explanation: "Scope creep is uncontrolled change to scope, often causing delays, confusion, and cost overruns because work grows beyond the original agreement." },
+    { lesson: "L1", q: "Which project life cycle phase is about obtaining formal acceptance and documenting lessons learned?", options: ["Initiation", "Planning", "Execution", "Closing"], answerText: "Closing", explanation: "Closing is the phase where the team gets formal acceptance, transfers the deliverable, and records lessons learned so future work improves." },
+    { lesson: "L1", q: "According to the lesson, the Project Manager is best described as:", options: ["The soloist who performs every task", "The conductor who ensures the team works toward a shared goal", "An external auditor", "A passive observer"], answerText: "The conductor who ensures the team works toward a shared goal", explanation: "The PM coordinates the team and keeps everyone aligned, rather than doing every task alone." },
+    { lesson: "L1", q: "Which of these is NOT one of the 5 Building Blocks of Project Management?", options: ["Objectives", "Scope", "Deliverables", "Organizational Culture"], answerText: "Organizational Culture", explanation: "The five building blocks are objectives, scope, deliverables, stakeholders, and constraints. Organizational culture is part of the wider environment, not one of the five core building blocks." },
+    { lesson: "L1", q: "Which of the Six Golden Rules refers to keeping scope, time, cost, quality, resources, and risk in balance?", options: ["Embrace the Temporary", "Balance the Scale", "Anticipate Risk", "Control Change"], answerText: "Balance the Scale", explanation: "Balance the Scale means project elements are interconnected, so changing one factor affects the others and careful trade-offs are always required." },
+    { lesson: "L1", q: "Per the PMBOK Guide 7th Edition quote in the lesson, what do projects ultimately enable?", options: ["Faster deadlines", "Outputs that drive outcomes delivering value", "Lower project costs", "Bigger project teams"], answerText: "Outputs that drive outcomes delivering value", explanation: "Projects are meant to create value by producing outputs that lead to outcomes beneficial to the organization and its stakeholders." },
+    { lesson: "L1", q: "Which statement best distinguishes a project from a routine operation?", options: ["A project is ongoing and repetitive", "A project is temporary and unique", "An operation has a definite end", "An operation creates a unique result"], answerText: "A project is temporary and unique", explanation: "Projects are temporary and unique, while operations are typically ongoing and repetitive work that keeps a process running." },
+    { lesson: "L1", q: "A working prototype is best classified as which project concept?", options: ["Objective", "Deliverable", "Constraint", "Stakeholder"], answerText: "Deliverable", explanation: "A prototype is a tangible output of the project, so it is a deliverable rather than a goal, constraint, or stakeholder." },
+    { lesson: "L1", q: "Who is primarily responsible for gathering and documenting system requirements?", options: ["QA / Tester", "Business Analyst", "Database Developer", "Project Sponsor"], answerText: "Business Analyst", explanation: "The business analyst studies stakeholder and system needs and documents the requirements that the project will satisfy." },
+    { lesson: "L1", q: "Who verifies that a system meets its quality requirements through testing?", options: ["UI/UX Designer", "Programmer", "QA / Tester", "End User"], answerText: "QA / Tester", explanation: "QA or testers validate quality by checking whether the system meets requirements and identifying issues before delivery." },
     // Lesson 2
-    { lesson: "L2", q: "Which matrix structure gives the project manager the most authority?", options: ["Weak Matrix", "Balanced Matrix", "Strong Matrix", "Functional Structure"], answerText: "Strong Matrix" },
-    { lesson: "L2", q: "A stakeholder has high power but low interest. What's the engagement strategy?", options: ["Manage Closely", "Keep Satisfied", "Keep Informed", "Monitor"], answerText: "Keep Satisfied" },
-    { lesson: "L2", q: "What document authorizes a project and gives the PM authority to use resources?", options: ["Business Case", "Feasibility Study", "Project Charter", "Stakeholder Register"], answerText: "Project Charter" },
-    { lesson: "L2", q: "Which of the three spheres focuses on hardware, software, data, and infrastructure?", options: ["Business Sphere", "Organizational Sphere", "Technology Sphere", "Governance Sphere"], answerText: "Technology Sphere" },
-    { lesson: "L2", q: "Which project phase is about 'keeping it on track'?", options: ["Initiation", "Planning", "Monitoring & Controlling", "Closure"], answerText: "Monitoring & Controlling" },
-    { lesson: "L2", q: "In which structure are employees grouped by specialization/department?", options: ["Functional Structure", "Projectized Structure", "Matrix Structure", "Balanced Matrix"], answerText: "Functional Structure" },
-    { lesson: "L2", q: "A stakeholder has low power but high interest. What's the strategy?", options: ["Manage Closely", "Keep Satisfied", "Keep Informed", "Monitor"], answerText: "Keep Informed" },
-    { lesson: "L2", q: "What evaluates whether a project is technically, financially, operationally, and legally achievable?", options: ["Business Case", "Feasibility Study", "Project Charter", "Stakeholder Analysis"], answerText: "Feasibility Study" },
-    { lesson: "L2", q: "Which approach integrates security practices throughout dev and operations?", options: ["DevOps", "DevSecOps", "Cloud Computing", "System Integration"], answerText: "DevSecOps" },
-    { lesson: "L2", q: "What's the process of connecting different applications, databases, or platforms so they work together?", options: ["System Integration", "User Acceptance", "Data Privacy", "Technical Feasibility"], answerText: "System Integration" },
-    { lesson: "L2", q: "Which term describes a stakeholder who belongs to the organization itself?", options: ["External Stakeholder", "Internal Stakeholder", "End User", "Vendor"], answerText: "Internal Stakeholder" },
-    { lesson: "L2", q: "Which concept refers to an uncertain event or condition that may positively or negatively affect project objectives?", options: ["Project Constraint", "Project Risk", "Project Scope", "Project Governance"], answerText: "Project Risk" },
-    { lesson: "L2", q: "Which stakeholder provides resources, organizational support, and high-level direction?", options: ["End User", "Project Sponsor", "QA / Tester", "Vendor"], answerText: "Project Sponsor" },
-    { lesson: "L2", q: "What should be done with a high-power, low-interest stakeholder?", options: ["Manage Closely", "Keep Satisfied", "Keep Informed", "Monitor"], answerText: "Keep Satisfied" },
-    { lesson: "L2", q: "A company has the technology to build a system, but its employees cannot use it effectively. What concern exists?", options: ["Technical feasibility", "Operational feasibility", "System integration", "Data privacy"], answerText: "Operational feasibility" },
-    { lesson: "L2", q: "A company lacks the required hardware, skills, and infrastructure. What concern exists?", options: ["Operational feasibility", "Technical feasibility", "User acceptance", "Project governance"], answerText: "Technical feasibility" },
-    { lesson: "L2", q: "Which sequence best describes stakeholder management?", options: ["Plan, build, test, close", "Identify, analyze, engage, communicate, monitor", "Scope, schedule, budget, deliver", "Design, code, integrate, deploy"], answerText: "Identify, analyze, engage, communicate, monitor" },
-    { lesson: "L2", q: "What is innovation in a project context?", options: ["Repeating an existing process", "Creating or implementing new ideas, approaches, technologies, or solutions", "Limiting project scope", "Approving the project budget"], answerText: "Creating or implementing new ideas, approaches, technologies, or solutions" },
+    { lesson: "L2", q: "Which matrix structure gives the project manager the most authority?", options: ["Weak Matrix", "Balanced Matrix", "Strong Matrix", "Functional Structure"], answerText: "Strong Matrix", explanation: "A strong matrix gives the PM greater authority and control over resources, making it the most project-centered structure listed." },
+    { lesson: "L2", q: "A stakeholder has high power but low interest. What's the engagement strategy?", options: ["Manage Closely", "Keep Satisfied", "Keep Informed", "Monitor"], answerText: "Keep Satisfied", explanation: "High power and low interest means the stakeholder must be kept satisfied so they do not become a problem, even if they are not deeply involved." },
+    { lesson: "L2", q: "What document authorizes a project and gives the PM authority to use resources?", options: ["Business Case", "Feasibility Study", "Project Charter", "Stakeholder Register"], answerText: "Project Charter", explanation: "The project charter formally authorizes the project and gives the PM the authority and legitimacy to allocate resources and proceed." },
+    { lesson: "L2", q: "Which of the three spheres focuses on hardware, software, data, and infrastructure?", options: ["Business Sphere", "Organizational Sphere", "Technology Sphere", "Governance Sphere"], answerText: "Technology Sphere", explanation: "The technology sphere covers the technical foundation of the project, including hardware, software, data, and networks." },
+    { lesson: "L2", q: "Which project phase is about 'keeping it on track'?", options: ["Initiation", "Planning", "Monitoring & Controlling", "Closure"], answerText: "Monitoring & Controlling", explanation: "Monitoring and controlling compares actual performance to the plan and makes adjustments to keep the project aligned with objectives." },
+    { lesson: "L2", q: "In which structure are employees grouped by specialization/department?", options: ["Functional Structure", "Projectized Structure", "Matrix Structure", "Balanced Matrix"], answerText: "Functional Structure", explanation: "A functional structure organizes employees by area of specialization such as finance, marketing, or engineering." },
+    { lesson: "L2", q: "A stakeholder has low power but high interest. What's the strategy?", options: ["Manage Closely", "Keep Satisfied", "Keep Informed", "Monitor"], answerText: "Keep Informed", explanation: "Low power but high interest means the stakeholder should be kept informed so they stay engaged without consuming too much management effort." },
+    { lesson: "L2", q: "What evaluates whether a project is technically, financially, operationally, and legally achievable?", options: ["Business Case", "Feasibility Study", "Project Charter", "Stakeholder Analysis"], answerText: "Feasibility Study", explanation: "A feasibility study checks whether a project can succeed from technical, financial, operational, and legal viewpoints before approval." },
+    { lesson: "L2", q: "Which approach integrates security practices throughout dev and operations?", options: ["DevOps", "DevSecOps", "Cloud Computing", "System Integration"], answerText: "DevSecOps", explanation: "DevSecOps adds security into the development and operations lifecycle so protection is built in rather than appended later." },
+    { lesson: "L2", q: "What's the process of connecting different applications, databases, or platforms so they work together?", options: ["System Integration", "User Acceptance", "Data Privacy", "Technical Feasibility"], answerText: "System Integration", explanation: "System integration connects separate components so they function as a coordinated and usable whole." },
+    { lesson: "L2", q: "Which term describes a stakeholder who belongs to the organization itself?", options: ["External Stakeholder", "Internal Stakeholder", "End User", "Vendor"], answerText: "Internal Stakeholder", explanation: "Internal stakeholders belong to the company or organization and are directly affected by project outcomes." },
+    { lesson: "L2", q: "Which concept refers to an uncertain event or condition that may positively or negatively affect project objectives?", options: ["Project Constraint", "Project Risk", "Project Scope", "Project Governance"], answerText: "Project Risk", explanation: "Project risk is uncertainty that can affect goals either positively or negatively, so it needs to be identified and managed." },
+    { lesson: "L2", q: "Which stakeholder provides resources, organizational support, and high-level direction?", options: ["End User", "Project Sponsor", "QA / Tester", "Vendor"], answerText: "Project Sponsor", explanation: "The sponsor provides leadership support, resources, and executive backing needed to authorize and sustain the project." },
+    { lesson: "L2", q: "What should be done with a high-power, low-interest stakeholder?", options: ["Manage Closely", "Keep Satisfied", "Keep Informed", "Monitor"], answerText: "Keep Satisfied", explanation: "A high-power, low-interest stakeholder needs to be kept satisfied because they can influence the project even if they are not highly engaged." },
+    { lesson: "L2", q: "A company has the technology to build a system, but its employees cannot use it effectively. What concern exists?", options: ["Technical feasibility", "Operational feasibility", "System integration", "Data privacy"], answerText: "Operational feasibility", explanation: "Operational feasibility asks whether the solution can realistically work within the organization’s people, processes, and day-to-day operations." },
+    { lesson: "L2", q: "A company lacks the required hardware, skills, and infrastructure. What concern exists?", options: ["Operational feasibility", "Technical feasibility", "User acceptance", "Project governance"], answerText: "Technical feasibility", explanation: "Technical feasibility examines whether the organization has the tools, skills, and infrastructure to actually build and support the project." },
+    { lesson: "L2", q: "Which sequence best describes stakeholder management?", options: ["Plan, build, test, close", "Identify, analyze, engage, communicate, monitor", "Scope, schedule, budget, deliver", "Design, code, integrate, deploy"], answerText: "Identify, analyze, engage, communicate, monitor", explanation: "Stakeholder management starts by identifying stakeholders, studying their needs and influence, then engaging and communicating while monitoring them over time." },
+    { lesson: "L2", q: "What is innovation in a project context?", options: ["Repeating an existing process", "Creating or implementing new ideas, approaches, technologies, or solutions", "Limiting project scope", "Approving the project budget"], answerText: "Creating or implementing new ideas, approaches, technologies, or solutions", explanation: "Innovation in a project means introducing a new or improved way of meeting a need, not simply repeating existing practices." },
 ];
 
 let quizQueue = [];
 let quizIndex = 0;
 let quizScore = 0;
 let answered = false;
+let answerLog = [];
 const quizArea = document.getElementById('quizArea');
 
 function buildQuizQueue() {
@@ -164,7 +165,14 @@ function buildQuizQueue() {
         const options = [...item.options];
         shuffleArr(options);
         const answerIndex = options.indexOf(item.answerText);
-        return { lesson: item.lesson, q: item.q, options, answerIndex };
+        return {
+            lesson: item.lesson,
+            q: item.q,
+            options,
+            answerIndex,
+            answerText: item.answerText,
+            explanation: item.explanation
+        };
     });
     shuffleArr(q);
     return q;
@@ -172,15 +180,33 @@ function buildQuizQueue() {
 
 function renderQuiz() {
     if (quizIndex >= quizQueue.length) {
+        const summaryHtml = quizQueue.map((item, idx) => {
+            const record = answerLog[idx] || { selected: 'Not answered', correct: false };
+            const isCorrect = record.correct;
+            return `
+                <div class="summary-item ${isCorrect ? 'correct' : 'incorrect'}">
+                    <div class="summary-q">Q${idx + 1}. ${item.q}</div>
+                    <div class="summary-row"><strong>Your answer:</strong> ${record.selected}</div>
+                    <div class="summary-row"><strong>Correct answer:</strong> ${item.answerText}</div>
+                    <div class="summary-row"><strong>Explanation:</strong> ${item.explanation}</div>
+                </div>
+            `;
+        }).join('');
+
         quizArea.innerHTML = `
         <div class="quiz-done">
-          <div style="font-size:14px;color:var(--text-muted);">Quiz complete</div>
+          <div class="quiz-header">Quiz complete</div>
           <div class="quiz-score">${quizScore} / ${quizQueue.length}</div>
           <div class="quiz-score-sub">${quizScore === quizQueue.length ? "Perfect score! 🎉" : "Nice work — review the misses and try again."}</div>
+          <div class="quiz-summary">${summaryHtml}</div>
           <button class="fc-btn primary" id="quizRestart">🔀 New Random Quiz</button>
         </div>`;
         document.getElementById('quizRestart').addEventListener('click', () => {
-            quizQueue = buildQuizQueue(); quizIndex = 0; quizScore = 0; renderQuiz();
+            quizQueue = buildQuizQueue();
+            quizIndex = 0;
+            quizScore = 0;
+            answerLog = [];
+            renderQuiz();
         });
         return;
     }
@@ -206,7 +232,7 @@ function renderQuiz() {
     const optsDiv = document.getElementById('opts');
     item.options.forEach((opt, i) => {
         const btn = document.createElement('button');
-                btn.type = 'button';
+        btn.type = 'button';
         btn.className = 'opt';
         btn.textContent = opt;
         btn.addEventListener('click', () => {
@@ -219,9 +245,17 @@ function renderQuiz() {
                 if (bi === item.answerIndex) b.classList.add('correct');
                 else if (bi === i) b.classList.add('incorrect');
             });
-            document.getElementById('qFeedback').textContent = correct
-                ? "Correct!"
-                : `Not quite — correct answer: ${item.options[item.answerIndex]}`;
+
+            answerLog[quizIndex] = {
+                selected: opt,
+                correct: correct
+            };
+
+            if (correct) {
+                document.getElementById('qFeedback').innerHTML = `<strong>Correct!</strong> ${item.explanation}`;
+            } else {
+                document.getElementById('qFeedback').innerHTML = `<strong>Not quite.</strong> The correct answer is <strong>${item.answerText}</strong> because ${item.explanation}. You selected <strong>${opt}</strong>, which does not match the key idea behind this question.`;
+            }
             document.getElementById('qNext').style.display = 'inline-block';
         });
         optsDiv.appendChild(btn);
@@ -233,6 +267,7 @@ function renderQuiz() {
 }
 
 quizQueue = buildQuizQueue();
+answerLog = [];
 renderQuiz();
 
 // ---------- TABS ----------
